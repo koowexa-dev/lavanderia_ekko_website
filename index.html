@@ -112,6 +112,26 @@
             box-shadow: var(--sombra);
         }
 
+        .btn-admin {
+            background: #4b5563;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transicion);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-admin:hover {
+            background: #374151;
+            transform: translateY(-2px);
+        }
+
         .hero-banner {
             background: linear-gradient(120deg, #ffffff 0%, #f4faf7 100%);
             padding: 56px 20px;
@@ -376,7 +396,6 @@
             display: inline-block;
         }
 
-        /* MODAL COMPACTADO Y ADAPTABLE */
         .modal {
             display: none;
             position: fixed;
@@ -402,6 +421,10 @@
             animation: fadeIn 0.2s ease;
             max-height: 90vh;
             overflow-y: auto;
+        }
+
+        .modal-content.modal-lg {
+            max-width: 880px;
         }
 
         @keyframes fadeIn {
@@ -433,7 +456,7 @@
             font-size: 0.8rem;
         }
 
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 10px 14px;
             border: 1.5px solid var(--gris-suave);
@@ -443,7 +466,12 @@
             background: var(--blanco);
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .form-group textarea {
+            border-radius: 20px;
+            resize: vertical;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--verde-principal);
             box-shadow: 0 0 0 2px rgba(44,158,92,0.2);
@@ -478,6 +506,21 @@
         .btn-cancelar {
             background: var(--gris-suave);
             color: var(--gris-texto);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+        }
+
+        @media (max-width: 640px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content.modal-lg {
+                padding: 20px 16px;
+            }
         }
 
         footer {
@@ -519,26 +562,6 @@
             font-size: 0.7rem;
             opacity: 0.8;
         }
-
-        @media (max-width: 820px) {
-            .container { padding: 0 20px; }
-            .hero-banner h1 { font-size: 1.8rem; }
-            .logo-text { font-size: 1.4rem; }
-            .section-title h2 { font-size: 1.7rem; }
-            .features-row { border-radius: 40px; padding: 12px 20px; }
-            .price-header h3 { font-size: 1.2rem; }
-        }
-
-        @media (max-width: 640px) {
-            .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
-            .delivery-grid { grid-template-columns: 1fr; }
-            .catalogo-grid { grid-template-columns: 1fr; }
-            .hero-banner { padding: 32px 16px; }
-            .modal-content { padding: 20px 16px; }
-            .btn-reserva-header { padding: 6px 18px; font-size: 0.8rem; }
-            .modal-buttons { flex-direction: column; gap: 10px; }
-            .btn-modal { width: 100%; text-align: center; }
-        }
     </style>
 </head>
 <body>
@@ -549,7 +572,10 @@
             <img class="logo-img" src="eko.ico" alt="Lavandería EKO">
             <div class="logo-text">Lavandería <span>EKO</span></div>
         </div>
-        <button id="openReservaBtn" class="btn-reserva-header">📅 Reservar ahora</button>
+        <div style="display: flex; gap: 12px;">
+            <button id="openReservaBtn" class="btn-reserva-header">📅 Reservar ahora</button>
+            <button id="openAdminAccessBtn" class="btn-admin">🔐 Admin</button>
+        </div>
     </div>
 </header>
 
@@ -637,41 +663,59 @@
 <div id="reservaModal" class="modal">
     <div class="modal-content">
         <h3>Reservación</h3>
-        <p>Completa tus datos</p>
+        <p>Completa tus datos para coordinar el servicio</p>
         <form id="reservaForm">
-            <div class="form-group">
-                <label>👤 Nombre completo</label>
-                <input type="text" id="nombre" required placeholder="Ej: Ana Pérez">
-            </div>
-            <div class="form-group">
-                <label>📞 Teléfono (móvil)</label>
-                <input type="tel" id="telefono" required placeholder="+53 5XXXXXXXX">
-            </div>
-            <div class="form-group">
-                <label>📍 Dirección de recogida</label>
-                <input type="text" id="direccion" required placeholder="Calle, número, municipio">
-            </div>
-            <div class="form-group">
-                <label>🧺 Servicio deseado</label>
-                <select id="servicioSelect">
-                    <option value="NORMAL (por kg)">NORMAL por kg</option>
-                    <option value="BÁSICO por kg">BÁSICO por kg</option>
-                    <option value="PREMIUM por kg">PREMIUM por kg</option>
-                    <option value="ECONÓMICO CARGA (7kg)">ECONÓMICO CARGA (7kg)</option>
-                    <option value="BÁSICO CARGA">BÁSICO CARGA</option>
-                    <option value="PREMIUM CARGA">PREMIUM CARGA</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>🕒 Fecha y hora sugerida</label>
-                <input type="text" id="fechahora" placeholder="Ej: Lunes 10am / flexible">
-            </div>
-            <div class="modal-buttons">
-                <button type="button" class="btn-modal btn-cancelar" id="closeModalBtn">Cancelar</button>
-                <button type="submit" class="btn-modal btn-enviar">Enviar solicitud</button>
-            </div>
+            <div class="form-group"><label>👤 Nombre Completo</label><input type="text" id="nombre" required placeholder="Ej: Ana Pérez"></div>
+            <div class="form-group"><label>📞 Teléfono</label><input type="tel" id="telefono" required placeholder="+53 5XXXXXXXX"></div>
+            <div class="form-group"><label>📍 Dirección</label><input type="text" id="direccion" required placeholder="Calle, número, municipio"></div>
+            <div class="form-group"><label>🆔 Carnet ID</label><input type="text" id="carnet" placeholder="Número de identidad"></div>
+            <div class="form-group"><label>🧺 Tipo de servicio</label><select id="servicioSelect"><option value="NORMAL (por kg)">NORMAL por kg</option><option value="BÁSICO por kg">BÁSICO por kg</option><option value="PREMIUM por kg">PREMIUM por kg</option><option value="ECONÓMICO CARGA (7kg)">ECONÓMICO CARGA (7kg)</option><option value="BÁSICO CARGA">BÁSICO CARGA</option><option value="PREMIUM CARGA">PREMIUM CARGA</option></select></div>
+            <div class="form-group"><label>🕒 Fecha/Hora sugerida</label><input type="text" id="fechahora" placeholder="Ej: Lunes 10am / flexible"></div>
+            <div class="modal-buttons"><button type="button" class="btn-modal btn-cancelar" id="closeModalBtn">Cancelar</button><button type="submit" class="btn-modal btn-enviar">Enviar solicitud</button></div>
         </form>
         <p style="font-size: 0.7rem; margin-top: 14px; text-align: center;">Al enviar, podrás elegir WhatsApp o SMS</p>
+    </div>
+</div>
+
+<div id="claveModal" class="modal">
+    <div class="modal-content" style="max-width: 380px;">
+        <h3>Acceso Administración</h3>
+        <p>Ingrese la clave única</p>
+        <div class="form-group"><label>🔑 Clave</label><input type="password" id="claveAcceso" placeholder="Clave de seguridad"></div>
+        <div class="modal-buttons"><button type="button" class="btn-modal btn-cancelar" id="closeClaveModalBtn">Cancelar</button><button type="button" class="btn-modal btn-enviar" id="validarClaveBtn">Acceder</button></div>
+    </div>
+</div>
+
+<div id="adminModal" class="modal">
+    <div class="modal-content modal-lg">
+        <h3>🧾 Administración · Orden de Servicio</h3>
+        <p>Gestión completa de pedidos</p>
+        <form id="adminForm">
+            <div class="admin-grid">
+                <div class="form-group"><label>📌 Orden No:</label><input type="text" id="ordenNo" placeholder="Ej: EKO-001"></div>
+                <div class="form-group"><label>📞 Teléfono:</label><input type="tel" id="adminTelefono"></div>
+                <div class="form-group"><label>📅 Fecha de recepción:</label><input type="date" id="fechaRecepcion"></div>
+                <div class="form-group"><label>🧴 Lavandera:</label><input type="text" id="lavandera"></div>
+                <div class="form-group"><label>🚚 Recogida:</label><input type="text" id="recogida" placeholder="Hora/día"></div>
+                <div class="form-group"><label>📦 Entrega:</label><input type="text" id="entrega" placeholder="Hora/día"></div>
+                <div class="form-group"><label>📍 Dirección:</label><input type="text" id="adminDireccion"></div>
+                <div class="form-group"><label>🧺 Servicio:</label><input type="text" id="adminServicio"></div>
+                <div class="form-group"><label>✨ Extra:</label><input type="text" id="extra"></div>
+                <div class="form-group"><label>👕 Planchado:</label><input type="text" id="planchado" placeholder="Sí/No / Precio"></div>
+                <div class="form-group"><label>📬 Mensajería:</label><input type="text" id="mensajeria"></div>
+                <div class="form-group"><label>💰 Monto Recibo:</label><input type="text" id="montoRecibo"></div>
+                <div class="form-group"><label>🔄 Cambio:</label><input type="text" id="cambio"></div>
+                <div class="form-group"><label>📦 Productos/Cantidad:</label><input type="text" id="productosCantidad"></div>
+                <div class="form-group"><label>📝 Observaciones:</label><textarea rows="2" id="observaciones"></textarea></div>
+                <div class="form-group"><label>✍️ Firma:</label><input type="text" id="firma"></div>
+                <div class="form-group"><label>👤 Cliente:</label><input type="text" id="cliente"></div>
+                <div class="form-group"><label>👔 Encargado:</label><input type="text" id="encargado"></div>
+            </div>
+            <div class="modal-buttons" style="justify-content: space-between;">
+                <button type="button" class="btn-modal btn-cancelar" id="closeAdminModalBtn">Cerrar</button>
+                <button type="button" class="btn-modal btn-enviar" id="descargarTxtBtn">📄 Descargar TXT</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -682,42 +726,60 @@
                 <strong style="color:#7ac76a;">Lavandería EKO</strong>
                 <p>📞 +53 52952442 | 📍 Centro Habana (Arroyo)</p>
                 <p>🕒 Lunes a Domingo • 8:00 a.m. – 7:00 p.m.</p>
-                <p>💚 Limpieza eco-responsable · Servicio en 48H</p>
             </div>
             <div><a href="https://wa.me/5352952442" class="footer-wapp">WhatsApp directo</a></div>
         </div>
-        <div class="copyright"><p>© 2026 Lavandería EKO · Limpia · Confiable · Económica</p></div>
+        <div class="copyright"><p>© 2026 Lavandería EKO</p></div>
     </div>
 </footer>
 
 <script>
-    const modal = document.getElementById('reservaModal');
-    const openBtns = document.querySelectorAll('#openReservaBtn, #heroReservaBtn');
-    const closeBtn = document.getElementById('closeModalBtn');
+    const claveCorrecta = "EKO2026";
+    const reservaModal = document.getElementById('reservaModal');
+    const claveModal = document.getElementById('claveModal');
+    const adminModal = document.getElementById('adminModal');
+    const openReservaBtns = document.querySelectorAll('#openReservaBtn, #heroReservaBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeClaveModal = document.getElementById('closeClaveModalBtn');
+    const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+    const openAdminAccessBtn = document.getElementById('openAdminAccessBtn');
+    const validarClaveBtn = document.getElementById('validarClaveBtn');
+    const descargarTxtBtn = document.getElementById('descargarTxtBtn');
     const reservaForm = document.getElementById('reservaForm');
 
-    function openModal() { modal.style.display = 'flex'; }
-    function closeModal() { modal.style.display = 'none'; }
-    openBtns.forEach(btn => btn.addEventListener('click', openModal));
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    function openModal(modal) { modal.style.display = 'flex'; }
+    function closeModalFunc(modal) { modal.style.display = 'none'; }
 
-    const defaultMsg = "hola vi su página web y me interesa los servicios que ofrece su Lavandería EKO, ¿me podría decir a qué hora y lugar puedo pasarme?";
+    openReservaBtns.forEach(btn => btn.addEventListener('click', () => openModal(reservaModal)));
+    closeModalBtn.addEventListener('click', () => closeModalFunc(reservaModal));
+    window.addEventListener('click', (e) => { if (e.target === reservaModal) closeModalFunc(reservaModal); });
 
-    function sendViaWhatsApp(message) {
-        const phone = "5352952442";
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-    }
+    openAdminAccessBtn.addEventListener('click', () => {
+        openModal(claveModal);
+        document.getElementById('claveAcceso').value = '';
+    });
+    closeClaveModal.addEventListener('click', () => closeModalFunc(claveModal));
+    validarClaveBtn.addEventListener('click', () => {
+        const claveIngresada = document.getElementById('claveAcceso').value.trim();
+        if (claveIngresada === claveCorrecta) {
+            closeModalFunc(claveModal);
+            openModal(adminModal);
+        } else {
+            alert("Clave incorrecta. Acceso denegado.");
+        }
+    });
+    closeAdminModalBtn.addEventListener('click', () => closeModalFunc(adminModal));
+    window.addEventListener('click', (e) => { if (e.target === adminModal) closeModalFunc(adminModal); if (e.target === claveModal) closeModalFunc(claveModal); });
 
-    function sendViaSMS(message) {
-        window.location.href = `sms:+5352952442?body=${encodeURIComponent(message)}`;
-    }
+    function sendViaWhatsApp(message) { window.open(`https://wa.me/5352952442?text=${encodeURIComponent(message)}`, '_blank'); }
+    function sendViaSMS(message) { window.location.href = `sms:+5352952442?body=${encodeURIComponent(message)}`; }
 
     reservaForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const nombre = document.getElementById('nombre').value.trim();
         const telefono = document.getElementById('telefono').value.trim();
         const direccion = document.getElementById('direccion').value.trim();
+        const carnet = document.getElementById('carnet').value.trim();
         const servicio = document.getElementById('servicioSelect').value;
         const fechahora = document.getElementById('fechahora').value.trim();
 
@@ -726,22 +788,66 @@
             return;
         }
 
-        let mensaje = `hola vi su página web y me interesa los servicios que ofrece su Lavandería EKO, ¿me podría decir a qué hora y lugar puedo pasarme?\n\n`;
-        mensaje += `📋 DATOS DE RESERVA:\n`;
-        mensaje += `👤 Nombre: ${nombre}\n`;
-        mensaje += `📞 Teléfono: ${telefono}\n`;
-        mensaje += `📍 Dirección: ${direccion}\n`;
-        mensaje += `🧺 Servicio deseado: ${servicio}\n`;
-        mensaje += `🕒 Fecha/Hora: ${fechahora || "No especificada"}\n\n✨ ¡Gracias! Espero su confirmación.`;
-
-        const opcion = confirm("📱 Enviar por WhatsApp?\nAceptar = WhatsApp\nCancelar = SMS (mensaje de texto)");
-        if (opcion) {
-            sendViaWhatsApp(mensaje);
-        } else {
-            sendViaSMS(mensaje);
-        }
-        closeModal();
+        let mensaje = `📋 *RESERVA LAVANDERÍA EKO* 📋\n\n👤 Nombre: ${nombre}\n📞 Teléfono: ${telefono}\n📍 Dirección: ${direccion}\n🆔 Carnet ID: ${carnet || "No especificado"}\n🧺 Tipo de servicio: ${servicio}\n🕒 Fecha/Hora: ${fechahora || "No especificada"}\n\n✨ ¡Gracias por confiar en EKO! Esperamos su confirmación.`;
+        const opcion = confirm("📱 Enviar por WhatsApp?\nAceptar = WhatsApp\nCancelar = SMS");
+        if (opcion) sendViaWhatsApp(mensaje);
+        else sendViaSMS(mensaje);
+        closeModalFunc(reservaModal);
         reservaForm.reset();
+    });
+
+    descargarTxtBtn.addEventListener('click', () => {
+        const ordenNo = document.getElementById('ordenNo').value.trim() || "N/A";
+        const adminTelefono = document.getElementById('adminTelefono').value.trim() || "N/A";
+        const fechaRecepcion = document.getElementById('fechaRecepcion').value || "N/A";
+        const lavandera = document.getElementById('lavandera').value.trim() || "N/A";
+        const recogida = document.getElementById('recogida').value.trim() || "N/A";
+        const entrega = document.getElementById('entrega').value.trim() || "N/A";
+        const adminDireccion = document.getElementById('adminDireccion').value.trim() || "N/A";
+        const adminServicio = document.getElementById('adminServicio').value.trim() || "N/A";
+        const extra = document.getElementById('extra').value.trim() || "N/A";
+        const planchado = document.getElementById('planchado').value.trim() || "N/A";
+        const mensajeria = document.getElementById('mensajeria').value.trim() || "N/A";
+        const montoRecibo = document.getElementById('montoRecibo').value.trim() || "N/A";
+        const cambio = document.getElementById('cambio').value.trim() || "N/A";
+        const productosCantidad = document.getElementById('productosCantidad').value.trim() || "N/A";
+        const observaciones = document.getElementById('observaciones').value.trim() || "N/A";
+        const firma = document.getElementById('firma').value.trim() || "N/A";
+        const cliente = document.getElementById('cliente').value.trim() || "N/A";
+        const encargado = document.getElementById('encargado').value.trim() || "N/A";
+
+        const contenido = `ORDEN DEL SERVICIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 Orden No: ${ordenNo}
+📞 Teléfono: ${adminTelefono}
+📅 Fecha de recepción: ${fechaRecepcion}
+🧴 Lavandera: ${lavandera}
+🚚 Recogida: ${recogida}
+📦 Entrega: ${entrega}
+📍 Dirección: ${adminDireccion}
+🧺 Servicio: ${adminServicio}
+✨ Extra: ${extra}
+👕 Planchado: ${planchado}
+📬 Mensajería: ${mensajeria}
+💰 Monto Recibo: ${montoRecibo}
+🔄 Cambio: ${cambio}
+📦 Productos/Cantidad: ${productosCantidad}
+📝 Observaciones: ${observaciones}
+✍️ Firma: ${firma}
+👤 Cliente: ${cliente}
+👔 Encargado: ${encargado}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Lavandería EKO - Gestión interna`;
+
+        const blob = new Blob([contenido], { type: "text/plain" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = `orden_${ordenNo.replace(/\s/g, "_") || "servicio"}.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     });
 </script>
 </body>
