@@ -14,7 +14,8 @@
 
     function getVal(id) {
         const el = document.getElementById(id);
-        return el ? el.value.trim() : 'N/A';
+        const val = el ? el.value.trim() : '';
+        return val === '' ? '—' : val;
     }
 
     if (validarBtn) {
@@ -105,8 +106,8 @@ Dirección completa:    ${direccion}
 --------------------------------------------
 Servicio solicitado:   ${servicio}
 Productos/Kg/Cantidad: ${productos}
-Planchado:             ${planchado === '' ? 'No aplica' : planchado}
-Observaciones:         ${observaciones === '' ? 'Ninguna' : observaciones}
+Planchado:             ${planchado === '—' ? 'No aplica' : planchado}
+Observaciones:         ${observaciones === '—' ? 'Ninguna' : observaciones}
 
 [ PESOS Y PAGOS ]
 --------------------------------------------
@@ -125,7 +126,7 @@ Documento generado por Lavandería EKO
                 const blob = new Blob([txt], { type: 'text/plain' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = `orden_${orden || 'sinnumero'}.txt`;
+                a.download = `orden_${orden === '—' ? 'sinnumero' : orden}.txt`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -175,6 +176,8 @@ Documento generado por Lavandería EKO
         limpiarHistorialBtn.addEventListener('click', () => {
             if (confirm('¿Eliminar todo el historial permanentemente?')) {
                 window.limpiarHistorial();
+                const container = document.getElementById('historialContainer');
+                if (container) container.innerHTML = '<p>Historial vacío.</p>';
                 window.cerrarModal(historialModal);
             }
         });

@@ -180,19 +180,6 @@ ${extrasList}
 📲 Enviado desde lavanderíaeko.com`;
     }
 
-    // Función global para preseleccionar plan y cambiar a pestaña servicio
-    window.setPlanAndOpenServiceTab = function(planId) {
-        const radio = document.querySelector(`input[name="plan"][value="${planId}"]`);
-        if (radio) {
-            radio.checked = true;
-            const changeEvent = new Event('change', { bubbles: true });
-            radio.dispatchEvent(changeEvent);
-        }
-        const tabBtn = document.querySelector('.tab-btn[data-tab="servicio"]');
-        if (tabBtn) tabBtn.click();
-        actualizarResumen();
-    };
-
     function resetFormularioReserva() {
         currentPesosSeleccionados = [];
         planSeleccionado = 'NORMAL';
@@ -212,7 +199,10 @@ ${extrasList}
             const el = document.getElementById(id);
             if (el) el.value = '';
         });
-        document.querySelectorAll('[data-extra]').forEach(chk => chk.checked = false);
+        const checkboxes = document.querySelectorAll('[data-extra]');
+        if (checkboxes.length) {
+            checkboxes.forEach(chk => chk.checked = false);
+        }
         const radioNormal = document.querySelector('input[name="plan"][value="NORMAL"]');
         if (radioNormal) radioNormal.checked = true;
         const mapaContainer = document.getElementById('mapaContainer');
@@ -221,6 +211,20 @@ ${extrasList}
         actualizarListaPesos();
         actualizarResumen();
     }
+    window.resetReservaForm = resetFormularioReserva;
+
+    window.setPlanAndOpenServiceTab = function(planId) {
+        resetFormularioReserva();
+        const radio = document.querySelector(`input[name="plan"][value="${planId}"]`);
+        if (radio) {
+            radio.checked = true;
+            const changeEvent = new Event('change', { bubbles: true });
+            radio.dispatchEvent(changeEvent);
+        }
+        const tabBtn = document.querySelector('.tab-btn[data-tab="servicio"]');
+        if (tabBtn) tabBtn.click();
+        actualizarResumen();
+    };
 
     function renderizarFormulario() {
         const formContainer = document.getElementById('reservaForm');
@@ -280,7 +284,6 @@ ${extrasList}
             </div>
         `;
 
-        // Generar botones de rangos
         const rangosContainer = document.getElementById('rangosBotonesContainer');
         rangosContainer.innerHTML = '';
         for (let rango of rangosDisponibles) {
@@ -297,7 +300,6 @@ ${extrasList}
             rangosContainer.appendChild(btnDiv);
         }
 
-        // Pestañas
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.style.fontWeight = '700';
             btn.style.background = 'none';
@@ -313,7 +315,6 @@ ${extrasList}
             });
         });
 
-        // Cambio de plan
         document.querySelectorAll('input[name="plan"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
                 planSeleccionado = e.target.value;
@@ -327,7 +328,6 @@ ${extrasList}
             });
         });
 
-        // Extras
         document.querySelectorAll('[data-extra]').forEach(chk => {
             chk.addEventListener('change', (e) => {
                 extrasMarcados[e.target.getAttribute('data-extra')] = e.target.checked;
@@ -335,7 +335,6 @@ ${extrasList}
             });
         });
 
-        // Geolocalización
         const btnUbicacion = document.getElementById('btnUbicacion');
         const direccionInput = document.getElementById('clienteDireccion');
         if (btnUbicacion) {
@@ -347,13 +346,11 @@ ${extrasList}
             });
         }
 
-        // Cancelar
         document.getElementById('cancelarReservaBtn').addEventListener('click', () => {
             window.cerrarModal(document.getElementById('reservaModal'));
             resetFormularioReserva();
         });
 
-        // Enviar
         document.getElementById('enviarReservaBtn').addEventListener('click', async (e) => {
             e.preventDefault();
             const nombre = document.getElementById('clienteNombre').value.trim();

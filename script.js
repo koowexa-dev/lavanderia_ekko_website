@@ -1,6 +1,5 @@
-// script.js - Versión optimizada con spam mejorado y sin testimonios
+// script.js - Spam optimizado con imágenes definidas localmente
 (function() {
-    // ==================== MODALES ====================
     const modales = {
         reserva: document.getElementById('reservaModal'),
         clave: document.getElementById('claveModal'),
@@ -13,7 +12,6 @@
     window.cerrarModal = function(modal) { if (modal) modal.style.display = 'none'; };
     window.cerrarTodosModales = function() { Object.values(modales).forEach(m => window.cerrarModal(m)); };
 
-    // ==================== TOAST ====================
     window.showToast = function(msg, isError = false) {
         const toast = document.createElement('div');
         toast.className = 'toast-notify';
@@ -23,13 +21,11 @@
         setTimeout(() => toast.remove(), 3500);
     };
 
-    // Cerrar modales al hacer clic fuera o Escape
     window.addEventListener('click', (e) => {
         Object.values(modales).forEach(modal => { if (e.target === modal) window.cerrarModal(modal); });
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') window.cerrarTodosModales(); });
 
-    // ==================== ALMACENAMIENTO LOCAL ====================
     window.guardarReservaEnLocalStorage = function(reserva) {
         try {
             let reservas = JSON.parse(localStorage.getItem('eko_reservas') || '[]');
@@ -74,7 +70,6 @@
         }
     };
 
-    // ==================== GEOLOCALIZACIÓN ====================
     window.obtenerUbicacion = function(callback) {
         if (!navigator.geolocation) {
             window.showToast('Geolocalización no soportada', true);
@@ -115,7 +110,6 @@
         }
     };
 
-    // ==================== NOTIFICACIONES PUSH ====================
     let notificacionesActivadas = false;
     const btnNotificaciones = document.getElementById('solicitarNotificacionesBtn');
     if (btnNotificaciones && 'Notification' in window) {
@@ -150,7 +144,6 @@
         }
     }
 
-    // ==================== ANALYTICS SIMPLE ====================
     function registrarEvento(categoria, accion, etiqueta = '') {
         const evento = {
             categoria, accion, etiqueta,
@@ -188,8 +181,8 @@
         }, 500);
     });
 
-    // ==================== SPAM INTELIGENTE OPTIMIZADO ====================
-    let imagenesPromocionales = [];
+    // ==================== SPAM OPTIMIZADO (imágenes locales) ====================
+    const imagenesPromocionales = ['promo1.jpg', 'promo2.jpg', 'promo3.jpg'];
     let intervaloSpam = null;
     let spamActivo = false;
     let spamCount = 0;
@@ -199,12 +192,13 @@
     let spamPaused = false;
 
     const SPAM_CONFIG = {
-        intervaloMin: 15000,        // 15 segundos mínimo
-        intervaloMax: 30000,        // 30 segundos máximo
-        duracionSpam: 6000,         // 6 segundos en pantalla
-        maxSpamsPorSesion: 15,      // 15 spams máximo
+        intervaloMin: 15000,
+        intervaloMax: 30000,
+        duracionSpam: 6000,
+        maxSpamsPorSesion: 15,
         pausarSiModalAbierto: true,
-        usarVisibilityAPI: true
+        usarVisibilityAPI: true,
+        retrasoInicial: 8000
     };
 
     const textosPromocionales = [
@@ -243,7 +237,16 @@
         return Object.values(modales).some(modal => modal && modal.style.display === 'flex');
     }
 
-    function mostrarSpam() {
+    function precargarImagen(src) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = src;
+        });
+    }
+
+    async function mostrarSpam() {
         if (spamActivo) return;
         if (SPAM_CONFIG.maxSpamsPorSesion > 0 && spamCount >= SPAM_CONFIG.maxSpamsPorSesion) {
             if (intervaloSpam) clearInterval(intervaloSpam);
@@ -254,27 +257,38 @@
         if (!paginaVisible && SPAM_CONFIG.usarVisibilityAPI) return;
         if (SPAM_CONFIG.pausarSiModalAbierto && hayModalAbierto()) return;
 
-        const imagen = obtenerImagenAleatoria();
-        if (!imagen) return;
-
+        const imagenSrc = obtenerImagenAleatoria();
         const texto = obtenerTextoAleatorio();
+        let imagenValida = false;
+        if (imagenSrc) {
+            imagenValida = await precargarImagen(imagenSrc);
+        }
+
         const spamDiv = document.createElement('div');
         spamDiv.id = 'spam-overlay';
+        
+        let imagenHtml = '';
+        if (imagenSrc && imagenValida) {
+            imagenHtml = `<img src="${imagenSrc}" alt="Promoción EKO" class="spam-imagen" loading="lazy">`;
+        } else if (imagenSrc && !imagenValida) {
+            console.warn(`Imagen no encontrada: ${imagenSrc}`);
+        }
+        
         spamDiv.innerHTML = `
             <div class="spam-content">
-                <img src="${imagen}" alt="Promoción EKO" class="spam-imagen" loading="lazy" onerror="this.style.display='none'">
+                ${imagenHtml}
                 <div class="spam-icon">🧺</div>
                 <h3>LAVANDERÍA EKO</h3>
                 <p>${texto}</p>
                 <div class="spam-timer">Oferta válida por tiempo limitado</div>
             </div>
         `;
+        
         document.body.appendChild(spamDiv);
         spamActivo = true;
         spamCount++;
         registrarEvento('spam', 'mostrado', `#${spamCount} - ${texto.substring(0, 40)}`);
         
-        // Notificación push cada 3 spams
         if (spamCount % 3 === 0 && spamCount > 0) {
             enviarNotificacionPromocional(`✨ ¡No te pierdas esta oferta! ${texto.substring(0, 60)}`);
         }
@@ -315,7 +329,7 @@
         setTimeout(() => {
             mostrarSpam();
             programarSiguienteSpam();
-        }, 3000);
+        }, SPAM_CONFIG.retrasoInicial);
     }
 
     if (SPAM_CONFIG.usarVisibilityAPI) {
@@ -336,8 +350,30 @@
         });
     }
 
-    // ==================== CARGA DE DATOS DESDE XML ====================
+    function mostrarCarga(mostrar) {
+        let loader = document.getElementById('global-loader');
+        if (!loader && mostrar) {
+            loader = document.createElement('div');
+            loader.id = 'global-loader';
+            loader.style.position = 'fixed';
+            loader.style.top = '50%';
+            loader.style.left = '50%';
+            loader.style.transform = 'translate(-50%, -50%)';
+            loader.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            loader.style.color = 'white';
+            loader.style.padding = '16px 32px';
+            loader.style.borderRadius = '40px';
+            loader.style.zIndex = '100000';
+            loader.style.fontWeight = 'bold';
+            loader.innerHTML = '🔄 Cargando servicios...';
+            document.body.appendChild(loader);
+        } else if (loader && !mostrar) {
+            loader.remove();
+        }
+    }
+
     async function cargarDatos() {
+        mostrarCarga(true);
         try {
             const response = await fetch('service.xml');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -345,7 +381,6 @@
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
 
-            // Features
             const features = xmlDoc.querySelectorAll('features feature');
             const featuresContainer = document.getElementById('featuresList');
             if (featuresContainer) {
@@ -358,7 +393,6 @@
                 });
             }
 
-            // Planes de servicio
             const planesPeso = xmlDoc.querySelectorAll('planesPeso plan');
             const pricingGrid = document.getElementById('pricingGrid');
             if (pricingGrid) {
@@ -393,7 +427,6 @@
                 });
             }
 
-            // Evento para botones "Solicitar servicio"
             document.body.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-solicitar')) {
                     const card = e.target.closest('.price-card');
@@ -409,7 +442,6 @@
                 }
             });
 
-            // Productos
             const productos = xmlDoc.querySelectorAll('productos producto');
             const catalogoGrid = document.getElementById('catalogoGrid');
             if (catalogoGrid) {
@@ -436,7 +468,6 @@
                 });
             }
 
-            // Zonas de entrega
             const zonas = xmlDoc.querySelectorAll('zonas zona');
             const deliverySection = document.getElementById('deliverySection');
             if (deliverySection) {
@@ -460,27 +491,16 @@
                 deliverySection.innerHTML = zonasHtml;
             }
 
-            // Imágenes promocionales
-            const promos = xmlDoc.querySelectorAll('promociones imagen');
-            imagenesPromocionales = [];
-            promos.forEach(promo => {
-                const src = promo.getAttribute('src');
-                if (src) imagenesPromocionales.push(src);
-            });
-
-            if (imagenesPromocionales.length > 0) {
-                iniciarSpamPeriodico();
-            }
-
             registrarEvento('carga', 'completa', 'service.xml');
         } catch (error) {
             console.error('Error cargando service.xml:', error);
             window.showToast('Error al cargar los datos del servicio', true);
             registrarEvento('error', 'carga_xml', error.message);
+        } finally {
+            mostrarCarga(false);
         }
     }
 
-    // ==================== COMENTARIOS ====================
     const comentarioForm = document.getElementById('comentarioForm');
     if (comentarioForm) {
         comentarioForm.addEventListener('submit', function(e) {
@@ -507,7 +527,6 @@
         });
     }
 
-    // ==================== MODAL DE PRODUCTO ====================
     const productoModal = document.getElementById('productoModal');
     const closeProductoBtn = document.getElementById('closeProductoModalBtn');
     if (closeProductoBtn) {
@@ -541,7 +560,6 @@
         }
     });
 
-    // ==================== BOTONES DE MODALES ====================
     const openReservaBtn = document.getElementById('openReservaBtn');
     const closeReservaBtn = document.getElementById('closeReservaBtn');
     const openAdminAccessBtn = document.getElementById('openAdminAccessBtn');
@@ -549,12 +567,19 @@
     const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
     const closeHistorialModalBtn = document.getElementById('closeHistorialModalBtn');
 
-    if (openReservaBtn) openReservaBtn.addEventListener('click', () => window.abrirModal(modales.reserva));
+    if (openReservaBtn) {
+        openReservaBtn.addEventListener('click', () => {
+            if (window.resetReservaForm) window.resetReservaForm();
+            window.abrirModal(modales.reserva);
+        });
+    }
     if (closeReservaBtn) closeReservaBtn.addEventListener('click', () => window.cerrarModal(modales.reserva));
     if (openAdminAccessBtn) openAdminAccessBtn.addEventListener('click', () => window.abrirModal(modales.clave));
     if (closeClaveModalBtn) closeClaveModalBtn.addEventListener('click', () => window.cerrarModal(modales.clave));
     if (closeAdminModalBtn) closeAdminModalBtn.addEventListener('click', () => window.cerrarModal(modales.admin));
     if (closeHistorialModalBtn) closeHistorialModalBtn.addEventListener('click', () => window.cerrarModal(modales.historial));
 
+    // Iniciar el spam inmediatamente (sin depender del XML)
+    iniciarSpamPeriodico();
     cargarDatos();
 })();

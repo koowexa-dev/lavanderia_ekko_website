@@ -5,15 +5,15 @@
 }
 
 :root {
-    --verde-eko: #2E7D32;      /* más oscuro para mejor contraste */
+    --verde-eko: #2E7D32;
     --verde-oscuro-hoja: #1B5E20;
-    --azul-lavanderia: #0D47A1; /* más oscuro */
+    --azul-lavanderia: #0D47A1;
     --azul-claro-agua: #1976D2;
     --celeste-suave: #E3F2FD;
     --blanco-puro: #FFFFFF;
     --beige-claro: #FFF8E1;
     --gris-suave: #E0E0E0;
-    --gris-texto: #212121;      /* muy oscuro para legibilidad */
+    --gris-texto: #212121;
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
     --contraste-alto: #000000;
     --texto-claro: #FAFAFA;
@@ -173,7 +173,6 @@ header {
     margin-top: 6px;
 }
 
-/* Planes de servicio */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -285,7 +284,6 @@ header {
     background: var(--verde-oscuro-hoja);
 }
 
-/* Catálogo de productos */
 .catalogo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -358,7 +356,6 @@ header {
     background: var(--azul-lavanderia);
 }
 
-/* Zonas de entrega */
 .delivery-section {
     background: var(--blanco-puro);
     border-radius: 28px;
@@ -395,7 +392,6 @@ header {
     font-size: 1rem;
 }
 
-/* Comentarios */
 .comentarios-section {
     background: var(--blanco-puro);
     border-radius: 28px;
@@ -444,7 +440,6 @@ header {
     background: var(--verde-oscuro-hoja);
 }
 
-/* Modales */
 .modal {
     display: none;
     position: fixed;
@@ -707,7 +702,6 @@ footer {
     }
 }
 
-/* Rangos de peso */
 .rango-card {
     background: var(--celeste-suave);
     border-radius: 20px;
@@ -758,7 +752,6 @@ footer {
     font-weight: 500;
 }
 
-/* Spam mejorado */
 #spam-overlay {
     position: fixed;
     top: 0;
@@ -836,7 +829,6 @@ footer {
     }
 }
 
-/* Responsive */
 @media (max-width: 640px) {
     .container { padding: 0 12px; }
     .hero-banner h1 { font-size: 1.5rem; }
