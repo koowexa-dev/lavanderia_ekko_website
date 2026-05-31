@@ -46,7 +46,7 @@ async function cargarPreciosKg() {
         return true;
     } catch (error) {
         console.error('Error cargando precios:', error);
-        window.showToast('Error al cargar precios. Recarga la página.', true);
+        window.showToast('Error al cargar precios. Recarga la pagina.', true);
         return false;    }
 }
 
@@ -66,7 +66,7 @@ function actualizarResumen() {
     }).join(', ') || 'Ninguno';
     resumenDiv.innerHTML = `
          <p><strong>Plan seleccionado: </strong>${planSeleccionado}</p>
-         <p><strong>Ítems agregados (${currentPesosSeleccionados.length}): </strong>${items}</p>
+         <p><strong>Items agregados (${currentPesosSeleccionados.length}): </strong>${items}</p>
          <p><strong>Extras: </strong>${extrasActivos}</p>
          <div class="price-preview"><strong>TOTAL: $${calcularTotal()}</strong></div>
     `;
@@ -96,12 +96,12 @@ function actualizarListaPesos() {
     const container = document.getElementById('pesosSeleccionadosLista');
     if (!container) return;
     if (currentPesosSeleccionados.length === 0) {
-        container.innerHTML = '<p style="color:gray;">No hay ítems agregados. Selecciona rangos arriba.</p>';        return;
+        container.innerHTML = '<p style="color:gray;">No hay items agregados. Selecciona rangos arriba.</p>';        return;
     }
     container.innerHTML = currentPesosSeleccionados.map((item, idx) => `
          <div class="peso-item">
              <span>${item.rango} kg - $${item.precioUnitario}</span>
-             <button type="button" class="btn-eliminar-peso" data-index="${idx}">✖</button>
+             <button type="button" class="btn-eliminar-peso" data-index="${idx}">X</button>
          </div>
     `).join('');
     container.querySelectorAll('.btn-eliminar-peso').forEach(btn => {
@@ -145,26 +145,21 @@ function construirMensajeReserva(nombre, telefono, direccion, carnet, fechaHora,
         return `${nombres[k]} (+$${preciosExtras[k]})`;
     }).join('\n') || 'Ninguno';
     
-    return `🏷️ *RESERVA EKO - NUEVA ORDEN*━━━━━━━━━━
-👤 DATOS DEL CLIENTE
+    return `RESERVA EKO - NUEVA ORDEN
+DATOS DEL CLIENTE
 Nombre: ${nombre}
-Teléfono: ${telefono}
-Dirección: ${direccion}
+Telefono: ${telefono}
+Direccion: ${direccion}
 Carnet: ${carnet}
 Fecha/Hora: ${fechaHora}
-━━━━━━━━━━━━━━━━━━━
-🧺 DETALLES DEL SERVICIO
+DETALLES DEL SERVICIO
 Plan seleccionado: ${planSeleccionado}
-━━━━━━━━━━━━━━━━━━━
-⚖️ RANGOS DE PESO
+RANGOS DE PESO
 ${itemsPeso || 'Ninguno'}
-━━━━━━━━━━━━━━━━━━━
-✨ EXTRAS
+EXTRAS
 ${extrasList}
-━━━━━━━━━━━━━━━━━━━
-💰 TOTAL A PAGAR: $${total}
-━━━━━━━━━━━━━━━━━━━
-📲 Enviado desde://spoo.me/eko`;
+TOTAL A PAGAR: $${total}
+Enviado desde Lavanderia EKO`;
 }
 function resetFormularioReserva() {
     currentPesosSeleccionados = [];
@@ -223,20 +218,20 @@ function renderizarFormulario() {
          </div>
          <div id="tab-datos" class="tab-content active">
              <div class="form-group"><label>Nombre y apellido completo</label><input type="text" id="clienteNombre" required></div>
-             <div class="form-group"><label>Teléfono móvil o fijo</label><input type="tel" id="clienteTelefono" required></div>
-             <div class="form-group"><label>Dirección completa</label>
+             <div class="form-group"><label>Telefono movil o fijo</label><input type="tel" id="clienteTelefono" required></div>
+             <div class="form-group"><label>Direccion completa</label>
                  <input type="text" id="clienteDireccion" required>
-                 <button type="button" id="btnUbicacion" class="btn-ubicacion">Usar mi ubicación</button>
+                 <button type="button" id="btnUbicacion" class="btn-ubicacion">Usar mi ubicacion</button>
                  <div id="mapaContainer" style="margin-top:8px;"></div>
              </div>
-             <div class="form-group"><label>Carnet ID (11 dígitos)</label><input type="text" id="clienteCarnet" pattern="[0-9]{11}" maxlength="11" required></div>
+             <div class="form-group"><label>Carnet ID (11 digitos)</label><input type="text" id="clienteCarnet" pattern="[0-9]{11}" maxlength="11" required></div>
              <div class="form-group"><label>Fecha y hora</label><input type="datetime-local" id="clienteFechaHora" required></div>
          </div>
          <div id="tab-servicio" class="tab-content" style="display:none;">
              <div class="form-group"><label>Tipo de plan (solo uno)</label>
                  <div style="display:flex; gap:12px; flex-wrap:wrap;">
                      <label><input type="radio" name="plan" value="NORMAL" checked> NORMAL</label>
-                     <label><input type="radio" name="plan" value="BASICO"> BÁSICO</label>
+                     <label><input type="radio" name="plan" value="BASICO"> BASICO</label>
                      <label><input type="radio" name="plan" value="PREMIUM"> PREMIUM</label>
                      <label><input type="radio" name="plan" value="ESPECIAL"> ESPECIAL</label>
                  </div>
@@ -251,9 +246,9 @@ function renderizarFormulario() {
              <label><input type="checkbox" data-extra="perlas"> Perlas de olor (+$${preciosExtras.perlas})</label><br>
              <label><input type="checkbox" data-extra="perfume"> Perfume (+$${preciosExtras.perfume})</label><br>
              <h4>Otros lavados</h4>
-             <label><input type="checkbox" data-extra="blanco"> D.L.R_Blanca (+$${preciosExtras.blanco})</label><br>
-             <label><input type="checkbox" data-extra="oscuro"> D.L.R_Oscura (+$${preciosExtras.oscuro})</label><br>
-             <label><input type="checkbox" data-extra="color"> D.L.R_Color (+$${preciosExtras.color})</label><br>
+             <label><input type="checkbox" data-extra="blanco"> D.L.R Blanca (+$${preciosExtras.blanco})</label><br>
+             <label><input type="checkbox" data-extra="oscuro"> D.L.R Oscura (+$${preciosExtras.oscuro})</label><br>
+             <label><input type="checkbox" data-extra="color"> D.L.R Color (+$${preciosExtras.color})</label><br>
              <h4>Estados de ropa</h4>
              <label><input type="checkbox" data-extra="semiSucio"> Semi Sucio (+$${preciosExtras.semiSucio})</label><br>
              <label><input type="checkbox" data-extra="sucio"> Sucio (+$${preciosExtras.sucio})</label><br>
@@ -345,7 +340,7 @@ function renderizarFormulario() {
             return;
         }
         if (!/^[0-9]{11}$/.test(carnet)) {
-            window.showToast('Carnet debe tener 11 dígitos numéricos', true);
+            window.showToast('Carnet debe tener 11 digitos numericos', true);
             return;
         }
         if (currentPesosSeleccionados.length === 0) {

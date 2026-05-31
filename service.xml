@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services>
-    <features>
-        <feature>Limpieza profunda</feature>
-        <feature>Confianza</feature>
-        <feature>Eco-friendly</feature>
-        <feature>Precios justos</feature>
-        <feature>48H express</feature>
-    </features>
-
     <planesPeso>
-        <plan id="NORMAL" nombre="NORMAL" descripcion="Lavado + Secado + Doblado" badge="ACCESIBLE" color="bg-normal" detergente="🧴 Detergente en polvo">
+        <plan id="NORMAL" nombre="NORMAL" descripcion="Lavado + Secado + Doblado" badge="ACCESIBLE" color="bg-normal" detergente="Detergente en polvo">
             <precio rango="1-2">400</precio>
             <precio rango="3-4">500</precio>
             <precio rango="5-6">600</precio>
             <precio rango="7">700</precio>
         </plan>
-        <plan id="BASICO" nombre="BÁSICO" descripcion="Prelavado + Lavado + Secado + Doblado" badge="POPULAR" color="bg-basico" detergente="💧 Detergente líquido + suavizante">
+        <plan id="BASICO" nombre="BASICO" descripcion="Prelavado + Lavado + Secado + Doblado" badge="POPULAR" color="bg-basico" detergente="Detergente liquido + suavizante">
             <precio rango="1-2">700</precio>
             <precio rango="3-4">900</precio>
             <precio rango="5-6">1100</precio>
             <precio rango="7">1300</precio>
         </plan>
-        <plan id="PREMIUM" nombre="PREMIUM" descripcion="Prelavado + Lavado + Secado + Doblado" badge="LA MEJOR" color="bg-premium" detergente="✨ Cápsula + fragancia especial">
+        <plan id="PREMIUM" nombre="PREMIUM" descripcion="Prelavado + Lavado + Secado + Doblado" badge="LA MEJOR" color="bg-premium" detergente="Capsula + fragancia especial">
             <precio rango="1-2">800</precio>
             <precio rango="3-4">1000</precio>
             <precio rango="5-6">1200</precio>
             <precio rango="7">1400</precio>
         </plan>
-        <plan id="ESPECIAL" nombre="ESPECIAL" descripcion="Ropa de cama + Toallas + aroma premium" badge="EXCLUSIVO" color="bg-especial" detergente="🌸 Cápsula intensiva + fragancia">
+        <plan id="ESPECIAL" nombre="ESPECIAL" descripcion="Ropa de cama + Toallas + aroma premium" badge="EXCLUSIVO" color="bg-especial" detergente="Capsula intensiva + fragancia">
             <precio rango="1-2">900</precio>
             <precio rango="3-4">1100</precio>
             <precio rango="5-6">1300</precio>
@@ -36,8 +28,8 @@
     </planesPeso>
 
     <planesCarga>
-        <plan id="ECONOMICO" nombre="ECONÓMICO" precio="700" />
-        <plan id="BASICO" nombre="BÁSICO" precio="1300" />
+        <plan id="ECONOMICO" nombre="ECONOMICO" precio="700" />
+        <plan id="BASICO" nombre="BASICO" precio="1300" />
         <plan id="PREMIUM" nombre="PREMIUM" precio="1400" />
         <plan id="ESPECIAL" nombre="ESPECIAL" precio="1500" />
     </planesCarga>
@@ -49,10 +41,10 @@
     </zonas>
 
     <productos>
-        <producto marca="Prodoxá" nombre="Detergente Líquido Cuidado del Color" tipo="Detergente Líquido" rendimiento="18 cargas" descripcion="Ideal para ropa de color, protege los tonos y elimina manchas difíciles." />
-        <producto marca="Prodoxá" nombre="Gel Halc Ropas Blancas" tipo="Detergente Líquido" rendimiento="32 lavados" descripcion="Potente gel para ropa blanca, devuelve el brillo original." />
-        <producto marca="Tide" nombre="HE Turbo Clean" tipo="Detergente Líquido HE" rendimiento="32 cargas" descripcion="Alta eficiencia para lavadoras HE, elimina 99% de las manchas." />
-        <producto marca="Prodoxá" nombre="Fabric Softener Lavanda" tipo="Suavizante" rendimiento="40 cargas" descripcion="Suavizante con aroma a lavanda, deja la ropa suave y perfumada." />
-        <producto marca="Downy" nombre="Free & Gentle" tipo="Suavizante hipoalergénico" rendimiento="30 cargas" descripcion="Hipoalergénico, sin fragancias, ideal para pieles sensibles." />
+        <producto marca="Prodoxa" nombre="Detergente Liquido Cuidado del Color" tipo="Detergente Liquido" rendimiento="18 cargas" descripcion="Ideal para ropa de color, protege los tonos y elimina manchas dificiles." />
+        <producto marca="Prodoxa" nombre="Gel Halc Ropas Blancas" tipo="Detergente Liquido" rendimiento="32 lavados" descripcion="Potente gel para ropa blanca, devuelve el brillo original." />
+        <producto marca="Tide" nombre="HE Turbo Clean" tipo="Detergente Liquido HE" rendimiento="32 cargas" descripcion="Alta eficiencia para lavadoras HE, elimina 99% de las manchas." />
+        <producto marca="Prodoxa" nombre="Fabric Softener Lavanda" tipo="Suavizante" rendimiento="40 cargas" descripcion="Suavizante con aroma a lavanda, deja la ropa suave y perfumada." />
+        <producto marca="Downy" nombre="Free & Gentle" tipo="Suavizante hipoalergenico" rendimiento="30 cargas" descripcion="Hipoalergenico, sin fragancias, ideal para pieles sensibles." />
     </productos>
 </services>

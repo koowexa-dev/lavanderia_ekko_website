@@ -1,4 +1,3 @@
-// script.js - Spam optimizado con imágenes definidas localmente
 (function() {
     const modales = {
         reserva: document.getElementById('reservaModal'),
@@ -15,7 +14,7 @@
     window.showToast = function(msg, isError = false) {
         const toast = document.createElement('div');
         toast.className = 'toast-notify';
-        toast.style.background = isError ? '#c0392b' : '#1e2a36';
+        toast.style.background = isError ? '#c0392b' : 'var(--verde-eko)';
         toast.textContent = msg;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3500);
@@ -72,11 +71,11 @@
 
     window.obtenerUbicacion = function(callback) {
         if (!navigator.geolocation) {
-            window.showToast('Geolocalización no soportada', true);
+            window.showToast('Geolocalizacion no soportada', true);
             return;
         }
         const timeoutId = setTimeout(() => {
-            window.showToast('Tiempo de espera agotado para obtener ubicación', true);
+            window.showToast('Tiempo de espera agotado para obtener ubicacion', true);
         }, 10000);
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -93,9 +92,9 @@
             },
             (error) => {
                 clearTimeout(timeoutId);
-                let msg = 'Error al obtener ubicación';
-                if (error.code === 1) msg = 'Permiso denegado para ubicación';
-                else if (error.code === 2) msg = 'Ubicación no disponible';
+                let msg = 'Error al obtener ubicacion';
+                if (error.code === 1) msg = 'Permiso denegado para ubicacion';
+                else if (error.code === 2) msg = 'Ubicacion no disponible';
                 else if (error.code === 3) msg = 'Tiempo de espera agotado';
                 window.showToast(msg, true);
             }
@@ -106,7 +105,7 @@
         const mapaImg = `https://staticmap.openstreetmap.de/staticmap.php?center=${lat},${lng}&zoom=14&size=600x200&maptype=mapnik&markers=${lat},${lng},blue-pushpin`;
         const contenedor = document.getElementById(elementoId);
         if (contenedor) {
-            contenedor.innerHTML = `<img src="${mapaImg}" alt="Mapa de ubicación" style="width:100%; border-radius:16px; margin-top:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">`;
+            contenedor.innerHTML = `<img src="${mapaImg}" alt="Mapa de ubicacion" style="width:100%; border-radius:16px; margin-top:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">`;
         }
     };
 
@@ -121,9 +120,9 @@
                 Notification.requestPermission().then(perm => {
                     if (perm === 'granted') {
                         notificacionesActivadas = true;
-                        window.showToast('¡Notificaciones activadas! Recibirás promociones especiales.', false);
-                        new Notification('¡Gracias por activar las notificaciones!', {
-                            body: 'Recibirás ofertas exclusivas de Lavandería EKO.',
+                        window.showToast('Notificaciones activadas! Recibiras promociones especiales.', false);
+                        new Notification('Gracias por activar las notificaciones!', {
+                            body: 'Recibiras ofertas exclusivas de Lavanderia EKO.',
                             icon: 'eko.jpg'
                         });
                     } else {
@@ -131,7 +130,7 @@
                     }
                 });
             } else {
-                window.showToast('Las notificaciones están bloqueadas en este navegador', true);
+                window.showToast('Las notificaciones estan bloqueadas en este navegador', true);
             }
         });
     } else if (btnNotificaciones) {
@@ -140,7 +139,7 @@
 
     function enviarNotificacionPromocional(texto) {
         if (notificacionesActivadas && Notification.permission === 'granted') {
-            new Notification('🎁 Lavandería EKO', { body: texto, icon: 'eko.jpg' });
+            new Notification('Lavanderia EKO', { body: texto, icon: 'eko.jpg' });
         }
     }
 
@@ -181,7 +180,6 @@
         }, 500);
     });
 
-    // ==================== SPAM OPTIMIZADO (imágenes locales) ====================
     const imagenesPromocionales = ['promo1.jpg', 'promo2.jpg', 'promo3.jpg', 'promo4.jpg', 'promo5.jpg', 'promo6.jpg', 'promo7.jpg', 'promo8.jpg', 'promo9.jpg', 'promo10.jpg'];
     let intervaloSpam = null;
     let spamActivo = false;
@@ -192,7 +190,7 @@
     let spamPaused = false;
 
     const SPAM_CONFIG = {
-        intervaloMin: 15000,
+        intervaloMin: 25000,
         intervaloMax: 30000,
         duracionSpam: 6000,
         maxSpamsPorSesion: 15,
@@ -202,18 +200,18 @@
     };
 
     const textosPromocionales = [
-        "✨ Plan NORMAL: Lavado + Secado + Doblado desde $400/kg",
-        "💧 Plan BÁSICO: Prelavado + lavado líquido + suavizante",
-        "🌟 Plan PREMIUM: Cápsula de alta eficiencia + fragancia especial",
-        "🌸 Plan ESPECIAL: Ideal para ropa de cama y toallas, aroma premium",
-        "🚚 Recogida y entrega a domicilio en 48 horas",
-        "🧴 Detergentes ecológicos: Prodoxá, Tide, Downy para piel sensible",
-        "🧺 Servicio de planchado disponible",
-        "🌿 Lavado eco-friendly, cuidamos el medio ambiente",
-        "📍 Cubrimos zonas: Habana Vieja, Centro Habana, Vedado, Playa y más",
-        "🎁 Pregunta por nuestras promociones al realizar múltiples servicios",
-        "💪 Confianza y calidad: más de 1000 clientes satisfechos",
-        "📱 Reserva fácil desde nuestra web o por WhatsApp"
+        "Plan NORMAL: Lavado + Secado + Doblado desde $400/kg",
+        "Plan BASICO: Prelavado + lavado liquido + suavizante",
+        "Plan PREMIUM: Capsula de alta eficiencia + fragancia especial",
+        "Plan ESPECIAL: Ideal para ropa de cama y toallas, aroma premium",
+        "Recogida y entrega a domicilio en 48 horas",
+        "Detergentes ecologicos: Prodoxa, Tide, Downy para piel sensible",
+        "Servicio de planchado disponible",
+        "Lavado eco-friendly, cuidamos el medio ambiente",
+        "Cubrimos zonas: Habana Vieja, Centro Habana, Vedado, Playa y mas",
+        "Pregunta por nuestras promociones al realizar multiples servicios",
+        "Confianza y calidad: mas de 1000 clientes satisfechos",
+        "Reserva facil desde nuestra web o por WhatsApp"
     ];
 
     function obtenerTextoAleatorio() {
@@ -251,7 +249,7 @@
         if (SPAM_CONFIG.maxSpamsPorSesion > 0 && spamCount >= SPAM_CONFIG.maxSpamsPorSesion) {
             if (intervaloSpam) clearInterval(intervaloSpam);
             intervaloSpam = null;
-            console.log('Límite de spams alcanzado.');
+            console.log('Limite de spams alcanzado.');
             return;
         }
         if (!paginaVisible && SPAM_CONFIG.usarVisibilityAPI) return;
@@ -269,7 +267,7 @@
         
         let imagenHtml = '';
         if (imagenSrc && imagenValida) {
-            imagenHtml = `<img src="${imagenSrc}" alt="Promoción EKO" class="spam-imagen" loading="lazy">`;
+            imagenHtml = `<img src="${imagenSrc}" alt="Promocion EKO" class="spam-imagen" loading="lazy">`;
         } else if (imagenSrc && !imagenValida) {
             console.warn(`Imagen no encontrada: ${imagenSrc}`);
         }
@@ -277,10 +275,10 @@
         spamDiv.innerHTML = `
             <div class="spam-content">
                 ${imagenHtml}
-                <div class="spam-icon">🧺</div>
-                <h3>LAVANDERÍA EKO</h3>
+                <div class="spam-icon"></div>
+                <h3>LAVANDERIA EKO</h3>
                 <p>${texto}</p>
-                <div class="spam-timer">Oferta válida por tiempo limitado</div>
+                <div class="spam-timer">Oferta valida por tiempo limitado</div>
             </div>
         `;
         
@@ -290,7 +288,7 @@
         registrarEvento('spam', 'mostrado', `#${spamCount} - ${texto.substring(0, 40)}`);
         
         if (spamCount % 3 === 0 && spamCount > 0) {
-            enviarNotificacionPromocional(`✨ ¡No te pierdas esta oferta! ${texto.substring(0, 60)}`);
+            enviarNotificacionPromocional(`No te pierdas esta oferta! ${texto.substring(0, 60)}`);
         }
 
         setTimeout(() => {
@@ -318,7 +316,7 @@
         intervaloSpam = setInterval(() => {
             mostrarSpam();
         }, intervalo);
-        console.log(`Próximo spam en ${intervalo / 1000} segundos`);
+        console.log(`Proximo spam en ${intervalo / 1000} segundos`);
     }
 
     function iniciarSpamPeriodico() {
@@ -365,7 +363,7 @@
             loader.style.borderRadius = '40px';
             loader.style.zIndex = '100000';
             loader.style.fontWeight = 'bold';
-            loader.innerHTML = '🔄 Cargando servicios...';
+            loader.innerHTML = 'Cargando servicios...';
             document.body.appendChild(loader);
         } else if (loader && !mostrar) {
             loader.remove();
@@ -481,7 +479,7 @@
                     const lugares = z.getAttribute('lugares');
                     zonasHtml += `
                         <div class="zone-card">
-                            <h3>📍 ${nombre} (${rango})</h3>
+                            <h3>${nombre} (${rango})</h3>
                             <p>${lugares}</p>
                             <p>Recogida: $${recogida} | Entrega: $${entrega}</p>
                             <div class="zone-price">Total: $${total}</div>
@@ -513,7 +511,7 @@
                 return;
             }
             if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email)) {
-                window.showToast('Correo electrónico inválido', true);
+                window.showToast('Correo electronico invalido', true);
                 return;
             }
             const comentario = { nombre, email, mensaje, fechaRegistro: new Date().toISOString() };
@@ -547,7 +545,7 @@
                                 <div><strong>Nombre:</strong> ${prod.nombre}</div>
                                 <div><strong>Tipo:</strong> ${prod.tipo}</div>
                                 <div><strong>Rendimiento:</strong> ${prod.rendimiento}</div>
-                                <div><strong>Descripción:</strong> ${prod.descripcion}</div>
+                                <div><strong>Descripcion:</strong> ${prod.descripcion}</div>
                             `;
                             window.abrirModal(productoModal);
                             registrarEvento('producto', 'ver_detalles', prod.nombre);
@@ -579,7 +577,40 @@
     if (closeAdminModalBtn) closeAdminModalBtn.addEventListener('click', () => window.cerrarModal(modales.admin));
     if (closeHistorialModalBtn) closeHistorialModalBtn.addEventListener('click', () => window.cerrarModal(modales.historial));
 
-    // Iniciar el spam inmediatamente (sin depender del XML)
     iniciarSpamPeriodico();
     cargarDatos();
+
+    function initAccordion() {
+        const accordionItems = document.querySelectorAll('#ekoValues .accordion-item');
+        if (!accordionItems.length) return;
+
+        function closeAllItems() {
+            accordionItems.forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            if (!header) return;
+
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                closeAllItems();
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.add('active');
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAccordion);
+    } else {
+        initAccordion();
+    }
 })();

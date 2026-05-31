@@ -608,8 +608,8 @@ header {
 }
 
 footer {
-    background: var(--azul-lavanderia);
-    color: var(--celeste-suave);
+    background: #111827;
+    color: #e2e8f0;
     padding: 32px 0 20px;
     margin-top: 32px;
 }
@@ -621,15 +621,18 @@ footer {
     align-items: center;
     gap: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--azul-claro-agua);
+    border-bottom: 1px solid #2d3748;
     margin-bottom: 16px;
 }
 
-.footer-compact .logo-text {
-    color: var(--celeste-suave);
+.logo-text-footer {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
 }
 
-.footer-compact .logo-text span {
+.logo-text-footer span {
     color: var(--verde-eko);
 }
 
@@ -641,19 +644,82 @@ footer {
     font-size: 0.85rem;
 }
 
-.footer-contact a {
-    color: var(--celeste-suave);
+.footer-social a {
+    color: #cbd5e0;
     text-decoration: none;
+    margin-left: 16px;
+    font-size: 0.85rem;
 }
 
-.footer-contact a:hover {
+.footer-social a:hover {
     color: var(--verde-eko);
-    text-decoration: underline;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.accordion-item {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 16px 20px;
+    background: var(--blanco-puro);
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.accordion-header:hover {
+    background: var(--celeste-suave);
+}
+
+.accordion-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--verde-eko);
+    font-weight: 700;
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--azul-lavanderia);
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.2s;
+    background: var(--blanco-puro);
+    border-radius: 0 0 20px 20px;
+    padding: 0 20px;
+}
+
+.accordion-content p {
+    margin: 0;
+    padding-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--gris-texto);
+    line-height: 1.5;
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 300px;
+    padding-bottom: 10px;
 }
 
 .lightbox {

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Lavandería EKO - Limpieza eco-friendly, confiable y económica. Servicio a domicilio en La Habana. Recogida y entrega en 48h.">
-    <meta name="keywords" content="lavandería, lavado de ropa, servicio a domicilio, La Habana, eco-friendly, tintorería, planchado">
-    <meta name="author" content="Lavandería EKO">
-    <title>LAVANDERÍA EKO</title>
+    <meta name="description" content="Lavanderia EKO - Limpieza eco-friendly, confiable y economica. Servicio a domicilio en La Habana. Recogida y entrega en 48h.">
+    <meta name="keywords" content="lavanderia, lavado de ropa, servicio a domicilio, La Habana, eco-friendly, tintoreria, planchado">
+    <meta name="author" content="Lavanderia EKO">
+    <title>LAVANDERIA EKO</title>
     <link rel="icon" type="image/jpg" href="eko.jpg">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -15,13 +15,13 @@
     <header>
         <div class="container nav-flex">
             <div class="logo-area">
-                <img class="logo-img" src="eko.jpg" alt="Logo Lavandería EKO" loading="lazy">
-                <div class="logo-text">LAVANDERÍA <span>EKO</span></div>
+                <img class="logo-img" src="eko.jpg" alt="Logo Lavanderia EKO" loading="lazy">
+                <div class="logo-text">LAVANDERIA <span>EKO</span></div>
             </div>
             <div class="header-actions">
                 <button id="openReservaBtn" class="btn-header">Reservar</button>
                 <button id="openAdminAccessBtn" class="btn-header">Admin</button>
-                <button id="solicitarNotificacionesBtn" class="btn-header">🔔 Activar notificaciones</button>
+                <button id="solicitarNotificacionesBtn" class="btn-header">Noticias</button>
             </div>
         </div>
     </header>
@@ -33,63 +33,112 @@
                 <div class="slogan">Limpio • Fresco • Aromado</div>
                 <p>Recogida y entrega a domicilio • Cuidamos tu ropa y la fragancia</p>
                 <div class="legal-note">
-                    <strong>Nota legal:</strong> La validez oficial de la orden queda respaldada por una firma digital. Para que el servicio sea legal, el cliente debe registrar su número de carné de identidad.
+                    <strong>Nota legal:</strong> La validez oficial de la orden queda respaldada por una firma digital. Para que el servicio sea legal, el cliente debe registrar su numero de carne de identidad.
                 </div>
             </div>
         </section>
 
-        <div class="container">
-            <div class="features-row" id="featuresList"></div>
-            
-            <div class="section-title">
-                <h2>Planes Del Servicio</h2>
-                <p>Elige la opcion que mejor se adapte a tu ropa</p>
-            </div>
-            <div class="pricing-grid" id="pricingGrid"></div>
-
-            <div class="section-title">
-                <h2>Nuestros productos de limpieza</h2>
-                <p>Detergentes, suavizantes y potenciadores</p>
-            </div>
-            <div class="catalogo-grid" id="catalogoGrid"></div>
-
-            <div class="delivery-section" id="deliverySection"></div>
-
-            <div class="comentarios-section">
-                <div class="section-title"><h2>Envíanos tu comentario</h2><p>Nos interesa tu opinión para mejorar</p></div>
-                <div class="comentarios-form">
-                    <form id="comentarioForm" novalidate>
-                        <input type="text" id="comentarioNombre" placeholder="Tu nombre completo" required>
-                        <input type="email" id="comentarioEmail" placeholder="Correo electrónico" required>
-                        <textarea id="comentarioMensaje" rows="4" placeholder="Escribe aquí tu comentario o sugerencia..." required></textarea>
-                        <button type="submit" class="btn-comentario">Enviar comentario por Gmail</button>
-                    </form>
+        <div class="container values-section" id="ekoValues">
+            <div class="values-grid">
+                <div class="value-card accordion-item">
+                    <div class="accordion-header" id="heading1">
+                        <h3 class="accordion-title">Limpieza Profunda</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content" id="content1">
+                        <p>Tu ropa merece mas que un lavado superficial. En Lavanderia EKO aplicamos procesos de limpieza disenados para eliminar suciedad, manchas y olores dificiles, ayudando a que cada prenda luzca fresca, limpia y lista para usar. Cuidamos cada detalle para obtener resultados que se notan.</p>
+                    </div>
                 </div>
+                <div class="value-card accordion-item">
+                    <div class="accordion-header" id="heading2">
+                        <h3 class="accordion-title">Confianza</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content" id="content2">
+                        <p>Sabemos que cada prenda tiene valor para ti. Por eso trabajamos con responsabilidad, atencion y cuidado en cada pedido. Nuestro compromiso es ofrecer un servicio transparente y confiable para que tengas la tranquilidad de dejar tu ropa en buenas manos.</p>
+                    </div>
+                </div>
+                <div class="value-card accordion-item">
+                    <div class="accordion-header" id="heading3">
+                        <h3 class="accordion-title">Eco-Friendly</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content" id="content3">
+                        <p>Creemos que una ropa limpia no debe significar un mayor impacto en el medio ambiente. Utilizamos practicas responsables y buscamos optimizar el consumo de agua, energia y productos de lavado, contribuyendo a un servicio mas sostenible para todos.</p>
+                    </div>
+                </div>
+                <div class="value-card accordion-item">
+                    <div class="accordion-header" id="heading4">
+                        <h3 class="accordion-title">Precios Justos</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content" id="content4">
+                        <p>La calidad no tiene que ser costosa. Ofrecemos tarifas claras y competitivas, pensadas para que puedas disfrutar de un servicio profesional sin sorpresas ni cargos ocultos. Pagas por un trabajo bien hecho y un servicio que aporta valor.</p>
+                    </div>
+                </div>
+                <div class="value-card accordion-item">
+                    <div class="accordion-header" id="heading5">
+                        <h3 class="accordion-title">48H Express</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content" id="content5">
+                        <p>Cuando el tiempo apremia, estamos preparados para ayudarte. Nuestro servicio Express 48H esta disenado para que recuperes tu ropa limpia, fresca y lista para usar en el menor tiempo posible, manteniendo siempre nuestros estandares de calidad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="closing-phrase">
+                Lavanderia EKO: menos preocupaciones, mas tiempo para ti. Nosotros nos ocupamos de la ropa para que tu disfrutes de lo que realmente importa.
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Planes Del Servicio</h2>
+            <p>Elige la opcion que mejor se adapte a tu ropa</p>
+        </div>
+        <div class="pricing-grid" id="pricingGrid"></div>
+
+        <div class="section-title">
+            <h2>Nuestros productos de limpieza</h2>
+            <p>Detergentes, suavizantes y potenciadores</p>
+        </div>
+        <div class="catalogo-grid" id="catalogoGrid"></div>
+
+        <div class="delivery-section" id="deliverySection"></div>
+
+        <div class="comentarios-section">
+            <div class="section-title"><h2>Envia tu comentario</h2><p>Nos interesa tu opinion para mejorar</p></div>
+            <div class="comentarios-form">
+                <form id="comentarioForm" novalidate>
+                    <input type="text" id="comentarioNombre" placeholder="Tu nombre completo" required>
+                    <input type="email" id="comentarioEmail" placeholder="Correo electronico" required>
+                    <textarea id="comentarioMensaje" rows="4" placeholder="Escribe aqui tu comentario o sugerencia..." required></textarea>
+                    <button type="submit" class="btn-comentario">Enviar comentario por Gmail</button>
+                </form>
             </div>
         </div>
     </main>
 
     <div id="reservaModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" id="closeReservaBtn">✕</button>
-            <h3 id="reservaTitle">Reservación de servicio</h3>
+            <button class="modal-close" id="closeReservaBtn">X</button>
+            <h3 id="reservaTitle">Reservacion de servicio</h3>
             <form id="reservaForm" novalidate></form>
         </div>
     </div>
 
     <div id="claveModal" class="modal">
         <div class="modal-content" style="max-width:500px;">
-            <button class="modal-close" id="closeClaveModalBtn">✕</button>
-            <h3>Acceso Administración</h3>
+            <button class="modal-close" id="closeClaveModalBtn">X</button>
+            <h3>Acceso Administracion</h3>
             <div class="form-group"><label>Clave</label><input type="password" id="claveAcceso" required></div>
             <div class="modal-buttons"><button id="validarClaveBtn" class="btn-modal btn-enviar">Acceder</button></div>
         </div>
     </div>
 
     <div id="adminModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeAdminModalBtn">✕</button>
-            <h3>Administración · Orden de Servicio</h3>
+        <div class="modal-content modal-admin-list">
+            <button class="modal-close" id="closeAdminModalBtn">X</button>
+            <h3>Administracion · Orden de Servicio</h3>
             <form id="adminForm" novalidate></form>
             <div style="margin-top: 20px;">
                 <button id="verHistorialBtn" class="btn-modal btn-enviar">Ver Historial</button>
@@ -99,7 +148,7 @@
 
     <div id="historialModal" class="modal">
         <div class="modal-content" style="max-width: 800px;">
-            <button class="modal-close" id="closeHistorialModalBtn">✕</button>
+            <button class="modal-close" id="closeHistorialModalBtn">X</button>
             <h3>Historial de Reservas y Comentarios</h3>
             <div id="historialContainer"></div>
             <div class="modal-buttons">
@@ -110,28 +159,28 @@
 
     <div id="productoModal" class="modal">
         <div class="modal-producto-content">
-            <button class="modal-close" id="closeProductoModalBtn">✕</button>
+            <button class="modal-close" id="closeProductoModalBtn">X</button>
             <h3>Detalles del producto</h3>
             <div id="productoInfoContainer"></div>
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox">
-        <img id="lightboxImg" src="" alt="Vista ampliada">
-    </div>
-
     <footer>
         <div class="container">
             <div class="footer-compact">
-                <div><div class="logo-text">LAVANDERÍA <span>EKO</span></div></div>
+                <div class="logo-text-footer">LAVANDERIA <span>EKO</span></div>
                 <div class="footer-contact">
                     <span>📞 +53 52952442 | 78701517</span>
-                    <span>📍 Centro Habana</span>
-                    <span>🕒 Lun a Dom • 8:00 – 19:00</span>
-                    <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" target="_blank" rel="noopener noreferrer">Canal WhatsApp</a>
+                    <span>📍 Centro Habana, La Habana</span>
+                    <span>⏰ Lun a Dom · 8:00 – 19:00</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" aria-label="WhatsApp">WhatsApp</a>
+                    <a href="https://www.facebook.com/share/1GAw5zsZ1X/" aria-label="Facebook">Facebook</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
                 </div>
             </div>
-            <div class="copyright">© 2026 LAVANDERÍA EKO | KOOWEXA · Todos los derechos reservados</div>
+            <div class="copyright">© 2026 LAVANDERIA EKO | KOOWEXA · Todos los derechos reservados</div>
         </div>
     </footer>
 
