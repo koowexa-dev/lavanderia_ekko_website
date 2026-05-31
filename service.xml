@@ -55,10 +55,4 @@
         <producto marca="Prodoxá" nombre="Fabric Softener Lavanda" tipo="Suavizante" rendimiento="40 cargas" descripcion="Suavizante con aroma a lavanda, deja la ropa suave y perfumada." />
         <producto marca="Downy" nombre="Free & Gentle" tipo="Suavizante hipoalergénico" rendimiento="30 cargas" descripcion="Hipoalergénico, sin fragancias, ideal para pieles sensibles." />
     </productos>
-
-    <promociones>
-        <imagen src="promo1.jpg" />
-        <imagen src="promo2.jpg" />
-        <imagen src="promo3.jpg" />
-    </promociones>
 </services>

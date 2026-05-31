@@ -145,7 +145,7 @@ function construirMensajeReserva(nombre, telefono, direccion, carnet, fechaHora,
         return `${nombres[k]} (+$${preciosExtras[k]})`;
     }).join('\n') || 'Ninguno';
     
-    return `🏷️ *RESERVA EKO - NUEVA ORDEN*━━━━━━━━━━━━━━━━━━━
+    return `🏷️ *RESERVA EKO - NUEVA ORDEN*━━━━━━━━━━
 👤 DATOS DEL CLIENTE
 Nombre: ${nombre}
 Teléfono: ${telefono}
@@ -164,7 +164,7 @@ ${extrasList}
 ━━━━━━━━━━━━━━━━━━━
 💰 TOTAL A PAGAR: $${total}
 ━━━━━━━━━━━━━━━━━━━
-📲 Enviado desde lavanderíaeko.com`;
+📲 Enviado desde://spoo.me/eko`;
 }
 function resetFormularioReserva() {
     currentPesosSeleccionados = [];

@@ -182,7 +182,7 @@
     });
 
     // ==================== SPAM OPTIMIZADO (imágenes locales) ====================
-    const imagenesPromocionales = ['promo1.jpg', 'promo2.jpg', 'promo3.jpg'];
+    const imagenesPromocionales = ['promo1.jpg', 'promo2.jpg', 'promo3.jpg', 'promo4.jpg', 'promo5.jpg', 'promo6.jpg', 'promo7.jpg', 'promo8.jpg', 'promo9.jpg', 'promo10.jpg'];
     let intervaloSpam = null;
     let spamActivo = false;
     let spamCount = 0;
