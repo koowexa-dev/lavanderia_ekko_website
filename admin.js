@@ -18,6 +18,7 @@ const validarBtn=document.getElementById('validarClaveBtn');
 const verHistorialBtn=document.getElementById('verHistorialBtn');
 const historialModal=document.getElementById('historialModal');
 const limpiarHistorialBtn=document.getElementById('limpiarHistorialBtn');
+
 function getVal(id,def=''){const el=document.getElementById(id);if(!el)return def;if(el.tagName==='SELECT'||el.tagName==='INPUT'||el.tagName==='TEXTAREA')return el.value.trim()||def;return def;}
 function getCheckboxVal(id){const el=document.getElementById(id);return el?el.checked:false;}
 function setVal(id,val){const el=document.getElementById(id);if(el) el.value=val;}
@@ -37,10 +38,11 @@ setVal('adminDireccion',orden.direccion||'');
 setVal('domicilioZona',orden.zonaMensajeria||'Zona Corta $600');
 setVal('pesoRango',orden.pesoRango||'1-2');
 setVal('tipoServicio',orden.tipoServicio||'Economico');
-['extraColor','extraBlanca','extraOscura','extraPerfume','extraPerla','extraFragancia'].forEach(ext=>{const chk=document.getElementById(ext);if(chk)chk.checked=orden.extras&&orden.extras[ext];});
-if(orden.ropaSucia)document.getElementById('ropaSucia').checked=true;
-else if(orden.ropaSemisucia)document.getElementById('ropaSemisucia').checked=true;
-else document.getElementById('ropaLimpia').checked=true;
+['extraColor','extraBlanca','extraOscura','extraPerfume','extraPerla','extraFragancia'].forEach(ext=>{const chk=document.getElementById(ext);if(chk)chk.checked=orden.extras && orden.extras[ext];});
+// Estado de ropa: checkboxes
+if(orden.ropaManchada) document.getElementById('ropaManchada').checked=true;
+if(orden.ropaSucia) document.getElementById('ropaSucia').checked=true;
+if(orden.ropaSemisucia) document.getElementById('ropaSemisucia').checked=true;
 setVal('prendas',orden.prendas||'');
 setVal('planchadoTexto',orden.planchadoTexto||'');
 setVal('costoPlanchado',orden.costoPlanchado||0);
@@ -55,7 +57,13 @@ showToast('📋 Orden cargada desde historial');
 }
 function calcularTotalServicio(){const peso=getVal('pesoRango','1-2');const tipo=getVal('tipoServicio','Economico');return PRECIOS_SERVICIO[peso]?.[tipo]||0;}
 function calcularExtras(){let total=0;if(getCheckboxVal('extraColor'))total+=300;if(getCheckboxVal('extraBlanca'))total+=300;if(getCheckboxVal('extraOscura'))total+=300;if(getCheckboxVal('extraPerfume'))total+=300;if(getCheckboxVal('extraPerla'))total+=300;if(getCheckboxVal('extraFragancia'))total+=300;return total;}
-function calcularEstadoRopa(){if(getCheckboxVal('ropaSucia'))return 400;if(getCheckboxVal('ropaSemisucia'))return 200;return 0;}
+function calcularEstadoRopa(){
+    let total = 0;
+    if(getCheckboxVal('ropaSemisucia')) total += 200;
+    if(getCheckboxVal('ropaSucia')) total += 400;
+    if(getCheckboxVal('ropaManchada')) total += 800;
+    return total;
+}
 function calcularMensajeria(){const zona=getVal('domicilioZona','Zona Corta $600');return COSTO_MENSAJERIA[zona]||0;}
 function actualizarTotales(){
 const servicio=calcularTotalServicio();
@@ -93,7 +101,12 @@ const pesoRango=getVal('pesoRango');
 const tipoServicio=getVal('tipoServicio');
 const servicioPrecio=calcularTotalServicio();
 const extrasMap={'Ropa COLOR':getCheckboxVal('extraColor'),'Ropa BLANCA':getCheckboxVal('extraBlanca'),'Ropa OSCURA':getCheckboxVal('extraOscura'),'Perfume':getCheckboxVal('extraPerfume'),'Perla Olor':getCheckboxVal('extraPerla'),'Fragancia':getCheckboxVal('extraFragancia')};
-const estadoRopa=getCheckboxVal('ropaSucia')?'Sucia (+$400)':(getCheckboxVal('ropaSemisucia')?'Semisucia (+$200)':'Ninguno');
+// Estado de ropa (multiple)
+let estadoRopaList = [];
+if(getCheckboxVal('ropaSemisucia')) estadoRopaList.push('Semisucia (+$200)');
+if(getCheckboxVal('ropaSucia')) estadoRopaList.push('Sucia (+$400)');
+if(getCheckboxVal('ropaManchada')) estadoRopaList.push('Manchada (+$800)');
+const estadoRopaText = estadoRopaList.length ? estadoRopaList.join(', ') : 'Ninguno (sin extra)';
 const prendas=getVal('prendas')||'';
 const planchadoTexto=getVal('planchadoTexto')||'';
 const costoPlanchado=parseFloat(getVal('costoPlanchado','0'))||0;const msgRecogida=getCheckboxVal('msgRecogida');
@@ -109,58 +122,76 @@ const cambio=recibido-total;
 const firmaEncargado=getVal('firmaEncargado')||'______________________________';
 const firmaCliente=getVal('firmaCliente')||'______________________________';
 const piezasTexto=getVal('piezasTexto')||'';
-let txt='';
-txt+='╔══════════════════════════════════════════════════════════════════════╗\n';
-txt+='║                          LAVANDERÍA EKO                               ║\n';
-txt+='║                         ORDEN DE SERVICIO                            ║\n';
-txt+='╠══════════════════════════════════════════════════════════════════════╣\n';
-txt+=`║ N° ORDEN: ${ordenNo.padEnd(38)}N° ORDEN: ${ordenNo.padEnd(20)}║\n`;
-txt+='╠══════════════════════════════════════════════════════════════════════╣\n';
-txt+=`║ Cliente: ${cliente.padEnd(42)}┊ Lavandera: ║\n`;
-txt+=`║ Teléfono: ${telefono.padEnd(42)}┊ Recepción: ${fechaRecepcion.padEnd(24)}║\n`;
-txt+=`║ ${' '.repeat(42)}┊ Entrega: ${fechaEntrega.padEnd(24)}║\n`;
-txt+='╚══════════════════════════════════════════════════════════════════════╝\n';
-txt+='\n▸ SERVICIOS POR CARGA (hasta 7kg) ◂\n  Prelavado + Lavado + Secado + Doblado\n\n';
-txt+='┌───────────┬────────────┬──────────┬────────────┬────────────┐\n';
-txt+='│  Peso     │ Económico  │ Básico   │ Premium    │ Especial   │\n';
-txt+='├───────────┼────────────┼──────────┼────────────┼────────────┤\n';
-txt+='│  1–2 kg   │    $400    │   $700   │    $800    │    $900    │\n';
-txt+='│  3–4 kg   │    $500    │   $900   │   $1.000   │   $1.100   │\n';
-txt+='│  5–6 kg   │    $600    │  $1.100  │   $1.200   │   $1.300   │\n';
-txt+='│   7 kg    │    $700    │  $1.300  │   $1.400   │   $1.500   │\n';
-txt+='└───────────┴────────────┴──────────┴────────────┴────────────┘\n\n';
-txt+='◆ EXTRAS (+$300 c/u) ─────────────────────────────────────────────────\n';
-txt+=`${extrasMap['Ropa COLOR']?'☒':'☐'} Ropa COLOR ${extrasMap['Perfume']?'☒':'☐'} Perfume\n`;
-txt+=`${extrasMap['Ropa BLANCA']?'☒':'☐'} Ropa BLANCA ${extrasMap['Perla Olor']?'☒':'☐'} Perla Olor\n`;
-txt+=`${extrasMap['Ropa OSCURA']?'☒':'☐'} Ropa OSCURA ${extrasMap['Fragancia']?'☒':'☐'} Fragancia\n`;
-txt+='   ▶ Más suave y mejor aroma\n\n';
-txt+='▸ DESCRIPCIÓN ────────────────────────────────────────────────────────\n';
-txt+='  Económico → Lavado + Centrifugado + Doblado\n  Básico    → Detergente líquido + Suavizante\n';
-txt+='  Premium   → Cápsulas + Fragancia (Ropa)\n  Especial  → Cápsulas + Fragancia (Sábanas / Toallas)\n\n';
-txt+='▸ ESTADO DE LA ROPA ──────────────────────────────────────────────────\n';
-txt+=`${estadoRopa==='Sucia (+$400)'?'☒':'☐'} Sucia (+$400) ${estadoRopa==='Semisucia (+$200)'?'☒':'☐'} Semisucia (+$200)\n\n`;
-txt+='▸ PRENDAS (Tipo / Cantidad / Peso) ───────────────────────────────────\n';
-txt+=`${prendas||'____________________________________________________'}\n\n`;
-txt+='▸ PLANCHADO (por prenda) ─────────────────────────────────────────────\n';
-txt+=`${planchadoTexto||'____________________________________________________'}\n\n`;
-txt+='▸ MENSAJERÍA ─────────────────────────────────────────────────────────\n';
-txt+=`${msgRecogida?'☒':'☐'} Recogida ${msgEntrega?'☒':'☐'} Entrega\n`;
-txt+=`Dirección: ${direccionMensajeria||'__________________________________________'}\n\n`;txt+='▸ COBRO ──────────────────────────────────────────────────────────────\n';
-txt+=`Servicio $ ${servicioMonto}\n Extras $ ${extrasMonto}\n Estado ropa $ ${estadoMonto}\n`;
-txt+=`Planchado $ ${costoPlanchado}\n Mensajería $ ${mensajeriaMonto}\n ──────────────────────\n`;
-txt+=`TOTAL $ ${total}\n Recibido $ ${recibido}\n Cambio $ ${cambio>=0?cambio:'0 (falta)'}\n\n`;
-txt+='▸ FIRMAS ─────────────────────────────────────────────────────────────\n';
-txt+=`Cliente: ${firmaCliente}\n Encargado: ${firmaEncargado}\n\n`;
-txt+='▸ PIEZAS ─────────────────────────────────────────────────────────────\n';
-txt+='  P-KG   DP   DL   S   Fragancia   Perfume\n  ─────────────────────────────────────────\n'; 
-txt+=`${piezasTexto||'____________________________________________________'}\n\n`;
-txt+='============================================\nDocumento generado por Lavandería EKO\n============================================';
+
+// TXT optimizado con bordes ASCII y mejor estructura
+let txt = '';
+txt += '+'.repeat(80) + '\n';
+txt += '|                          LAVANDERÍA EKO                               |\n';
+txt += '|                         ORDEN DE SERVICIO                            |\n';
+txt += '+'.repeat(80) + '\n';
+txt += `| N° ORDEN: ${ordenNo.padEnd(28)} Fecha Recepción: ${fechaRecepcion.padEnd(20)} |\n`;
+txt += `| Cliente: ${cliente.padEnd(30)} Teléfono: ${telefono.padEnd(20)} |\n`;
+txt += `| Dirección: ${direccion.padEnd(30)} Zona Mensajería: ${zona.padEnd(17)} |\n`;
+txt += `| Fecha Entrega: ${fechaEntrega.padEnd(50)} |\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| SERVICIOS POR CARGA (hasta 7kg) - Prelavado + Lavado + Secado + Doblado |\n';
+txt += '+'.repeat(80) + '\n';
+txt += '|  Peso    | Económico | Básico | Premium | Especial |\n';
+txt += '|----------|-----------|--------|---------|----------|\n';
+txt += '| 1–2 kg   |    $400   |  $700  |  $800   |   $900   |\n';
+txt += '| 3–4 kg   |    $500   |  $900  | $1,000  |  $1,100  |\n';
+txt += '| 5–6 kg   |    $600   | $1,100 | $1,200  |  $1,300  |\n';
+txt += '| 7 kg     |    $700   | $1,300 | $1,400  |  $1,500  |\n';
+txt += '+'.repeat(80) + '\n';
+txt += `| Peso seleccionado: ${pesoRango} kg  |  Tipo: ${tipoServicio}  |  Costo: $${servicioMonto} |\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| EXTRAS (+$300 c/u):\n';
+txt += `|   ${extrasMap['Ropa COLOR']?'✔':'☐'} Ropa COLOR     ${extrasMap['Perfume']?'✔':'☐'} Perfume\n`;
+txt += `|   ${extrasMap['Ropa BLANCA']?'✔':'☐'} Ropa BLANCA   ${extrasMap['Perla Olor']?'✔':'☐'} Perla Olor\n`;
+txt += `|   ${extrasMap['Ropa OSCURA']?'✔':'☐'} Ropa OSCURA   ${extrasMap['Fragancia']?'✔':'☐'} Fragancia\n`;
+txt += `| Total extras: $${extrasMonto}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| ESTADO DE LA ROPA:\n';
+txt += `|   ${estadoRopaText}\n`;
+txt += `| Costo adicional: $${estadoMonto}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| PRENDAS (Tipo / Cantidad / Peso):\n';
+txt += `|   ${prendas.replace(/\n/g, '\n|   ')}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| PLANCHADO:\n';
+txt += `|   Descripción: ${planchadoTexto}\n`;
+txt += `|   Costo: $${costoPlanchado}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| MENSAJERÍA:\n';
+txt += `|   Recogida: ${msgRecogida?'Sí':'No'}   Entrega: ${msgEntrega?'Sí':'No'}\n`;
+txt += `|   Dirección: ${direccionMensajeria}\n`;
+txt += `|   Costo: $${mensajeriaMonto}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| COBRO:\n';
+txt += `|   Servicio: $${servicioMonto}\n`;
+txt += `|   Extras: $${extrasMonto}\n`;
+txt += `|   Estado ropa: $${estadoMonto}\n`;
+txt += `|   Planchado: $${costoPlanchado}\n`;
+txt += `|   Mensajería: $${mensajeriaMonto}\n`;
+txt += `|   TOTAL: $${total}\n`;
+txt += `|   Recibido: $${recibido}\n`;
+txt += `|   Cambio: ${cambio>=0?`$${cambio}`:`Faltan $${Math.abs(cambio)}`}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| FIRMAS:\n';
+txt += `|   Cliente: ${firmaCliente}\n`;
+txt += `|   Encargado: ${firmaEncargado}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += '| PIEZAS (P-KG DP DL S Fragancia Perfume):\n';
+txt += `|   ${piezasTexto.replace(/\n/g, '\n|   ')}\n`;
+txt += '+'.repeat(80) + '\n';
+txt += 'Documento generado por Lavandería EKO - ' + new Date().toLocaleString() + '\n';
+txt += '==================================================\n';
 return txt;
 }
 function descargarTXT(){
 const ordenNo=getVal('ordenNo')||generarNumeroOrden();
 const txt=generarTXT();
-const blob=new Blob([txt],{type:'text/plain'});
+const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
 const a=document.createElement('a');
 a.href=URL.createObjectURL(blob);
 a.download=`orden_${ordenNo}.txt`;
@@ -187,7 +218,7 @@ document.getElementById('closePreviewBtn').onclick=()=>previewModal.remove();
 }
 function guardarBorrador(){const formData={};const inputs=document.querySelectorAll('#adminForm input, #adminForm select, #adminForm textarea');inputs.forEach(inp=>{if(inp.type==='checkbox')formData[inp.id]=inp.checked;else if(inp.type==='radio'){if(inp.checked)formData[inp.name]=inp.value;}else formData[inp.id]=inp.value;});localStorage.setItem('eko_borrador_formulario',JSON.stringify(formData));}
 function cargarBorrador(){const borrador=localStorage.getItem('eko_borrador_formulario');if(!borrador)return;const data=JSON.parse(borrador);for(let[id,val]of Object.entries(data)){const el=document.getElementById(id);if(el){if(el.type==='checkbox')el.checked=val;else if(el.type==='radio'){const radio=document.querySelector(`input[name="${id}"][value="${val}"]`);if(radio)radio.checked=true;}else el.value=val;}}actualizarTotales();showToast('💾 Borrador restaurado');}
-function limpiarFormulario(){if(confirm('¿Limpiar todo el formulario actual?')){const form=document.getElementById('adminForm');form.querySelectorAll('input, select, textarea').forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false;else el.value='';});document.getElementById('ropaLimpia').checked=true;actualizarTotales();showToast('🧹 Formulario limpio');}}
+function limpiarFormulario(){if(confirm('¿Limpiar todo el formulario actual?')){const form=document.getElementById('adminForm');form.querySelectorAll('input, select, textarea').forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false;else el.value='';});actualizarTotales();showToast('🧹 Formulario limpio');}}
 function construirFormulario(){
 const adminForm=document.getElementById('adminForm');
 if(!adminForm)return;
@@ -201,20 +232,25 @@ adminForm.innerHTML=`
 <div class="form-group"><label>Dirección</label><input type="text" id="adminDireccion" placeholder="Calle, número, colonia"></div>
 <div class="form-group"><label>Zona mensajería</label><select id="domicilioZona"><option value="Zona Corta $600">Zona Corta ($600)</option><option value="Zona Media $900">Zona Media ($900)</option><option value="Zona Larga $1200">Zona Larga ($1200)</option></select></div>
 </div></div>
-<div class="admin-section"><h4>🧺 Servicio por carga</h4>
+<div class="admin-section"><h4>🏷️ Tipo de servicio</h4>
 <div class="admin-grid">
 <div class="form-group"><label>Peso</label><select id="pesoRango"><option value="1-2">1–2 kg</option><option value="3-4">3–4 kg</option><option value="5-6">5–6 kg</option><option value="7">7 kg</option></select></div>
 <div class="form-group"><label>Tipo</label><select id="tipoServicio"><option value="Economico">Económico</option><option value="Basico">Básico</option><option value="Premium">Premium</option><option value="Especial">Especial</option></select></div>
 </div></div>
-<div class="admin-section"><h4>✨ Extras (+$300 c/u)</h4><div class="checkbox-group">
-<label><input type="checkbox" id="extraColor"> Ropa COLOR</label>  <label><input type="checkbox" id="extraBlanca"> Ropa BLANCA</label>
-<label><input type="checkbox" id="extraOscura"> Ropa OSCURA</label>  <label><input type="checkbox" id="extraPerfume"> Perfume</label>
-<label><input type="checkbox" id="extraPerla"> Perla Olor</label>  <label><input type="checkbox" id="extraFragancia"> Fragancia</label>
+<div class="admin-section"><h4>📄 Otros lavados</h4><div class="checkbox-group">
+<label><input type="checkbox" id="extraColor"> Ropa COLOR</label>
+<label><input type="checkbox" id="extraOscura"> Ropa OSCURA</label>
+<label><input type="checkbox" id="extraBlanca"> Ropa BLANCA</label>
 </div></div>
-<div class="admin-section"><h4>🧼 Estado de la ropa</h4><div class="radio-group">
-<label><input type="radio" name="estadoRopa" id="ropaSucia"> Sucia (+$400)</label>
-<label><input type="radio" name="estadoRopa" id="ropaSemisucia"> Semisucia (+$200)</label>
-<label><input type="radio" name="estadoRopa" id="ropaLimpia" checked> Limpia (sin extra)</label>
+<div class="admin-section"><h4>📄 Aromas</h4><div class="checkbox-group">
+<label><input type="checkbox" id="extraPerla"> Perla Olor</label>
+<label><input type="checkbox" id="extraPerfume"> Perfume</label>
+<label><input type="checkbox" id="extraFragancia"> Fragancia</label>
+</div></div>
+<div class="admin-section"><h4>📄 Estado de ropa (múltiple)</h4><div class="checkbox-group">
+<label><input type="checkbox" id="ropaSemisucia"> Semisucia (+$200)</label>
+<label><input type="checkbox" id="ropaSucia"> Sucia (+$400)</label>
+<label><input type="checkbox" id="ropaManchada"> Manchada (+$800)</label>
 </div></div>
 <div class="admin-section"><h4>📝 Prendas</h4><textarea id="prendas" rows="2" placeholder="Ej: Camisas x3 - 1.5kg, Pantalones x2 - 1kg"></textarea></div>
 <div class="admin-section"><h4>👕 Planchado</h4><div class="admin-grid">
@@ -243,7 +279,8 @@ adminForm.innerHTML=`
 <button type="button" id="descargarTxtBtn" class="btn-modal btn-enviar">⬇️ Descargar TXT</button>
 <button type="button" id="limpiarFormBtn" class="btn-modal">🧹 Limpiar formulario</button>
 <button type="button" id="cargarBorradorBtn" class="btn-modal">💾 Restaurar borrador</button>
-</div>`;const hoy=new Date().toISOString().split('T')[0];
+</div>`;
+const hoy=new Date().toISOString().split('T')[0];
 const entrega=new Date(Date.now()+2*86400000).toISOString().split('T')[0];
 if(!getVal('fechaRecepcion'))setVal('fechaRecepcion',hoy);
 if(!getVal('fechaEntrega'))setVal('fechaEntrega',entrega);
@@ -252,13 +289,13 @@ setupAutocomplete('adminDireccion','direccion');
 setupAutocomplete('adminTelefono','telefono');
 document.getElementById('clienteNombre')?.addEventListener('blur',autoCompletarCliente);
 document.getElementById('adminDireccion')?.addEventListener('blur',sugerirZonaPorDireccion);
-const eventos=['pesoRango','tipoServicio','extraColor','extraBlanca','extraOscura','extraPerfume','extraPerla','extraFragancia','ropaSucia','ropaSemisucia','domicilioZona','costoPlanchado','pagoRecibido'];
+const eventos=['pesoRango','tipoServicio','extraColor','extraBlanca','extraOscura','extraPerfume','extraPerla','extraFragancia','ropaSemisucia','ropaSucia','ropaManchada','domicilioZona','costoPlanchado','pagoRecibido'];
 eventos.forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('change',()=>{actualizarTotales();guardarBorrador();});});
 document.getElementById('costoPlanchado')?.addEventListener('input',()=>{actualizarTotales();guardarBorrador();});
 document.getElementById('pagoRecibido')?.addEventListener('input',actualizarTotales);
 document.getElementById('descargarTxtBtn')?.addEventListener('click',descargarTXT);
 document.getElementById('guardarHistorialBtn')?.addEventListener('click',()=>{
-const ordenData={ordenNo:getVal('ordenNo')||generarNumeroOrden(),clienteNombre:getVal('clienteNombre'),telefono:getVal('adminTelefono'),fechaRecepcion:getVal('fechaRecepcion'),fechaEntrega:getVal('fechaEntrega'),direccion:getVal('adminDireccion'),zonaMensajeria:getVal('domicilioZona'),pesoRango:getVal('pesoRango'),tipoServicio:getVal('tipoServicio'),extras:{extraColor:getCheckboxVal('extraColor'),extraBlanca:getCheckboxVal('extraBlanca'),extraOscura:getCheckboxVal('extraOscura'),extraPerfume:getCheckboxVal('extraPerfume'),extraPerla:getCheckboxVal('extraPerla'),extraFragancia:getCheckboxVal('extraFragancia')},ropaSucia:getCheckboxVal('ropaSucia'),ropaSemisucia:getCheckboxVal('ropaSemisucia'),prendas:getVal('prendas'),planchadoTexto:getVal('planchadoTexto'),costoPlanchado:parseFloat(getVal('costoPlanchado','0')),msgRecogida:getCheckboxVal('msgRecogida'),msgEntrega:getCheckboxVal('msgEntrega'),direccionMensajeria:getVal('direccionMensajeria'),pagoRecibido:parseFloat(getVal('pagoRecibido','0')),firmaEncargado:getVal('firmaEncargado'),firmaCliente:getVal('firmaCliente'),piezasTexto:getVal('piezasTexto')};
+const ordenData={ordenNo:getVal('ordenNo')||generarNumeroOrden(),clienteNombre:getVal('clienteNombre'),telefono:getVal('adminTelefono'),fechaRecepcion:getVal('fechaRecepcion'),fechaEntrega:getVal('fechaEntrega'),direccion:getVal('adminDireccion'),zonaMensajeria:getVal('domicilioZona'),pesoRango:getVal('pesoRango'),tipoServicio:getVal('tipoServicio'),extras:{extraColor:getCheckboxVal('extraColor'),extraBlanca:getCheckboxVal('extraBlanca'),extraOscura:getCheckboxVal('extraOscura'),extraPerfume:getCheckboxVal('extraPerfume'),extraPerla:getCheckboxVal('extraPerla'),extraFragancia:getCheckboxVal('extraFragancia')},ropaManchada:getCheckboxVal('ropaManchada'),ropaSucia:getCheckboxVal('ropaSucia'),ropaSemisucia:getCheckboxVal('ropaSemisucia'),prendas:getVal('prendas'),planchadoTexto:getVal('planchadoTexto'),costoPlanchado:parseFloat(getVal('costoPlanchado','0')),msgRecogida:getCheckboxVal('msgRecogida'),msgEntrega:getCheckboxVal('msgEntrega'),direccionMensajeria:getVal('direccionMensajeria'),pagoRecibido:parseFloat(getVal('pagoRecibido','0')),firmaEncargado:getVal('firmaEncargado'),firmaCliente:getVal('firmaCliente'),piezasTexto:getVal('piezasTexto')};
 guardarOrdenEnHistorial(ordenData);guardarBorrador();});
 document.getElementById('previsualizarBtn')?.addEventListener('click',previsualizarTXT);
 document.getElementById('limpiarFormBtn')?.addEventListener('click',limpiarFormulario);
