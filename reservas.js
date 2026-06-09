@@ -1,54 +1,36 @@
 (function() {
-let preciosPorKg = {};
+let preciosPorKg = {
+    NORMAL: { '1-2':400, '3-4':500, '5-6':600, '7':700 },
+    BASICO: { '1-2':700, '3-4':900, '5-6':1100, '7':1300 },
+    PREMIUM: { '1-2':800, '3-4':1000, '5-6':1200, '7':1400 },
+    ESPECIAL: { '1-2':900, '3-4':1100, '5-6':1300, '7':1500 }
+};
 let preciosExtras = {
-fragancia: 400,
-perlas: 300,
-perfume: 300,
-blanco: 300,
-oscuro: 300,
-color: 300,
-semiSucio: 200,
-sucio: 400,
-manchado: 800
+    fragancia: 400,
+    perlas: 300,
+    perfume: 300,
+    blanco: 300,
+    oscuro: 300,
+    color: 300,
+    semiSucio: 200,
+    sucio: 400,
+    manchado: 800
 };
 let currentPesosSeleccionados = [];
 let planSeleccionado = 'NORMAL';
 let extrasMarcados = {
-fragancia: false, perlas: false, perfume: false,
-blanco: false, oscuro: false, color: false,
-semiSucio: false, sucio: false, manchado: false
+    fragancia: false, perlas: false, perfume: false,
+    blanco: false, oscuro: false, color: false,
+    semiSucio: false, sucio: false, manchado: false
 };
 const rangosDisponibles = ['1-2', '3-4', '5-6', '7'];
 let contadorRangos = {
-'1-2': 0,
-'3-4': 0,
-'5-6': 0,
-'7': 0
+    '1-2': 0,
+    '3-4': 0,
+    '5-6': 0,
+    '7': 0
 };
 let formularioInicializado = false;
-async function cargarPreciosKg() {
-    try {
-        const response = await fetch('service.xml');
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-        const planes = xmlDoc.querySelectorAll('planesPeso plan');
-        planes.forEach(plan => {
-            const id = plan.getAttribute('id');
-            preciosPorKg[id] = {};
-            plan.querySelectorAll('precio').forEach(p => {
-                const rango = p.getAttribute('rango');
-                const valor = parseInt(p.textContent, 10);
-                preciosPorKg[id][rango] = valor;
-            });
-        });
-        return true;
-    } catch (error) {
-        console.error('Error cargando precios:', error);
-        window.showToast('Error al cargar precios. Recarga la pagina.', true);
-        return false;    }
-}
 
 function calcularTotal() {
     const totalPesos = currentPesosSeleccionados.reduce((sum, item) => sum + item.precioUnitario, 0);
@@ -370,9 +352,8 @@ function renderizarFormulario() {
     formularioInicializado = true;
 }
 
-async function init() {
-    const ok = await cargarPreciosKg();
-    if (ok) renderizarFormulario();
+function init() {
+    renderizarFormulario();
 }
 init();
 })();

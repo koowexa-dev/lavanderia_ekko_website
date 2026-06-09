@@ -109,40 +109,6 @@
         }
     };
 
-    let notificacionesActivadas = false;
-    const btnNotificaciones = document.getElementById('solicitarNotificacionesBtn');
-    if (btnNotificaciones && 'Notification' in window) {
-        btnNotificaciones.addEventListener('click', () => {
-            if (Notification.permission === 'granted') {
-                notificacionesActivadas = true;
-                window.showToast('Notificaciones ya activadas', false);
-            } else if (Notification.permission !== 'denied') {
-                Notification.requestPermission().then(perm => {
-                    if (perm === 'granted') {
-                        notificacionesActivadas = true;
-                        window.showToast('Notificaciones activadas! Recibiras promociones especiales.', false);
-                        new Notification('Gracias por activar las notificaciones!', {
-                            body: 'Recibiras ofertas exclusivas de Lavanderia EKO.',
-                            icon: 'eko.jpg'
-                        });
-                    } else {
-                        window.showToast('No se activaron las notificaciones', true);
-                    }
-                });
-            } else {
-                window.showToast('Las notificaciones estan bloqueadas en este navegador', true);
-            }
-        });
-    } else if (btnNotificaciones) {
-        btnNotificaciones.style.display = 'none';
-    }
-
-    function enviarNotificacionPromocional(texto) {
-        if (notificacionesActivadas && Notification.permission === 'granted') {
-            new Notification('Lavanderia EKO', { body: texto, icon: 'eko.jpg' });
-        }
-    }
-
     function registrarEvento(categoria, accion, etiqueta = '') {
         const evento = {
             categoria, accion, etiqueta,
@@ -180,166 +146,35 @@
         }, 500);
     });
 
-    const imagenesPromocionales = ['promo1.jpg', 'promo2.jpg', 'promo3.jpg', 'promo4.jpg', 'promo5.jpg', 'promo6.jpg', 'promo7.jpg', 'promo8.jpg', 'promo9.jpg', 'promo10.jpg'];
-    let intervaloSpam = null;
-    let spamActivo = false;
-    let spamCount = 0;
-    let ultimoTexto = '';
-    let ultimaImagen = '';
-    let paginaVisible = true;
-    let spamPaused = false;
-
-    const SPAM_CONFIG = {
-        intervaloMin: 25000,
-        intervaloMax: 30000,
-        duracionSpam: 6000,
-        maxSpamsPorSesion: 15,
-        pausarSiModalAbierto: true,
-        usarVisibilityAPI: true,
-        retrasoInicial: 8000
-    };
-
-    const textosPromocionales = [
-        "Plan NORMAL: Lavado + Secado + Doblado desde $400/kg",
-        "Plan BASICO: Prelavado + lavado liquido + suavizante",
-        "Plan PREMIUM: Capsula de alta eficiencia + fragancia especial",
-        "Plan ESPECIAL: Ideal para ropa de cama y toallas, aroma premium",
-        "Reserva facil desde nuestra web o por WhatsApp"
+    // DATOS ESTÁTICOS
+    const planesPeso = [
+        { id: "NORMAL", nombre: "NORMAL", descripcion: "Lavado + Secado + Doblado", badge: "ACCESIBLE", color: "bg-normal", detergente: "Detergente en polvo", precios: {"1-2":400,"3-4":500,"5-6":600,"7":700} },
+        { id: "BASICO", nombre: "BASICO", descripcion: "Prelavado + Lavado + Secado + Doblado", badge: "POPULAR", color: "bg-basico", detergente: "Detergente liquido + suavizante", precios: {"1-2":700,"3-4":900,"5-6":1100,"7":1300} },
+        { id: "PREMIUM", nombre: "PREMIUM", descripcion: "Prelavado + Lavado + Secado + Doblado", badge: "LA MEJOR", color: "bg-premium", detergente: "Capsula + fragancia especial", precios: {"1-2":800,"3-4":1000,"5-6":1200,"7":1400} },
+        { id: "ESPECIAL", nombre: "ESPECIAL", descripcion: "Ropa de cama + Toallas + aroma premium", badge: "EXCLUSIVO", color: "bg-especial", detergente: "Capsula intensiva + fragancia", precios: {"1-2":900,"3-4":1100,"5-6":1300,"7":1500} }
     ];
 
-    function obtenerTextoAleatorio() {
-        let disponibles = textosPromocionales.filter(t => t !== ultimoTexto);
-        if (disponibles.length === 0) disponibles = textosPromocionales;
-        const nuevo = disponibles[Math.floor(Math.random() * disponibles.length)];
-        ultimoTexto = nuevo;
-        return nuevo;
-    }
+    const productos = [
+        { marca: "Prodoxa", nombre: "Detergente Liquido Cuidado del Color", tipo: "Detergente Liquido", rendimiento: "18 cargas", descripcion: "Ideal para ropa de color, protege los tonos y elimina manchas dificiles." },
+        { marca: "Prodoxa", nombre: "Gel Halc Ropas Blancas", tipo: "Detergente Liquido", rendimiento: "32 lavados", descripcion: "Potente gel para ropa blanca, devuelve el brillo original." },
+        { marca: "Tide", nombre: "HE Turbo Clean", tipo: "Detergente Liquido HE", rendimiento: "32 cargas", descripcion: "Alta eficiencia para lavadoras HE, elimina 99% de las manchas." },
+        { marca: "Prodoxa", nombre: "Fabric Softener Lavanda", tipo: "Suavizante", rendimiento: "40 cargas", descripcion: "Suavizante con aroma a lavanda, deja la ropa suave y perfumada." },
+        { marca: "Downy", nombre: "Free & Gentle", tipo: "Suavizante hipoalergenico", rendimiento: "30 cargas", descripcion: "Hipoalergenico, sin fragancias, ideal para pieles sensibles." }
+    ];
 
-    function obtenerImagenAleatoria() {
-        if (imagenesPromocionales.length === 0) return null;
-        let disponibles = imagenesPromocionales.filter(img => img !== ultimaImagen);
-        if (disponibles.length === 0) disponibles = imagenesPromocionales;
-        const nueva = disponibles[Math.floor(Math.random() * disponibles.length)];
-        ultimaImagen = nueva;
-        return nueva;
-    }
+    const zonas = [
+        { nombre: "Zona Corta", rango: "0-3 km", recogida: "400", entrega: "200", total: "600", lugares: "Habana Vieja, Centro Habana, Cerro" },
+        { nombre: "Zona Media", rango: "3-6 km", recogida: "600", entrega: "300", total: "900", lugares: "Vedado, Plaza, Nuevo Vedado, Lawton" },
+        { nombre: "Zona Larga", rango: "6-10 km", recogida: "800", entrega: "400", total: "1200", lugares: "Casino Deportivo, Mariano, Playa" }
+    ];
 
-    function hayModalAbierto() {
-        return Object.values(modales).some(modal => modal && modal.style.display === 'flex');
-    }
-
-    function precargarImagen(src) {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = src;
-        });
-    }
-
-    async function mostrarSpam() {
-        if (spamActivo) return;
-        if (SPAM_CONFIG.maxSpamsPorSesion > 0 && spamCount >= SPAM_CONFIG.maxSpamsPorSesion) {
-            if (intervaloSpam) clearInterval(intervaloSpam);
-            intervaloSpam = null;
-            console.log('Limite de spams alcanzado.');
-            return;
-        }
-        if (!paginaVisible && SPAM_CONFIG.usarVisibilityAPI) return;
-        if (SPAM_CONFIG.pausarSiModalAbierto && hayModalAbierto()) return;
-
-        const imagenSrc = obtenerImagenAleatoria();
-        const texto = obtenerTextoAleatorio();
-        let imagenValida = false;
-        if (imagenSrc) {
-            imagenValida = await precargarImagen(imagenSrc);
-        }
-
-        const spamDiv = document.createElement('div');
-        spamDiv.id = 'spam-overlay';
-        
-        let imagenHtml = '';
-        if (imagenSrc && imagenValida) {
-            imagenHtml = `<img src="${imagenSrc}" alt="Promocion EKO" class="spam-imagen" loading="lazy">`;
-        } else if (imagenSrc && !imagenValida) {
-            console.warn(`Imagen no encontrada: ${imagenSrc}`);
-        }
-        
-        spamDiv.innerHTML = `
-            <div class="spam-content">
-                ${imagenHtml}
-                <div class="spam-icon"></div>
-                <h3>LAVANDERIA EKO</h3>
-                <p>${texto}</p>
-                <div class="spam-timer">Oferta valida por tiempo limitado</div>
-            </div>
-        `;
-        
-        document.body.appendChild(spamDiv);
-        spamActivo = true;
-        spamCount++;
-        registrarEvento('spam', 'mostrado', `#${spamCount} - ${texto.substring(0, 40)}`);
-        
-        if (spamCount % 3 === 0 && spamCount > 0) {
-            enviarNotificacionPromocional(`No te pierdas esta oferta! ${texto.substring(0, 60)}`);
-        }
-
-        setTimeout(() => {
-            if (spamDiv && spamDiv.parentNode) {
-                spamDiv.style.opacity = '0';
-                setTimeout(() => {
-                    if (spamDiv.parentNode) spamDiv.remove();
-                    spamActivo = false;
-                }, 500);
-            } else {
-                spamActivo = false;
-            }
-        }, SPAM_CONFIG.duracionSpam);
-    }
-
-    function obtenerIntervaloAleatorio() {
-        const min = SPAM_CONFIG.intervaloMin;
-        const max = SPAM_CONFIG.intervaloMax;
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    function programarSiguienteSpam() {
-        if (intervaloSpam) clearInterval(intervaloSpam);
-        const intervalo = obtenerIntervaloAleatorio();
-        intervaloSpam = setInterval(() => {
-            mostrarSpam();
-        }, intervalo);
-        console.log(`Proximo spam en ${intervalo / 1000} segundos`);
-    }
-
-    function iniciarSpamPeriodico() {
-        if (intervaloSpam) clearInterval(intervaloSpam);
-        spamCount = 0;
-        ultimoTexto = '';
-        ultimaImagen = '';
-        setTimeout(() => {
-            mostrarSpam();
-            programarSiguienteSpam();
-        }, SPAM_CONFIG.retrasoInicial);
-    }
-
-    if (SPAM_CONFIG.usarVisibilityAPI) {
-        document.addEventListener('visibilitychange', () => {
-            paginaVisible = !document.hidden;
-            if (!paginaVisible) {
-                if (intervaloSpam) {
-                    clearInterval(intervaloSpam);
-                    intervaloSpam = null;
-                    spamPaused = true;
-                }
-            } else {
-                if (spamPaused && (SPAM_CONFIG.maxSpamsPorSesion === 0 || spamCount < SPAM_CONFIG.maxSpamsPorSesion)) {
-                    programarSiguienteSpam();
-                    spamPaused = false;
-                }
-            }
-        });
-    }
+    // Imágenes para la galería (16:9)
+    const imagenesGaleria = [
+        { src: "promo1.jpg", alt: "#1" },
+        { src: "promo2.jpg", alt: "#2" },
+        { src: "promo3.jpg", alt: "#3" },
+        { src: "promo4.jpg", alt: "#4" },
+    ];
 
     function mostrarCarga(mostrar) {
         let loader = document.getElementById('global-loader');
@@ -363,53 +198,26 @@
         }
     }
 
-    async function cargarDatos() {
+    function cargarDatos() {
         mostrarCarga(true);
         try {
-            const response = await fetch('service.xml');
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-
-            const features = xmlDoc.querySelectorAll('features feature');
-            const featuresContainer = document.getElementById('featuresList');
-            if (featuresContainer) {
-                featuresContainer.innerHTML = '';
-                features.forEach(f => {
-                    const span = document.createElement('span');
-                    span.className = 'feature-chip';
-                    span.textContent = f.textContent.trim();
-                    featuresContainer.appendChild(span);
-                });
-            }
-
-            const planesPeso = xmlDoc.querySelectorAll('planesPeso plan');
+            // Pricing grid
             const pricingGrid = document.getElementById('pricingGrid');
             if (pricingGrid) {
                 pricingGrid.innerHTML = '';
                 planesPeso.forEach(plan => {
-                    const id = plan.getAttribute('id');
-                    const nombre = plan.getAttribute('nombre');
-                    const descripcion = plan.getAttribute('descripcion');
-                    const badge = plan.getAttribute('badge');
-                    const color = plan.getAttribute('color');
-                    const detergente = plan.getAttribute('detergente');
-                    const precios = plan.querySelectorAll('precio');
-                    let listaPrecios = '';
-                    precios.forEach(p => {
-                        const rango = p.getAttribute('rango');
-                        const precio = p.textContent;
-                        listaPrecios += `<li><span>${rango} kg</span><span>$${precio}</span></li>`;
-                    });
                     const card = document.createElement('div');
                     card.className = 'price-card';
-                    card.setAttribute('data-plan', id);
+                    card.setAttribute('data-plan', plan.id);
+                    let listaPrecios = '';
+                    for (const [rango, precio] of Object.entries(plan.precios)) {
+                        listaPrecios += `<li><span>${rango} kg</span><span>$${precio}</span></li>`;
+                    }
                     card.innerHTML = `
-                        <div class="price-badge">${badge}</div>
-                        <div class="price-header ${color}"><h3>${nombre}</h3><p>${descripcion}</p></div>
+                        <div class="price-badge">${plan.badge}</div>
+                        <div class="price-header ${plan.color}"><h3>${plan.nombre}</h3><p>${plan.descripcion}</p></div>
                         <div class="price-body">
-                            <div class="service-desc">${detergente}</div>
+                            <div class="service-desc">${plan.detergente}</div>
                             <ul class="price-list">${listaPrecios}</ul>
                             <button class="btn-solicitar">Solicitar servicio</button>
                         </div>
@@ -418,6 +226,7 @@
                 });
             }
 
+            // Botones solicitar
             document.body.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-solicitar')) {
                     const card = e.target.closest('.price-card');
@@ -433,25 +242,20 @@
                 }
             });
 
-            const productos = xmlDoc.querySelectorAll('productos producto');
+            // Catálogo productos
             const catalogoGrid = document.getElementById('catalogoGrid');
             if (catalogoGrid) {
                 catalogoGrid.innerHTML = '';
                 productos.forEach(prod => {
-                    const marca = prod.getAttribute('marca');
-                    const nombre = prod.getAttribute('nombre');
-                    const tipo = prod.getAttribute('tipo');
-                    const rendimiento = prod.getAttribute('rendimiento');
-                    const descripcion = prod.getAttribute('descripcion');
                     const card = document.createElement('div');
                     card.className = 'catalogo-card';
-                    card.setAttribute('data-producto', JSON.stringify({ marca, nombre, tipo, rendimiento, descripcion }));
+                    card.setAttribute('data-producto', JSON.stringify(prod));
                     card.innerHTML = `
-                        <div class="catalogo-header">${marca} · ${nombre.substring(0, 20)}</div>
+                        <div class="catalogo-header">${prod.marca} · ${prod.nombre.substring(0, 20)}</div>
                         <div class="catalogo-body">
-                            <div class="producto-marca">${marca}</div>
-                            <div class="producto-nombre">${nombre}</div>
-                            <div class="producto-tipo">${tipo}</div>
+                            <div class="producto-marca">${prod.marca}</div>
+                            <div class="producto-nombre">${prod.nombre}</div>
+                            <div class="producto-tipo">${prod.tipo}</div>
                             <button class="btn-detalle-producto">Ver detalles</button>
                         </div>
                     `;
@@ -459,39 +263,90 @@
                 });
             }
 
-            const zonas = xmlDoc.querySelectorAll('zonas zona');
+            // Zonas entrega
             const deliverySection = document.getElementById('deliverySection');
             if (deliverySection) {
                 let zonasHtml = `<div class="text-center"><h3 style="color: var(--verde-eko);">Recogida y entrega a domicilio</h3><p>Entrega en 48H · Comodidad garantizada</p></div><div class="delivery-grid">`;
                 zonas.forEach(z => {
-                    const nombre = z.getAttribute('nombre');
-                    const rango = z.getAttribute('rango');
-                    const recogida = z.getAttribute('recogida');
-                    const entrega = z.getAttribute('entrega');
-                    const total = z.getAttribute('total');
-                    const lugares = z.getAttribute('lugares');
                     zonasHtml += `
                         <div class="zone-card">
-                            <h3>${nombre} (${rango})</h3>
-                            <p>${lugares}</p>
-                            <p>Recogida: $${recogida} | Entrega: $${entrega}</p>
-                            <div class="zone-price">Total: $${total}</div>
+                            <h3>${z.nombre} (${z.rango})</h3>
+                            <p>${z.lugares}</p>
+                            <p>Recogida: $${z.recogida} | Entrega: $${z.entrega}</p>
+                            <div class="zone-price">Total: $${z.total}</div>
                         </div>`;
                 });
                 zonasHtml += `</div>`;
                 deliverySection.innerHTML = zonasHtml;
             }
 
-            registrarEvento('carga', 'completa', 'service.xml');
+            registrarEvento('carga', 'completa', 'datos estaticos');
         } catch (error) {
-            console.error('Error cargando service.xml:', error);
-            window.showToast('Error al cargar los datos del servicio', true);
-            registrarEvento('error', 'carga_xml', error.message);
+            console.error('Error cargando datos:', error);
+            window.showToast('Error al cargar los datos', true);
+            registrarEvento('error', 'carga_datos', error.message);
         } finally {
             mostrarCarga(false);
         }
     }
 
+    // Galería de imágenes 16:9 con lightbox
+    function initGaleria() {
+        const galeriaGrid = document.getElementById('galeriaGrid');
+        if (!galeriaGrid) return;
+
+        galeriaGrid.innerHTML = '';
+        imagenesGaleria.forEach((img, idx) => {
+            const item = document.createElement('div');
+            item.className = 'galeria-item';
+            item.setAttribute('data-index', idx);
+            const picture = document.createElement('img');
+            picture.src = img.src;
+            picture.alt = img.alt;
+            picture.className = 'galeria-img';
+            picture.loading = 'lazy';
+            item.appendChild(picture);
+            galeriaGrid.appendChild(item);
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-img');
+        const closeLightbox = lightbox.querySelector('.lightbox-close');
+
+        function openLightbox(src, alt) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightboxFn() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        galeriaGrid.addEventListener('click', (e) => {
+            const item = e.target.closest('.galeria-item');
+            if (item) {
+                const idx = parseInt(item.getAttribute('data-index'), 10);
+                const imgData = imagenesGaleria[idx];
+                openLightbox(imgData.src, imgData.alt);
+            }
+        });
+
+        closeLightbox.addEventListener('click', closeLightboxFn);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightboxFn();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                closeLightboxFn();
+            }
+        });
+    }
+
+    // Comentarios
     const comentarioForm = document.getElementById('comentarioForm');
     if (comentarioForm) {
         comentarioForm.addEventListener('submit', function(e) {
@@ -518,6 +373,7 @@
         });
     }
 
+    // Producto modal
     const productoModal = document.getElementById('productoModal');
     const closeProductoBtn = document.getElementById('closeProductoModalBtn');
     if (closeProductoBtn) {
@@ -551,6 +407,7 @@
         }
     });
 
+    // Modales externos
     const openReservaBtn = document.getElementById('openReservaBtn');
     const closeReservaBtn = document.getElementById('closeReservaBtn');
     const openAdminAccessBtn = document.getElementById('openAdminAccessBtn');
@@ -570,9 +427,59 @@
     if (closeAdminModalBtn) closeAdminModalBtn.addEventListener('click', () => window.cerrarModal(modales.admin));
     if (closeHistorialModalBtn) closeHistorialModalBtn.addEventListener('click', () => window.cerrarModal(modales.historial));
 
+    // Spam promocional
+    let spamInterval = null;
+    let spamActivo = false;
+    const textosPromocionales = [
+        "NUEVO PLAN BABY: Proximamente mas informacion",
+        "(AVISO): El cliente debe pagar el cincuenta %. de la mensajería al solicitar nuestro servicio.",
+    ];
+    let ultimoTexto = '';
+
+    function obtenerTextoAleatorio() {
+        let disponibles = textosPromocionales.filter(t => t !== ultimoTexto);
+        if (disponibles.length === 0) disponibles = textosPromocionales;
+        const nuevo = disponibles[Math.floor(Math.random() * disponibles.length)];
+        ultimoTexto = nuevo;
+        return nuevo;
+    }
+
+    function mostrarSpam() {
+        if (spamActivo) return;
+        const texto = obtenerTextoAleatorio();
+        const spamDiv = document.createElement('div');
+        spamDiv.id = 'spam-overlay';
+        spamDiv.innerHTML = `
+            <div class="spam-content">
+                <h3>LAVANDERIA EKO</h3>
+                <p>${texto}</p>
+            </div>
+        `;
+        document.body.appendChild(spamDiv);
+        spamActivo = true;
+        registrarEvento('spam', 'mostrado', texto.substring(0, 40));
+
+        setTimeout(() => {
+            if (spamDiv && spamDiv.parentNode) {
+                spamDiv.remove();
+                spamActivo = false;
+            }
+        }, 5000);
+    }
+
+    function iniciarSpamPeriodico() {
+        if (spamInterval) clearInterval(spamInterval);
+        setTimeout(() => {
+            mostrarSpam();
+            spamInterval = setInterval(mostrarSpam, 45000);
+        }, 10000);
+    }
+
     iniciarSpamPeriodico();
     cargarDatos();
+    initGaleria();  // Inicializar galería
 
+    // Accordion
     function initAccordion() {
         const accordionItems = document.querySelectorAll('#ekoValues .accordion-item');
         if (!accordionItems.length) return;
@@ -595,7 +502,6 @@
                 }
             });
         });
-
     }
 
     if (document.readyState === 'loading') {

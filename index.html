@@ -3,13 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Lavanderia EKO - Limpieza eco-friendly, confiable y economica. Servicio a domicilio en La Habana. Recogida y entrega en 48h.">
-    <meta name="keywords" content="lavanderia, lavado de ropa, servicio a domicilio, La Habana, eco-friendly, tintoreria, planchado">
+    <meta name="description" content="Lavanderia EKO - Limpieza eco-friendly, confiable y económica. Servicio a domicilio en La Habana. Recogida y entrega en 48h. Planes NORMAL, BÁSICO, PREMIUM y ESPECIAL.">
+    <meta name="keywords" content="lavanderia, lavado de ropa, servicio a domicilio, La Habana, eco-friendly, tintoreria, planchado, lavandería EKO">
     <meta name="author" content="Lavanderia EKO">
-    <title>LAVANDERIA EKO</title>
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Lavanderia EKO - Limpieza Profesional y Eco-friendly">
+    <meta property="og:description" content="Servicio de lavandería a domicilio en La Habana. Ropa limpia, fresca y aromada en 48h. Precios justos y atención personalizada.">
+    <meta property="og:image" content="eko.jpg">
+    <meta property="og:url" content="https://koowexa-dev.github.io/lavanderia_eko/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lavanderia EKO - Limpieza Profesional">
+    <meta name="twitter:description" content="Recogida y entrega a domicilio. Cuidamos tu ropa y el medio ambiente.">
+    <meta name="twitter:image" content="eko.jpg">
+    <title>LAVANDERIA EKO | Limpieza Eco-friendly en La Habana</title>
     <link rel="icon" type="image/jpg" href="eko.jpg">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Lavanderia EKO",
+      "image": "eko.jpg",
+      "telephone": "+53 52952442",
+      "email": "ekolavanderia76@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Centro Habana",
+        "addressRegion": "La Habana",
+        "addressCountry": "CU"
+      },
+      "openingHours": "Mo-Su 08:00-19:00",
+      "priceRange": "$$",
+      "servesCuisine": "Lavandería",
+      "description": "Servicio de lavandería profesional con recogida y entrega a domicilio. Planes para todo tipo de ropa, incluyendo ecológico y premium.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "124"
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -21,7 +56,6 @@
             <div class="header-actions">
                 <button id="openReservaBtn" class="btn-header">Reservar</button>
                 <button id="openAdminAccessBtn" class="btn-header">Admin</button>
-                <button id="solicitarNotificacionesBtn" class="btn-header">Noticias</button>
             </div>
         </div>
     </header>
@@ -86,9 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="closing-phrase">
-                Lavanderia EKO: menos preocupaciones, mas tiempo para ti. Nosotros nos ocupamos de la ropa para que tu disfrutes de lo que realmente importa.
-            </div>
+            <div><p>Lavanderia EKO: Menos preocupaciones, mas tiempo para ti. Nosotros nos ocupamos de la ropa para que tu disfrutes de lo que realmente importa.</p></div>
         </div>
 
         <div class="section-title">
@@ -116,8 +148,18 @@
                 </form>
             </div>
         </div>
+
+        <!-- Nueva sección de galería de imágenes 16:9 -->
+        <div class="galeria-section" id="galeriaSection">
+            <div class="section-title">
+                <h2>Promociones</h2>
+                <p>Conoce nuestras novedades</p>
+            </div>
+            <div class="galeria-grid" id="galeriaGrid"></div>
+        </div>
     </main>
 
+    <!-- Modales -->
     <div id="reservaModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" id="closeReservaBtn">X</button>
@@ -165,6 +207,12 @@
         </div>
     </div>
 
+    <!-- Lightbox para la galería -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-img" alt="Imagen ampliada">
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-compact">
@@ -177,7 +225,6 @@
                 <div class="footer-social">
                     <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" aria-label="WhatsApp">WhatsApp</a>
                     <a href="https://www.facebook.com/share/1GAw5zsZ1X/" aria-label="Facebook">Facebook</a>
-                    <a href="#" aria-label="Instagram">Instagram</a>
                 </div>
             </div>
             <div class="copyright">© 2026 LAVANDERIA EKO | KOOWEXA · Todos los derechos reservados</div>
