@@ -432,7 +432,7 @@
     let spamActivo = false;
     const textosPromocionales = [
         "NUEVO PLAN BABY: Proximamente mas informacion",
-        "(AVISO): El cliente debe pagar el cincuenta %. de la mensajería al solicitar nuestro servicio.",
+        "(AVISO): El cliente debe realizar un pago del 50% por adelantado en la recogida (Ropa) y el otro 50% en la entrega (Ropa) del servicio a domicilio.",
     ];
     let ultimoTexto = '';
 
