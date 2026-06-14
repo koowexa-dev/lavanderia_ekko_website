@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Lavandería EKO en La Habana: servicio premium de lavado, secado y planchado a domicilio. Recogida en 24h, entrega en 48h. Productos eco-friendly, precios justos y atención personalizada. ¡Descarga nuestra app!">
-    <meta name="keywords" content="lavandería La Habana, lavado de ropa a domicilio, tintorería eco-friendly, servicio de planchado, recogida y entrega, limpieza profesional, lavandería económica, lavandería premium, EKO, productos de limpieza, detergentes ecológicos, lavandería cerca de mí, Centro Habana, Vedado, Playa">
-    <meta name="author" content="Lavandería EKO">
+    <meta name="description" content="Lavandería EKKO en La Habana: servicio premium de lavado, secado y planchado a domicilio. Recogida en 24h, entrega en 48h. Productos eco-friendly, precios justos y atención personalizada. ¡Descarga nuestra app!">
+    <meta name="keywords" content="lavandería La Habana, lavado de ropa a domicilio, tintorería eco-friendly, servicio de planchado, recogida y entrega, limpieza profesional, lavandería económica, lavandería premium, EKKO, productos de limpieza, detergentes ecológicos, lavandería cerca de mí, Centro Habana, Vedado, Playa">
+    <meta name="author" content="Lavandería EKKO">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="revisit-after" content="3 days">
     <meta name="language" content="Spanish">
@@ -17,25 +17,25 @@
     <link rel="canonical" href="https://koowexa-dev.github.io/lavanderia_eko/">
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Lavandería EKO | Limpieza profesional eco-friendly en La Habana">
-    <meta property="og:description" content="Servicio a domicilio con los mejores productos. Ropa limpia, fresca y aromada en 48h. Planes NORMAL, BÁSICO, PREMIUM, ESPECIAL y BABY EKO. ¡App oficial!">
+    <meta property="og:title" content="Lavandería EKKO | Limpieza profesional eco-friendly en La Habana">
+    <meta property="og:description" content="Servicio a domicilio con los mejores productos. Ropa limpia, fresca y aromada en 48h. Planes PREMIUM, ESPECIAL y BABY EKKO. ¡App oficial!">
     <meta property="og:url" content="https://koowexa-dev.github.io/lavanderia_eko/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://koowexa-dev.github.io/lavanderia_eko/eko.jpg">
-    <meta property="og:image:alt" content="Logo Lavandería EKO - limpieza profesional y sostenible">
+    <meta property="og:image:alt" content="Logo Lavandería EKKO - limpieza profesional y sostenible">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta property="og:locale" content="es_ES">
-    <meta property="og:site_name" content="Lavandería EKO">
+    <meta property="og:site_name" content="Lavandería EKKO">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lavandería EKO | Servicio de lavandería a domicilio en La Habana">
+    <meta name="twitter:title" content="Lavandería EKKO | Servicio de lavandería a domicilio en La Habana">
     <meta name="twitter:description" content="Recogida y entrega exprés. Cuidamos tu ropa y el medio ambiente. Descarga la app y obtén promociones exclusivas.">
     <meta name="twitter:image" content="https://koowexa-dev.github.io/lavanderia_eko/eko.jpg">
-    <meta name="twitter:image:alt" content="Logo Lavandería EKO">
+    <meta name="twitter:image:alt" content="Logo Lavandería EKKO">
     
-    <title>LAVANDERÍA EKO</title>
+    <title>LAVANDERÍA EKKO</title>
     <link rel="icon" type="image/jpg" href="eko.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
@@ -230,8 +230,6 @@
             height: 6px;
             width: 100%;
         }
-        .price-card[data-plan="NORMAL"]::before { background: var(--azul-claro-agua); }
-        .price-card[data-plan="BASICO"]::before { background: var(--azul-lavanderia); }
         .price-card[data-plan="PREMIUM"]::before { background: var(--verde-eko); }
         .price-card[data-plan="ESPECIAL"]::before { background: #4A148C; }
         .price-card[data-plan="BABY_BASIC"]::before { background: #FFB74D; }
@@ -264,8 +262,6 @@
             letter-spacing: -0.5px;
         }
 
-        .price-card[data-plan="NORMAL"] .plan-nombre { color: var(--azul-claro-agua); }
-        .price-card[data-plan="BASICO"] .plan-nombre { color: var(--azul-lavanderia); }
         .price-card[data-plan="PREMIUM"] .plan-nombre { color: var(--verde-eko); }
         .price-card[data-plan="ESPECIAL"] .plan-nombre { color: #4A148C; }
         .price-card[data-plan="BABY_BASIC"] .plan-nombre { color: #E65100; }
@@ -378,7 +374,7 @@
             font-size: 1.2rem;
         }
 
-        /* VALORES - SIN ACORDEON, TARJETAS ESTATICAS */
+        /* VALORES - TARJETAS ESTATICAS ACTUALIZADAS EKKO */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -391,15 +387,20 @@
             padding: 20px;
             border: 1px solid var(--gris-suave);
             box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            transition: none;
         }
         .value-card h3 {
             color: var(--verde-eko);
             font-size: 1.3rem;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .value-card p {
             font-size: 0.9rem;
             color: var(--gris-texto);
+            line-height: 1.4;
         }
 
         /* CATÁLOGO PRODUCTOS */
@@ -732,8 +733,8 @@
     <header>
         <div class="container nav-flex">
             <div class="logo-area">
-                <img class="logo-img" src="eko.jpg" alt="Logo Lavanderia EKO - limpieza profesional y ecofriendly" loading="lazy" width="42" height="42">
-                <div class="logo-text">LAVANDERÍA <span>EKO</span></div>
+                <img class="logo-img" src="eko.jpg" alt="Logo Lavanderia EKKO - limpieza profesional y ecofriendly" loading="lazy" width="42" height="42">
+                <div class="logo-text">LAVANDERÍA <span>EKKO</span></div>
             </div>
         </div>
     </header>
@@ -753,8 +754,8 @@
                             <option value="#planes">Planes del Servicio</option>
                             <option value="#productos">Productos de Limpieza</option>
                             <option value="#zonas">Servicio a domicilio</option>
-                            <option value="#promociones">Promociones EKO</option>
-                            <option value="#app">App EKO</option>
+                            <option value="#promociones">Promociones EKKO</option>
+                            <option value="#app">App EKKO</option>
                         </select>
                     </div>
 
@@ -765,19 +766,33 @@
             </div>
         </section>
 
-        <!-- VALORES ESTÁTICOS (SIN ACORDEÓN) -->
+        <!-- VALORES ACTUALIZADOS: EKKO (Ecológico, Kalidad, Kompromiso, Optimización) -->
         <div class="container" id="valores">
-            <div class="section-title"><h2>Nuestros Valores</h2><p>Compromiso, calidad y sostenibilidad</p></div>
+            <div class="section-title">
+                <h2>Nuestros Valores</h2>
+                <p>Ecológico · Kalidad · Kompromiso · Optimización</p>
+            </div>
             <div class="values-grid">
-                <div class="value-card"><h3>🧼 Limpieza Profunda</h3><p>Tu ropa merece más que un lavado superficial. Aplicamos procesos especializados para eliminar suciedad, manchas y olores difíciles.</p></div>
-                <div class="value-card"><h3>🤝 Confianza</h3><p>Cada prenda tiene valor para ti. Trabajamos con responsabilidad y atención al detalle. Más de 500 clientes satisfechos en La Habana.</p></div>
-                <div class="value-card"><h3>🌱 Eco-Friendly</h3><p>Optimizamos agua, energía y productos biodegradables. Limpieza efectiva sin dañar el medio ambiente.</p></div>
-                <div class="value-card"><h3>💰 Precios Justos</h3><p>Tarifas claras, sin costos ocultos. Calidad profesional a precios competitivos.</p></div>
-                <div class="value-card"><h3>⚡ 48H Express</h3><p>Servicio exprés: ropa limpia, planchada y lista en máximo 48 horas sin perder calidad.</p></div>
+                <div class="value-card">
+                    <h3>🌱 E - Ecológico</h3>
+                    <p>Productos biodegradables, ahorro de agua y energía para cuidar el medio ambiente.</p>
+                </div>
+                <div class="value-card">
+                    <h3>✨ K - Kalidad</h3>
+                    <p>Un lavado de excelencia, cuidando cada prenda como si fuera nuestra.</p>
+                </div>
+                <div class="value-card">
+                    <h3>🤝 K - Kompromiso</h3>
+                    <p>Dedicación y atención en cada cliente.</p>
+                </div>
+                <div class="value-card">
+                    <h3>⚡ O - Optimización</h3>
+                    <p>Tecnología y procesos eficientes, para entregarte un servicio rápido y confiable.</p>
+                </div>
             </div>
         </div>
 
-        <!-- PLANES DE SERVICIO (ACTUALIZADO CON BABY EKO BÁSICO Y PREMIUM) -->
+        <!-- PLANES DE SERVICIO (ELIMINADO EL PLAN NORMAL/BÁSICO) -->
         <div class="container" id="planes">
             <div class="section-title"><h2>Planes Del Servicio</h2><p>Elige el plan ideal para tus prendas</p></div>
             <div class="pricing-grid" id="pricingGrid"></div>
@@ -792,7 +807,7 @@
 
         <div class="container" id="promociones">
             <div class="carousel-section">
-                <div class="section-title"><h2>Promociones EKO</h2><p>Ofertas limitadas para nuestros clientes</p></div>
+                <div class="section-title"><h2>Promociones EKKO</h2><p>Ofertas limitadas para nuestros clientes</p></div>
                 <div class="carousel-container">
                     <div class="carousel-slides" id="carouselSlides"></div>
                     <button class="carousel-btn btn-prev" id="prevBtn" aria-label="Anterior promoción">‹</button>
@@ -806,10 +821,10 @@
             <div class="app-oficial">
                 <div class="app-grid">
                     <div class="app-info">
-                        <h2>APP <span> EKO</span></h2>
+                        <h2>APP <span> EKKO</span></h2>
                         <p>Gestiona tus pedidos, sigue tu lavado en tiempo real y accede a promociones exclusivas desde nuestra aplicación oficial.</p>
                         <div class="app-features"><span class="feature-app">4MB/APK</span><span class="feature-app">GESTION RAPIDA</span><span class="feature-app">FACIL DE ENTENDER</span></div>
-                        <div class="app-buttons"><a href="https://github.com/koowexa-dev/app_eko/raw/refs/heads/main/LAVANDERIA%20EKO.apk" class="btn-store" target="_blank" rel="noopener noreferrer">‼️DESCARGAR AHORA‼️</a></div>
+                        <div class="app-buttons"><a href="https://github.com/koowexa-dev/app_eko/raw/refs/heads/main/LAVANDERIA%20EKKO.apk" class="btn-store" target="_blank" rel="noopener noreferrer">‼️DESCARGAR AHORA‼️</a></div>
                     </div>
                 </div>
             </div>
@@ -819,11 +834,11 @@
     <footer>
         <div class="container">
             <div class="footer-compact">
-                <div class="logo-text-footer">LAVANDERÍA <span>EKO</span></div>
+                <div class="logo-text-footer">LAVANDERÍA <span>EKKO</span></div>
                 <div class="footer-contact"><span>📞 +53 52952442 | 78701517</span><span>📍 Centro Habana, La Habana</span><span>⏰ Lun a Dom · 8:00 – 19:00</span></div>
                 <div class="footer-social"><a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" target="_blank" rel="noopener noreferrer" aria-label="Canal WhatsApp">WhatsApp</a><a href="https://www.facebook.com/share/1GAw5zsZ1X/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oficial">Facebook</a></div>
             </div>
-            <div class="copyright">© 2026 LAVANDERÍA EKO | KOOWEXA</div>
+            <div class="copyright">© 2026 LAVANDERÍA EKKO | KOOWEXA</div>
         </div>
     </footer>
 
@@ -831,8 +846,8 @@
     {
       "@context": "https://schema.org",
       "@type": "DryCleaningOrLaundry",
-      "name": "Lavandería EKO",
-      "description": "Servicio profesional de lavandería a domicilio en La Habana. Plan BABY EKO para ropa de bebé.",
+      "name": "Lavandería EKKO",
+      "description": "Servicio profesional de lavandería a domicilio en La Habana. Plan BABY EKKO para ropa de bebé.",
       "url": "https://koowexa-dev.github.io/lavanderia_eko/",
       "logo": "https://koowexa-dev.github.io/lavanderia_eko/eko.jpg",
       "telephone": "+5352952442",
@@ -848,23 +863,11 @@
 
     <script>
         (function() {
-            // PLANES ACTUALIZADOS: se mantienen los 4 originales y se reemplaza el anterior BABY por dos nuevos planes específicos
+            // PLANES ACTUALIZADOS: solo PREMIUM, ESPECIAL, BABY EKKO 1 y BABY EKKO 2.
             const planesData = [
                 { 
-                    id: "NORMAL", nombre: "NORMAL", descripcion: "Lavado + Secado + Doblado", 
-                    detergente: "Detergente en polvo", proceso: "Ciclo estándar, centrifugado eficiente y secado controlado.",
-                    incluye: "Solo lo necesario", precios: {"1-2 kg":400,"3-4 kg":500,"5-6 kg":600,"7 kg":700}, 
-                    badge: "Económico", propuesta: "💰 Máxima economía sin perder calidad. Ideal para lavado diario."
-                },
-                { 
-                    id: "BASICO", nombre: "BÁSICO", descripcion: "Prelavado + Lavado + Secado + Doblado", 
-                    detergente: "Detergente líquido + suavizante", proceso: "Prelavado para manchas ligeras, lavado con detergente líquido y suavizante.",
-                    incluye: "mejor Cuidado para tu ropa", precios: {"1-2 kg":700,"3-4 kg":900,"5-6 kg":1100,"7 kg":1300}, 
-                    badge: "Más vendido", propuesta: "🔥 El favorito: aroma fresco, suavidad extra y cuidado equilibrado."
-                },
-                { 
                     id: "PREMIUM", nombre: "PREMIUM", descripcion: "Prelavado + Lavado + Secado + Doblado", 
-                    detergente: "Cápsula + fragancia especial", proceso: "Cápsulas multiacción, protección de colores y fragancia duradera.",
+                    detergente: "Cápsula + fragancia especial o perfume", proceso: "Cápsulas multiacción, protección de colores y fragancia duradera.",
                     incluye: "Maximo cuidado y preservación para tu ropa", precios: {"1-2 kg":800,"3-4 kg":1000,"5-6 kg":1200,"7 kg":1400}, 
                     badge: "Recomendado", propuesta: "✨ Experiencia premium: aroma por días, acabados impecables."
                 },
@@ -874,16 +877,16 @@
                     incluye: "Tratado único y exclusivo para todas tus prendas", precios: {"1-2 kg":900,"3-4 kg":1100,"5-6 kg":1300,"7 kg":1500}, 
                     badge: "Trato Unico", propuesta: "🏡 Cuidado especial para hogar: frescura y suavidad garantizadas."
                 },
-                // NUEVO: BABY EKO BÁSICO
+                // BABY EKKO BÁSICO
                 { 
-                    id: "BABY_BASIC", nombre: "BABY EKO 1", descripcion: "Lavado Especializado para Ropa de Bebé", 
+                    id: "BABY_BASIC", nombre: "BABY EKKO 1", descripcion: "Lavado Especializado para Ropa de Bebé", 
                     detergente: "Detergente neutro hipoalergénico", proceso: "Lavado especializado con enjuague profundo, secado a baja temperatura.",
                     incluye: "Doblado básico, cuidado para pieles sensibles", precios: {"Hasta 5 kg":1500}, 
                     badge: "Basico", propuesta: "👶 Ideal para tu bebé: sin químicos agresivos, aroma delicado y suavidad extrema."
                 },
-                // NUEVO: BABY EKO PREMIUM
+                // BABY EKKO PREMIUM
                 { 
-                    id: "BABY_PREMIUM", nombre: "BABY EKO 2", descripcion: "Lavado Especializado + Recogida y Entrega a Domicilio", 
+                    id: "BABY_PREMIUM", nombre: "BABY EKKO 2", descripcion: "Lavado Especializado + Recogida y Entrega a Domicilio", 
                     detergente: "Detergente neutro hipoalergénico + antimanchas suave", proceso: "Lavado especializado, tratamiento antimanchas básico, secado suave.",
                     incluye: "Recogida a domicilio, doblado profesional, empaque higiénico, entrega a domicilio", precios: {"Hasta 5 kg":2000}, 
                     badge: "Premium", propuesta: "👑 Servicio completo: máxima comodidad y cuidado premium para la ropa de tu bebé."
