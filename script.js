@@ -56,10 +56,12 @@
     ];
 
     const slidesBanner = [
-        { texto: "📱 Descarga nuestra App EKKO", boton: "Acceder", url: "#" },
-        { texto: "🎁 Promociones exclusivas", boton: "Acceder", url: "#" },
-        { texto: "💬 Canal de WhatsApp", boton: "Acceder", url: "#" },
-        { texto: "📘 Síguenos en Facebook", boton: "Acceder", url: "#" }
+        { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
+        { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
+        { texto: "Espacio para que nuestros clientes compartan experiencias y sugerencias.", boton: "Acceder", url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
+        { texto: "Reciba promociones exclusivas para miembros de la comunidad.", boton: "Acceder", url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
+        { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" },
+        { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" }
     ];
 
     function scrollToApp() {
