@@ -11,7 +11,6 @@
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <meta name="revisit-after" content="3 days" />
     <meta name="language" content="Spanish" />
-    <!-- GEO / Localización mejorada -->
     <meta name="geo.region" content="CU-03" />
     <meta name="geo.placename" content="La Habana, Cuba" />
     <meta name="geo.position" content="23.1136;-82.3666" />
@@ -22,14 +21,16 @@
     <meta property="og:locality" content="La Habana" />
     <meta property="og:region" content="CU" />
     <meta property="og:country-name" content="Cuba" />
-    <!-- Theme & verification -->
     <meta name="theme-color" content="#2E7D32" />
     <meta name="google-site-verification" content="IjbzjI28KK0Ujxl3qm3B2moqdGQGMXPEPawUdiDMwn8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <!-- Canonical -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://github.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="permissions-policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=()" />
     <link rel="canonical" href="https://koowexa-dev.github.io/lavanderia_ekko_website/" />
-    <!-- Open Graph / Twitter -->
     <meta property="og:title" content="Lavandería EKKO · Limpieza profesional eco‑friendly en La Habana" />
     <meta property="og:description" content="Servicio a domicilio con los mejores productos. Ropa limpia, fresca y aromada en 48h. Planes PREMIUM, ESPECIAL y BABY EKKO. ¡App oficial!" />
     <meta property="og:url" content="https://koowexa-dev.github.io/lavanderia_ekko_website/" />
@@ -38,10 +39,11 @@
     <meta property="og:image:alt" content="Logo Lavandería EKKO - limpieza profesional y sostenible" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lavandería EKKO" />
-    <meta property="og:updated_time" content="2026-07-27T10:00:00+00:00" />
+    <meta property="og:updated_time" content="2026-07-29T10:00:00+00:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@LavanderiaEKKO" />
     <meta name="twitter:creator" content="@LavanderiaEKKO" />
@@ -49,20 +51,17 @@
     <meta name="twitter:description" content="Recogida y entrega exprés. Cuidamos tu ropa y el medio ambiente. Descarga la app y obtén promociones exclusivas." />
     <meta name="twitter:image" content="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/ekko.jpg" />
     <meta name="twitter:image:alt" content="Logo Lavandería EKKO" />
-    <!-- Favicon optimizado (múltiples tamaños y formatos) -->
     <link rel="icon" type="image/png" sizes="16x16" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/ekko.jpg" />
     <link rel="mask-icon" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/safari-pinned-tab.svg" color="#2E7D32" />
-    <link rel="shortcut icon" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon.ico" />
+    <link rel="shortcut icon" href="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon.ico" type="image/x-icon" />
     <meta name="msapplication-TileColor" content="#2E7D32" />
     <meta name="msapplication-config" content="none" />
-    <!-- Preconexión y fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <!-- Schema.org mejorado: DryCleaningOrLaundry + Sitemap interno (ItemList) -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -119,7 +118,6 @@
                 ]
             }
         }
-        /* Sitemap interno (ItemList) */
         {
             "@context": "https://schema.org",
             "@type": "ItemList",
@@ -136,7 +134,6 @@
         }
     </script>
     <style>
-        /* ===== ESTILOS BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -203,7 +200,6 @@
         .logo-text span {
             color: var(--verde-eko);
         }
-        /* ===== BANNER PRINCIPAL ===== */
         .banner-slider {
             width: 100%;
             aspect-ratio: 4/1;
@@ -293,7 +289,6 @@
             width: 20px;
             border-radius: 10px;
         }
-        /* ===== HERO ===== */
         .hero-banner {
             background: linear-gradient(120deg, var(--blanco-puro) 0%, var(--celeste-suave) 100%);
             padding: 32px 16px 28px;
@@ -327,7 +322,6 @@
             cursor: pointer;
             font-size: 0.9rem;
         }
-        /* ===== SECCIONES ===== */
         .section-title {
             text-align: center;
             margin: 40px 0 20px;
@@ -368,7 +362,6 @@
             color: var(--gris-texto);
             line-height: 1.4;
         }
-        /* ===== TARJETAS DE PRECIOS ===== */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -579,7 +572,6 @@
         .btn-solicitar:hover {
             background-color: var(--verde-oscuro-hoja);
         }
-        /* ===== DOMICILIO ===== */
         .delivery-section {
             background: var(--blanco-puro);
             border-radius: 20px;
@@ -649,7 +641,6 @@
             border-left: 4px solid var(--verde-eko);
             color: #2c3e2f;
         }
-        /* ===== CARRUSEL PROMOCIONES ===== */
         .carousel-section {
             background: var(--blanco-puro);
             border-radius: 20px;
@@ -725,7 +716,6 @@
             width: 18px;
             border-radius: 10px;
         }
-        /* ===== MODAL FULLSCREEN IMAGEN ===== */
         .modal-fullscreen {
             display: none;
             position: fixed;
@@ -765,7 +755,6 @@
             color: #ccc;
             transform: scale(1.1);
         }
-        /* ===== APP ===== */
         .app-oficial {
             background: var(--blanco-puro);
             border-radius: 16px;
@@ -839,7 +828,6 @@
             font-weight: 600;
             color: var(--azul-lavanderia);
         }
-        /* ===== FOOTER ===== */
         footer {
             background: #111827;
             color: #e2e8f0;
@@ -908,7 +896,6 @@
         .text-center {
             text-align: center;
         }
-        /* ===== MODAL POLÍTICA ===== */
         .modal {
             display: none;
             position: fixed;
@@ -975,7 +962,6 @@
         .modal-cerrar:hover {
             color: #000;
         }
-        /* ===== RESPONSIVE ===== */
         @media(max-width:640px) {
             .container {
                 padding: 0 12px;
@@ -1072,7 +1058,6 @@
             </div>
         </div>
     </header>
-
     <main>
         <section id="inicio">
             <div class="hero-banner">
@@ -1099,7 +1084,6 @@
                 </div>
             </div>
         </section>
-
         <div class="container" id="valores">
             <div class="section-title">
                 <h2>Nuestros Valores</h2>
@@ -1112,16 +1096,13 @@
                 <div class="value-card"><h3>⚡ O - Optimización</h3><p>Tecnología y procesos eficientes, para entregarte un servicio rápido y confiable.</p></div>
             </div>
         </div>
-
         <div class="container" id="planes">
             <div class="section-title"><h2>Planes Del Servicio</h2><p>Elige el plan ideal para tus prendas</p></div>
             <div class="pricing-grid" id="pricingGrid"></div>
         </div>
-
         <div class="container" id="zonas">
             <div class="delivery-section" id="deliverySection"></div>
         </div>
-
         <div class="container" id="promociones">
             <div class="carousel-section">
                 <div class="section-title"><h2>Promociones EKKO</h2><p>Ofertas limitadas para nuestros clientes</p></div>
@@ -1133,20 +1114,19 @@
                 </div>
             </div>
         </div>
-
         <div class="container" id="app">
             <div class="app-oficial">
                 <div class="app-info">
                     <h2>APP <span>EKKO</span></h2>
                     <p>Gestiona tus pedidos, sigue tu lavado en tiempo real y accede a promociones exclusivas.</p>
                     <div class="app-features">
-                        <span class="feature-app">4MB/APK</span>
+                        <span class="feature-app">TAMAÑO LIGERO</span>
                         <span class="feature-app">GESTIÓN RÁPIDA</span>
                         <span class="feature-app">FÁCIL DE ENTENDER</span>
                     </div>
                 </div>
                 <div class="app-buttons">
-                    <a href="https://github.com/koowexa-dev/app_ekko/raw/refs/heads/main/APP%20EKKO.apk" class="btn-store" target="_blank" rel="noopener noreferrer">
+                    <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" class="btn-store" target="_blank" rel="noopener noreferrer">
                         <img src="https://github.com/koowexa-dev/app_eko/raw/refs/heads/main/favicon.png" alt="App EKKO" class="app-icon-small" loading="lazy" width="20" height="20" />
                         DESCARGAR
                     </a>
@@ -1154,7 +1134,6 @@
             </div>
         </div>
     </main>
-
     <footer>
         <div class="container">
             <div class="footer-compact">
@@ -1175,8 +1154,6 @@
             <div class="copyright">© 2026 LAVANDERÍA EKKO | KOOWEXA</div>
         </div>
     </footer>
-
-    <!-- MODAL POLÍTICA -->
     <div class="modal" id="modalPolitica">
         <div class="modal-contenido">
             <button class="modal-cerrar" id="modalCerrar">&times;</button>
@@ -1195,16 +1172,12 @@
             </div>
         </div>
     </div>
-
-    <!-- MODAL FULLSCREEN para imágenes del carrusel -->
     <div class="modal-fullscreen" id="modalFullscreen">
         <span class="modal-fullscreen-close" id="modalFullscreenClose">&times;</span>
         <img class="modal-fullscreen-content" id="modalFullscreenImg" src="" alt="Imagen ampliada" />
     </div>
-
     <script>
         (function() {
-            // ===== PLANES =====
             const planesData = [
                 { id: "BASICO", nombre: "BÁSICO", categoria: "ESENCIAL", descripcion: "Ideal para ropa de uso diario.", detergente: "Detergente líquido + suavizante estándar", proceso: "lavado y secado eficiente", precios: { "1.9 kg": 700, "2.9 kg": 800, "3.9 kg": 900, "4.9 kg": 1000, "5.9 kg": 1100, "6.9 kg": 1200, "7 kg": 1300 } },
                 { id: "WORKING", nombre: "WORKING", categoria: "ESENCIAL", descripcion: "Especial para ropa de trabajo y suciedad difícil.", detergente: "Detergente intensivo + desmanchador", proceso: "pretratamiento y lavado profundo", precios: { "1.9 kg": 900, "2.9 kg": 1100, "3.9 kg": 1200, "4.9 kg": 1300 } },
@@ -1216,7 +1189,6 @@
                 { id: "BABY_BASIC", nombre: "EKKO BABY ESTANDAR", categoria: "BEBÉ", descripcion: "Para uso diario", detergente: "Detergente neutro hipoalergénico", proceso: "cuidadoso", precios: { "3 kg": 1500 } },
                 { id: "BABY_PREMIUM", nombre: "EKKO BABY PREMIUM", categoria: "BEBÉ", descripcion: "Para prendas especiales", detergente: "Detergente neutro hipoalergénico + antimanchas suave", proceso: "máxima delicadeza y cuidado", precios: { "3 kg": 2500 } }
             ];
-
             const pricingGrid = document.getElementById('pricingGrid');
             if (pricingGrid) {
                 pricingGrid.innerHTML = '';
@@ -1257,14 +1229,11 @@
                     pricingGrid.appendChild(card);
                 });
             }
-
-            // ===== SERVICIO A DOMICILIO =====
             const zonas = [
                 { nombre: "Zona Corta", rango: "0-3 km", recogida: "400", entrega: "200", total: "600", lugares: "Habana Vieja, Centro Habana, Cerro" },
                 { nombre: "Zona Media", rango: "3-6 km", recogida: "600", entrega: "300", total: "900", lugares: "Vedado, Plaza, Nuevo Vedado, Lawton" },
                 { nombre: "Zona Larga", rango: "6-10 km", recogida: "800", entrega: "400", total: "1200", lugares: "Casino Deportivo, Mariano, Playa" }
             ];
-
             const deliverySection = document.getElementById('deliverySection');
             if (deliverySection) {
                 let html = `<div class="text-center"><h3 style="color: var(--verde-eko); margin:0;">Servicio a Domicilio</h3><p style="margin:2px 0 6px;">Entrega en 48H · Comodidad garantizada en toda La Habana</p></div><div class="delivery-grid">`;
@@ -1284,8 +1253,6 @@
                 html += `</div><div class="delivery-note"><strong>Nota:</strong> Pago del 50% al recoger y el 50% restante al entregar el servicio.</div>`;
                 deliverySection.innerHTML = html;
             }
-
-            // ===== CARRUSEL DE PROMOCIONES =====
             const imagenesCarrusel = [
                 { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post1.webp", alt: "Promoción 1" },
                 { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post2.webp", alt: "Promoción 2" },
@@ -1294,14 +1261,12 @@
                 { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post5.webp", alt: "Promoción 5" },
                 { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post6.webp", alt: "Promoción 6" }
             ];
-
             const slidesContainer = document.getElementById('carouselSlides');
             const dotsContainer = document.getElementById('carouselDots');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
             const totalSlides = imagenesCarrusel.length;
-
             function buildCarousel() {
                 if (!slidesContainer) return;
                 slidesContainer.innerHTML = '';
@@ -1323,14 +1288,12 @@
                 });
                 updateDots();
             }
-
             function updateDots() {
                 const dots = document.querySelectorAll('.dot');
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentIndex);
                 });
             }
-
             function goToSlide(index) {
                 if (index < 0) index = totalSlides - 1;
                 if (index >= totalSlides) index = 0;
@@ -1338,19 +1301,14 @@
                 if (slidesContainer) slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
                 updateDots();
             }
-
             function nextSlide() { goToSlide(currentIndex + 1); }
-
             function prevSlide() { goToSlide(currentIndex - 1); }
-
             if (slidesContainer && prevBtn && nextBtn) {
                 buildCarousel();
                 prevBtn.addEventListener('click', prevSlide);
                 nextBtn.addEventListener('click', nextSlide);
                 if (totalSlides > 0) goToSlide(0);
             }
-
-            // ===== BANNER PRINCIPAL =====
             const slidesBanner = [
                 { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
                 { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
@@ -1359,7 +1317,6 @@
                 { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" },
                 { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" }
             ];
-
             const bannerSlidesContainer = document.getElementById('bannerSlides');
             const bannerDotsContainer = document.getElementById('bannerDots');
             const bannerPrevBtn = document.getElementById('bannerPrev');
@@ -1367,7 +1324,6 @@
             let currentBannerIndex = 0;
             const totalBannerSlides = slidesBanner.length;
             let bannerInterval;
-
             function buildBanner() {
                 if (!bannerSlidesContainer) return;
                 bannerSlidesContainer.innerHTML = '';
@@ -1378,7 +1334,7 @@
                     const target = slide.url.startsWith('http') ? '_blank' : '_self';
                     slideDiv.innerHTML = `
                             <div class="slide-texto">${slide.texto}</div>
-                            <a href="${slide.url}" class="slide-boton" target="${target}">${slide.boton}</a>
+                            <a href="${slide.url}" class="slide-boton" target="${target}" rel="noopener noreferrer">${slide.boton}</a>
                         `;
                     bannerSlidesContainer.appendChild(slideDiv);
                     const dot = document.createElement('span');
@@ -1391,14 +1347,12 @@
                 goToBannerSlide(0);
                 startBannerAuto();
             }
-
             function updateBannerDots() {
                 const dots = document.querySelectorAll('.banner-dot');
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentBannerIndex);
                 });
             }
-
             function goToBannerSlide(index) {
                 if (index < 0) index = totalBannerSlides - 1;
                 if (index >= totalBannerSlides) index = 0;
@@ -1406,18 +1360,13 @@
                 bannerSlidesContainer.style.transform = 'translateX(' + (-currentBannerIndex * 100) + '%)';
                 updateBannerDots();
             }
-
             function nextBannerSlide() { goToBannerSlide(currentBannerIndex + 1); }
-
             function prevBannerSlide() { goToBannerSlide(currentBannerIndex - 1); }
-
             function startBannerAuto() {
                 clearInterval(bannerInterval);
                 bannerInterval = setInterval(nextBannerSlide, 4000);
             }
-
             function stopBannerAuto() { clearInterval(bannerInterval); }
-
             if (bannerPrevBtn && bannerNextBtn && bannerSlidesContainer) {
                 buildBanner();
                 bannerPrevBtn.addEventListener('click', function() { stopBannerAuto();
@@ -1432,8 +1381,6 @@
                     slider.addEventListener('mouseleave', startBannerAuto);
                 }
             }
-
-            // ===== DROPDOWN =====
             const dropdown = document.getElementById('navDropdown');
             if (dropdown) {
                 dropdown.addEventListener('change', function(e) {
@@ -1445,8 +1392,6 @@
                     }
                 });
             }
-
-            // ===== MODAL POLÍTICA =====
             const modal = document.getElementById('modalPolitica');
             const btnPolitica = document.getElementById('btnPolitica');
             const cerrarModal = document.getElementById('modalCerrar');
@@ -1455,14 +1400,10 @@
                 cerrarModal.addEventListener('click', function() { modal.style.display = 'none'; });
                 window.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
             }
-
-            // ===== FULLSCREEN IMÁGENES DEL CARRUSEL =====
             const modalFS = document.getElementById('modalFullscreen');
             const modalFSImg = document.getElementById('modalFullscreenImg');
             const modalFSClose = document.getElementById('modalFullscreenClose');
-
             if (modalFS && modalFSImg) {
-                // Delegación de eventos para imágenes del carrusel (se añaden dinámicamente)
                 document.addEventListener('click', function(e) {
                     const img = e.target.closest('.carousel-slide img');
                     if (img) {
@@ -1472,12 +1413,10 @@
                         document.body.style.overflow = 'hidden';
                     }
                 });
-
                 function closeModalFS() {
                     modalFS.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
-
                 if (modalFSClose) modalFSClose.addEventListener('click', closeModalFS);
                 modalFS.addEventListener('click', function(e) {
                     if (e.target === this) closeModalFS();
