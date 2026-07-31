@@ -1053,7 +1053,7 @@
     <header>
         <div class="container nav-flex">
             <div class="logo-area">
-                <img class="logo-img" src="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon.webp" alt="Logo Lavandería EKKO" loading="lazy" width="42" height="42" />
+                <img class="logo-img" src="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/favicon.webp" alt="Logo de Lavandería EKKO" loading="lazy" width="42" height="42" onerror="this.style.display='none'" />
                 <div class="logo-text">LAVANDERÍA <span>EKKO</span></div>
             </div>
         </div>
@@ -1127,7 +1127,7 @@
                 </div>
                 <div class="app-buttons">
                     <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" class="btn-store" target="_blank" rel="noopener noreferrer">
-                        <img src="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/APP%20EKKO/favicon.png" alt="APP EKKO" class="app-icon-small" loading="lazy" width="20" height="20" />
+                        <img src="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/APP_EKKO/favicon.png" alt="Icono de la App EKKO" class="app-icon-small" loading="lazy" width="20" height="20" onerror="this.style.display='none'" />
                         DESCARGAR
                     </a>
                 </div>
@@ -1179,6 +1179,9 @@
     </div>
     <script>
         (function() {
+            // Base URL para imágenes (facilita futuros cambios)
+            const IMG_BASE = 'https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/';
+
             const planesData = [
                 { id: "BASICO", nombre: "BÁSICO", categoria: "ESENCIAL", descripcion: "Ideal para ropa de uso diario.", detergente: "Detergente líquido + suavizante estándar", proceso: "lavado y secado eficiente", precios: { "1.9 kg": 700, "2.9 kg": 800, "3.9 kg": 900, "4.9 kg": 1000, "5.9 kg": 1100, "6.9 kg": 1200, "7 kg": 1300 } },
                 { id: "WORKING", nombre: "WORKING", categoria: "ESENCIAL", descripcion: "Especial para ropa de trabajo y suciedad difícil.", detergente: "Detergente intensivo + desmanchador", proceso: "pretratamiento y lavado profundo", precios: { "1.9 kg": 900, "2.9 kg": 1100, "3.9 kg": 1200, "4.9 kg": 1300 } },
@@ -1190,6 +1193,7 @@
                 { id: "BABY_BASIC", nombre: "EKKO BABY ESTANDAR", categoria: "BEBÉ", descripcion: "Para uso diario", detergente: "Detergente neutro hipoalergénico", proceso: "cuidadoso", precios: { "3 kg": 1500 } },
                 { id: "BABY_PREMIUM", nombre: "EKKO BABY PREMIUM", categoria: "BEBÉ", descripcion: "Para prendas especiales", detergente: "Detergente neutro hipoalergénico + antimanchas suave", proceso: "máxima delicadeza y cuidado", precios: { "3 kg": 2500 } }
             ];
+
             const pricingGrid = document.getElementById('pricingGrid');
             if (pricingGrid) {
                 pricingGrid.innerHTML = '';
@@ -1197,39 +1201,45 @@
                     const card = document.createElement('div');
                     card.className = 'price-card';
                     card.setAttribute('data-plan', plan.id);
+
                     let listaPrecios = '';
                     for (const [rango, precio] of Object.entries(plan.precios)) {
                         listaPrecios += `<li><span>${rango}</span><span>$${precio} CUP</span></li>`;
                     }
+
                     card.innerHTML = `
-                            <div class="plan-badge">${plan.categoria}</div>
-                            <div class="plan-header">
-                                <div class="plan-categoria">Plan</div>
-                                <div class="plan-nombre">${plan.nombre}</div>
-                                <div class="plan-descripcion">${plan.descripcion}</div>
+                        <div class="plan-badge">${plan.categoria}</div>
+                        <div class="plan-header">
+                            <div class="plan-categoria">Plan</div>
+                            <div class="plan-nombre">${plan.nombre}</div>
+                            <div class="plan-descripcion">${plan.descripcion}</div>
+                        </div>
+                        <div class="plan-body">
+                            <div class="plan-tech">
+                                <span>🧴 ${plan.detergente}</span>
+                                <span>⚙️ ${plan.proceso}</span>
                             </div>
-                            <div class="plan-body">
-                                <div class="plan-tech">
-                                    <span>🧴 ${plan.detergente}</span>
-                                    <span>⚙️ ${plan.proceso}</span>
-                                </div>
-                                <div class="pasos-lista">
-                                    <span>Prelavado</span><span>Lavado</span><span>Secado</span><span>Doblado</span><span>Empaquetado</span>
-                                </div>
-                                <div class="prices-section">
-                                    <h4>⚖️ Peso y precio (CUP)</h4>
-                                    <ul class="price-list">${listaPrecios}</ul>
-                                </div>
-                                <button class="btn-solicitar">📲 Ir a la app</button>
+                            <div class="pasos-lista">
+                                <span>Prelavado</span><span>Lavado</span><span>Secado</span><span>Doblado</span><span>Empaquetado</span>
                             </div>
-                        `;
+                            <div class="prices-section">
+                                <h4>⚖️ Peso y precio (CUP)</h4>
+                                <ul class="price-list">${listaPrecios}</ul>
+                            </div>
+                            <button class="btn-solicitar">📲 Ir a la app</button>
+                        </div>
+                    `;
                     const btn = card.querySelector('.btn-solicitar');
-                    if (btn) btn.addEventListener('click', () => {
-                        document.getElementById('app')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    });
+                    if (btn) {
+                        btn.addEventListener('click', () => {
+                            document.getElementById('app')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        });
+                    }
                     pricingGrid.appendChild(card);
                 });
             }
+
+            // Zonas de entrega
             const zonas = [
                 { nombre: "Zona Corta", rango: "0-3 km", recogida: "400", entrega: "200", total: "600", lugares: "Habana Vieja, Centro Habana, Cerro" },
                 { nombre: "Zona Media", rango: "3-6 km", recogida: "600", entrega: "300", total: "900", lugares: "Vedado, Plaza, Nuevo Vedado, Lawton" },
@@ -1240,27 +1250,29 @@
                 let html = `<div class="text-center"><h3 style="color: var(--verde-eko); margin:0;">Servicio a Domicilio</h3><p style="margin:2px 0 6px;">Entrega en 48H · Comodidad garantizada en toda La Habana</p></div><div class="delivery-grid">`;
                 zonas.forEach(z => {
                     html += `
-                            <div class="zone-card">
-                                <h3>${z.nombre} <span class="zone-rango">(${z.rango})</span></h3>
-                                <div class="zone-lugares">${z.lugares}</div>
-                                <div class="zone-precios">
-                                    <span>🚚 Recogida $${z.recogida}</span>
-                                    <span>📦 Entrega $${z.entrega}</span>
-                                </div>
-                                <div class="zone-total">Total: $${z.total} CUP</div>
+                        <div class="zone-card">
+                            <h3>${z.nombre} <span class="zone-rango">(${z.rango})</span></h3>
+                            <div class="zone-lugares">${z.lugares}</div>
+                            <div class="zone-precios">
+                                <span>🚚 Recogida $${z.recogida}</span>
+                                <span>📦 Entrega $${z.entrega}</span>
                             </div>
-                        `;
+                            <div class="zone-total">Total: $${z.total} CUP</div>
+                        </div>
+                    `;
                 });
                 html += `</div><div class="delivery-note"><strong>Nota:</strong> Pago del 50% al recoger y el 50% restante al entregar el servicio.</div>`;
                 deliverySection.innerHTML = html;
             }
+
+            // Carrusel de promociones
             const imagenesCarrusel = [
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post1.webp", alt: "Promoción 1" },
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post2.webp", alt: "Promoción 2" },
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post3.webp", alt: "Promoción 3" },
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post4.webp", alt: "Promoción 4" },
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post5.webp", alt: "Promoción 5" },
-                { src: "https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/img/post6.webp", alt: "Promoción 6" }
+                { src: IMG_BASE + "img/post1.webp", alt: "Promoción 1 - Lavado premium" },
+                { src: IMG_BASE + "img/post2.webp", alt: "Promoción 2 - Descuento especial" },
+                { src: IMG_BASE + "img/post3.webp", alt: "Promoción 3 - Plan familiar" },
+                { src: IMG_BASE + "img/post4.webp", alt: "Promoción 4 - Ropa de bebé" },
+                { src: IMG_BASE + "img/post5.webp", alt: "Promoción 5 - Lavado de sábanas" },
+                { src: IMG_BASE + "img/post6.webp", alt: "Promoción 6 - Aroma duradero" }
             ];
             const slidesContainer = document.getElementById('carouselSlides');
             const dotsContainer = document.getElementById('carouselDots');
@@ -1268,10 +1280,12 @@
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
             const totalSlides = imagenesCarrusel.length;
+
             function buildCarousel() {
                 if (!slidesContainer) return;
                 slidesContainer.innerHTML = '';
                 if (dotsContainer) dotsContainer.innerHTML = '';
+
                 imagenesCarrusel.forEach((img, idx) => {
                     const slideDiv = document.createElement('div');
                     slideDiv.className = 'carousel-slide';
@@ -1279,8 +1293,10 @@
                     imgElement.src = img.src;
                     imgElement.alt = img.alt;
                     imgElement.loading = 'lazy';
+                    imgElement.onerror = function() { this.style.display = 'none'; };
                     slideDiv.appendChild(imgElement);
                     slidesContainer.appendChild(slideDiv);
+
                     const dot = document.createElement('span');
                     dot.className = 'dot';
                     dot.dataset.index = idx;
@@ -1289,12 +1305,14 @@
                 });
                 updateDots();
             }
+
             function updateDots() {
                 const dots = document.querySelectorAll('.dot');
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentIndex);
                 });
             }
+
             function goToSlide(index) {
                 if (index < 0) index = totalSlides - 1;
                 if (index >= totalSlides) index = 0;
@@ -1302,21 +1320,21 @@
                 if (slidesContainer) slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
                 updateDots();
             }
-            function nextSlide() { goToSlide(currentIndex + 1); }
-            function prevSlide() { goToSlide(currentIndex - 1); }
+
             if (slidesContainer && prevBtn && nextBtn) {
                 buildCarousel();
-                prevBtn.addEventListener('click', prevSlide);
-                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+                nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
                 if (totalSlides > 0) goToSlide(0);
             }
+
+            // Banner principal (con enlaces a canales de WhatsApp)
             const slidesBanner = [
                 { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
                 { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
                 { texto: "Espacio para que nuestros clientes compartan experiencias y sugerencias.", boton: "Acceder", url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
                 { texto: "Reciba promociones exclusivas para miembros de la comunidad.", boton: "Acceder", url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
-                { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" },
-                { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" }
+                { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" }
             ];
             const bannerSlidesContainer = document.getElementById('bannerSlides');
             const bannerDotsContainer = document.getElementById('bannerDots');
@@ -1325,49 +1343,60 @@
             let currentBannerIndex = 0;
             const totalBannerSlides = slidesBanner.length;
             let bannerInterval;
+
             function buildBanner() {
                 if (!bannerSlidesContainer) return;
                 bannerSlidesContainer.innerHTML = '';
-                bannerDotsContainer.innerHTML = '';
+                if (bannerDotsContainer) bannerDotsContainer.innerHTML = '';
+
                 slidesBanner.forEach((slide, idx) => {
                     const slideDiv = document.createElement('div');
                     slideDiv.className = 'banner-slide';
                     const target = slide.url.startsWith('http') ? '_blank' : '_self';
                     slideDiv.innerHTML = `
-                            <div class="slide-texto">${slide.texto}</div>
-                            <a href="${slide.url}" class="slide-boton" target="${target}" rel="noopener noreferrer">${slide.boton}</a>
-                        `;
+                        <div class="slide-texto">${slide.texto}</div>
+                        <a href="${slide.url}" class="slide-boton" target="${target}" rel="noopener noreferrer">${slide.boton}</a>
+                    `;
                     bannerSlidesContainer.appendChild(slideDiv);
+
                     const dot = document.createElement('span');
                     dot.className = 'banner-dot';
                     dot.dataset.index = idx;
                     dot.addEventListener('click', () => goToBannerSlide(idx));
-                    bannerDotsContainer.appendChild(dot);
+                    if (bannerDotsContainer) bannerDotsContainer.appendChild(dot);
                 });
                 updateBannerDots();
                 goToBannerSlide(0);
                 startBannerAuto();
             }
+
             function updateBannerDots() {
                 const dots = document.querySelectorAll('.banner-dot');
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentBannerIndex);
                 });
             }
+
             function goToBannerSlide(index) {
                 if (index < 0) index = totalBannerSlides - 1;
                 if (index >= totalBannerSlides) index = 0;
                 currentBannerIndex = index;
-                bannerSlidesContainer.style.transform = 'translateX(' + (-currentBannerIndex * 100) + '%)';
+                if (bannerSlidesContainer) {
+                    bannerSlidesContainer.style.transform = 'translateX(' + (-currentBannerIndex * 100) + '%)';
+                }
                 updateBannerDots();
             }
+
             function nextBannerSlide() { goToBannerSlide(currentBannerIndex + 1); }
             function prevBannerSlide() { goToBannerSlide(currentBannerIndex - 1); }
+
             function startBannerAuto() {
                 clearInterval(bannerInterval);
                 bannerInterval = setInterval(nextBannerSlide, 4000);
             }
+
             function stopBannerAuto() { clearInterval(bannerInterval); }
+
             if (bannerPrevBtn && bannerNextBtn && bannerSlidesContainer) {
                 buildBanner();
                 bannerPrevBtn.addEventListener('click', function() { stopBannerAuto();
@@ -1382,6 +1411,8 @@
                     slider.addEventListener('mouseleave', startBannerAuto);
                 }
             }
+
+            // Dropdown de navegación
             const dropdown = document.getElementById('navDropdown');
             if (dropdown) {
                 dropdown.addEventListener('change', function(e) {
@@ -1393,6 +1424,8 @@
                     }
                 });
             }
+
+            // Modal política
             const modal = document.getElementById('modalPolitica');
             const btnPolitica = document.getElementById('btnPolitica');
             const cerrarModal = document.getElementById('modalCerrar');
@@ -1401,6 +1434,8 @@
                 cerrarModal.addEventListener('click', function() { modal.style.display = 'none'; });
                 window.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
             }
+
+            // Modal de imagen a pantalla completa
             const modalFS = document.getElementById('modalFullscreen');
             const modalFSImg = document.getElementById('modalFullscreenImg');
             const modalFSClose = document.getElementById('modalFullscreenClose');
@@ -1414,6 +1449,7 @@
                         document.body.style.overflow = 'hidden';
                     }
                 });
+
                 function closeModalFS() {
                     modalFS.style.display = 'none';
                     document.body.style.overflow = 'auto';
