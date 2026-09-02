@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>LAVANDERIA • EKKO</title>
+    <title>EKKO</title>
     <meta name="description" content="Lavandería EKKO en La Habana: servicio premium de lavado, secado y planchado a domicilio. Recogida en 24h, entrega en 48h. Productos eco‑friendly, precios justos y atención personalizada." />
     <meta name="keywords" content="lavandería La Habana, lavado de ropa a domicilio, tintorería eco‑friendly, servicio de planchado, recogida y entrega, limpieza profesional, lavandería económica, lavandería premium, EKKO, productos de limpieza, detergentes ecológicos, lavandería cerca de mí, Centro Habana, Vedado, Playa, lavandería para bebé, lavandería en Cuba, servicio de lavandería, lavandería con app, lavandería sostenible, cuidado de prendas, limpieza de sábanas, lavado de uniformes, servicio de lavandería 24 horas" />
     <meta name="author" content="Lavandería EKKO" />
@@ -14,7 +14,7 @@
     <meta name="geo.placename" content="La Habana, Cuba" />
     <meta name="geo.position" content="23.1136;-82.3666" />
     <meta name="ICBM" content="23.1136, -82.3666" />
-    <meta property="og:title" content="Lavandería EKKO · Limpieza profesional eco‑friendly en La Habana" />
+    <meta property="og:title" content="EKKO · Limpieza profesional eco‑friendly en La Habana" />
     <meta property="og:description" content="Servicio a domicilio con los mejores productos. Ropa limpia, fresca y aromada en 48h. Planes PREMIUM, ESPECIAL y BABY EKKO. ¡App oficial!" />
     <meta property="og:url" content="https://koowexa-dev.github.io/lavanderia_ekko_website/" />
     <meta property="og:image" content="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/ekko.jpg" />
@@ -25,12 +25,12 @@
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Lavandería EKKO" />
+    <meta property="og:site_name" content="EKKO" />
     <meta property="og:updated_time" content="2026-07-29T10:00:00+00:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@LavanderiaEKKO" />
     <meta name="twitter:creator" content="@LavanderiaEKKO" />
-    <meta name="twitter:title" content="Lavandería EKKO · Servicio de lavandería a domicilio en La Habana" />
+    <meta name="twitter:title" content="EKKO · Servicio de lavandería a domicilio en La Habana" />
     <meta name="twitter:description" content="Recogida y entrega exprés. Cuidamos tu ropa y el medio ambiente. Descarga la app y obtén promociones exclusivas." />
     <meta name="twitter:image" content="https://github.com/koowexa-dev/lavanderia_ekko_website/raw/refs/heads/main/ekko.jpg" />
     <meta name="twitter:image:alt" content="Logo Lavandería EKKO" />
@@ -105,7 +105,8 @@
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DEPORTE" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "VESTIR" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UNIFORME" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "BABY EKKO (BB)" } }
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "BABY EKKO (BB)" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ÍNTIMO (Opcional)" } }
                 ]
             }
         }
@@ -118,10 +119,8 @@
             "description": "Índice de secciones principales del sitio web",
             "itemListElement": [
                 { "@type": "SiteNavigationElement", "position": 1, "name": "Inicio", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#inicio" },
-                { "@type": "SiteNavigationElement", "position": 2, "name": "Nuestros Valores", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#valores" },
-                { "@type": "SiteNavigationElement", "position": 3, "name": "Planes del Servicio", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#planes" },
-                { "@type": "SiteNavigationElement", "position": 4, "name": "Servicio a domicilio", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#zonas" },
-                { "@type": "SiteNavigationElement", "position": 5, "name": "App EKKO", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#app" }
+                { "@type": "SiteNavigationElement", "position": 2, "name": "Planes", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#planes" },
+                { "@type": "SiteNavigationElement", "position": 3, "name": "Valores", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#valores" }
             ]
         }
     </script>
@@ -198,11 +197,17 @@
         .logo-text {
             font-size: clamp(1rem, 2vw, 1.4rem);
             font-weight: 800;
-            color: var(--azul-profundo);
             letter-spacing: -0.02em;
         }
-        .logo-text span {
-            color: var(--verde-eko);
+        .ekko-brand {
+            color: #2E7D32;
+        }
+        .o-special {
+            background: linear-gradient(135deg, #2E7D32 50%, #1976D2 50%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
         .menu-toggle {
             background: none;
@@ -387,6 +392,8 @@
             color: var(--azul-profundo);
             margin-top: 0.25rem;
         }
+
+        /* Tarjetas de valores */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -425,88 +432,180 @@
             color: var(--texto-secundario);
             line-height: 1.5;
         }
-        .table-responsive {
-            overflow-x: auto;
-            margin-bottom: 2rem;
+
+        /* Contacto en valores */
+        .contact-section {
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
             background: var(--blanco-puro);
             border-radius: var(--radius);
             border: 1px solid var(--gris-borde);
             box-shadow: var(--shadow-sm);
         }
-        .table-responsive table {
+        .contact-section h3 {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--verde-eko);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+            color: var(--texto-secundario);
+        }
+        .contact-item svg {
+            flex-shrink: 0;
+        }
+        .contact-social {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .contact-social a {
+            color: var(--azul-profundo);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .contact-social a:hover {
+            text-decoration: underline;
+        }
+
+        /* Acordeones de tarifarios */
+        .acordeon-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .acordeon-item {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            border: 1px solid var(--gris-borde);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .acordeon-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .acordeon-header {
             width: 100%;
-            border-collapse: collapse;
-            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
-            min-width: 480px;
-        }
-        .table-responsive th,
-        .table-responsive td {
-            padding: 0.5rem 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid var(--gris-borde);
-            vertical-align: middle;
-        }
-        .table-responsive .cat-header {
             background: var(--celeste-suave);
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
             font-weight: 700;
             color: var(--azul-profundo);
-            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-            padding: 0.375rem 0.75rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-family);
+            transition: background 0.2s;
+            text-align: left;
         }
-        .table-responsive .cat-header th {
-            border-bottom: 2px solid var(--verde-eko);
+        .acordeon-header:hover {
+            background: #d4e4f7;
         }
-        .table-responsive tr:last-child td {
+        .acordeon-header .indicator {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .acordeon-item.active .acordeon-header .indicator {
+            transform: rotate(180deg);
+        }
+        .acordeon-body {
+            display: none;
+            padding: 1rem;
+            background: var(--blanco-puro);
+        }
+        .acordeon-item.active .acordeon-body {
+            display: block;
+        }
+        .plan-card {
+            border-bottom: 1px solid var(--gris-borde);
+            padding: 0.75rem 0;
+        }
+        .plan-card:last-child {
             border-bottom: none;
         }
-        .plan-nombre-tabla {
+        .plan-card .plan-nombre {
             font-weight: 700;
             color: var(--verde-eko);
-            white-space: nowrap;
-            font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+            font-size: clamp(0.95rem, 1.1vw, 1.05rem);
         }
-        .plan-desc-tabla {
+        .plan-card .plan-desc {
+            font-size: clamp(0.75rem, 0.85vw, 0.85rem);
             color: var(--texto-secundario);
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-            line-height: 1.4;
+            margin: 0.125rem 0;
         }
-        .plan-tech-tabla {
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-            color: #4A5568;
-            line-height: 1.6;
-        }
-        .plan-tech-tabla svg {
-            vertical-align: middle;
-            margin-right: 0.125rem;
-        }
-        .price-banner {
-            background: linear-gradient(135deg, var(--verde-eko), var(--azul-profundo));
-            color: white;
-            border-radius: var(--radius);
-            padding: 0.75rem 1.25rem;
-            margin: 0 0 2rem 0;
+        .plan-card .plan-detalle {
             display: flex;
             flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+            color: var(--texto-secundario);
+            margin-top: 0.25rem;
+        }
+        .plan-card .plan-detalle span {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            box-shadow: var(--shadow-sm);
-            font-size: clamp(0.8rem, 1vw, 0.9rem);
-            text-align: center;
+            gap: 0.25rem;
         }
-        .price-text {
+        .plan-card .plan-detalle .precio {
+            font-weight: 700;
+            color: var(--azul-profundo);
+        }
+        .plan-card .plan-detalle .kg {
+            color: var(--verde-eko);
+        }
+
+        /* Estilo para proceso opcional/discreto */
+        .acordeon-item.optional-process {
+            border-style: dashed;
+            border-color: #aaa;
+            background: #fcfcfc;
+        }
+        .acordeon-item.optional-process .acordeon-header {
+            background: #f0f0f0;
+            color: #555;
+        }
+        .acordeon-item.optional-process .acordeon-header:hover {
+            background: #e5e5e5;
+        }
+        .badge-opcional {
+            background: #e0e0e0;
+            color: #555;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
             font-weight: 600;
+            letter-spacing: 0.3px;
+            display: inline-block;
+            vertical-align: middle;
         }
-        .price-sub {
-            font-size: clamp(0.65rem, 0.8vw, 0.75rem);
-            opacity: 0.9;
-            width: 100%;
-        }
+
+        /* Zonas integradas en tarifario */
         .delivery-section {
             background: var(--blanco-puro);
             border-radius: var(--radius);
             padding: 1rem 0.875rem;
-            margin-bottom: 2rem;
+            margin: 1.5rem 0 1rem;
             border: 1px solid var(--gris-borde);
         }
         .delivery-grid {
@@ -549,80 +648,64 @@
             border-left: 4px solid var(--verde-eko);
             color: #2c3e2f;
         }
-        .app-oficial {
-            background: var(--blanco-puro);
+
+        /* App integrada */
+        .app-integrada {
+            background: linear-gradient(135deg, var(--azul-profundo), var(--verde-eko));
             border-radius: var(--radius);
-            padding: 0.875rem 1.125rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--gris-borde);
+            padding: 1.25rem;
+            color: white;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            box-shadow: var(--shadow-sm);
         }
-        .app-oficial .app-info {
+        .app-integrada .app-text {
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
             flex: 1;
         }
-        .app-oficial .app-info h2 {
-            font-size: clamp(1rem, 1.5vw, 1.3rem);
+        .app-integrada .app-text h3 {
+            font-size: clamp(1rem, 1.3vw, 1.2rem);
             font-weight: 800;
-            color: var(--azul-profundo);
-            margin: 0;
             display: flex;
             align-items: center;
-            gap: 0.375rem;
+            gap: 0.5rem;
         }
-        .app-oficial .app-info h2 span {
-            color: var(--verde-eko);
-        }
-        .app-oficial .app-info p {
+        .app-integrada .app-text p {
             font-size: clamp(0.7rem, 0.8vw, 0.8rem);
-            color: var(--texto-secundario);
+            opacity: 0.9;
             margin: 0;
         }
-        .app-oficial .app-buttons {
-            display: flex;
-            gap: 0.625rem;
-            align-items: center;
-        }
-        .app-oficial .btn-store {
-            background: #111;
-            border-radius: 30px;
-            padding: 0.25rem 0.875rem;
-            color: white;
-            font-weight: 600;
+        .app-integrada .app-boton {
+            background: var(--blanco-puro);
+            color: var(--azul-profundo);
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+            cursor: pointer;
+            transition: background 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.375rem;
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-            border: 1px solid #333;
-            transition: 0.2s;
+            font-family: var(--font-family);
         }
-        .app-oficial .btn-store:hover {
-            background: #222;
+        .app-integrada .app-boton:hover {
+            background: #f0f0f0;
         }
-        .app-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.375rem;
-        }
-        .app-features .feature-app {
-            background: var(--celeste-suave);
-            padding: 0.0625rem 0.625rem;
-            border-radius: 20px;
-            font-size: clamp(0.55rem, 0.6vw, 0.65rem);
-            font-weight: 600;
-            color: var(--azul-profundo);
-        }
+
+        /* Footer compacto */
         footer {
             background: #111827;
             color: #e2e8f0;
-            padding: 1.5rem 0 1rem;
+            padding: 0.75rem 0 0.5rem;
             margin-top: 1.5rem;
         }
         .footer-compact {
@@ -630,56 +713,29 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            padding-bottom: 1rem;
+            gap: 0.5rem 1rem;
+            padding-bottom: 0.25rem;
+            margin-bottom: 0.25rem;
             border-bottom: 1px solid #2d3748;
-            margin-bottom: 0.75rem;
         }
         .logo-text-footer {
-            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
             font-weight: 800;
-            color: white;
             letter-spacing: -0.02em;
         }
-        .logo-text-footer span {
-            color: var(--verde-claro);
-        }
-        .footer-contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1rem;
-            align-items: center;
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-        }
-        .footer-contact span {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .footer-contact svg {
-            flex-shrink: 0;
-        }
-        .footer-social a {
-            color: #cbd5e0;
-            text-decoration: none;
-            margin-left: 0.75rem;
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-            transition: color 0.2s;
-        }
-        .footer-social a:hover {
-            color: white;
+        .logo-text-footer .ekko-brand {
+            color: #2E7D32;
         }
         .footer-politica {
-            text-align: center;
-            margin-top: 0.625rem;
+            display: inline-block;
         }
         .btn-politica {
             background: transparent;
             border: 1px solid #4a5568;
             color: #cbd5e0;
-            padding: 0.25rem 0.875rem;
+            padding: 0.15rem 0.7rem;
             border-radius: 30px;
-            font-size: clamp(0.65rem, 0.75vw, 0.7rem);
+            font-size: clamp(0.6rem, 0.7vw, 0.65rem);
             cursor: pointer;
             font-family: var(--font-family);
             transition: 0.2s;
@@ -693,10 +749,12 @@
         }
         .copyright {
             text-align: center;
-            font-size: clamp(0.55rem, 0.6vw, 0.65rem);
+            font-size: clamp(0.5rem, 0.55vw, 0.6rem);
             opacity: 0.7;
-            margin-top: 0.5rem;
+            margin-top: 0.2rem;
         }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -772,26 +830,28 @@
         .modal-cerrar:hover {
             opacity: 0.6;
         }
+
+        /* Banner app flotante optimizado (solo móvil) */
         .app-notification-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 3000;
-            background: rgba(13, 71, 161, 0.94);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(13, 71, 161, 0.95);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             color: white;
-            padding: 0.75rem 1rem;
-            display: flex;
-            flex-wrap: wrap;
+            padding: 0.5rem 0.75rem;
+            display: none;
+            /* se muestra solo en móvil */
             align-items: center;
             justify-content: space-between;
-            gap: 0.75rem;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(0);
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            gap: 0.5rem;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
+            transform: translateY(0);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         .app-notification-banner.hidden {
             transform: translateY(120%);
@@ -801,112 +861,86 @@
         .app-notification-banner .banner-content {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             flex: 1;
-            min-width: 200px;
+            min-width: 0;
         }
         .app-notification-banner .banner-icon {
             flex-shrink: 0;
-            width: 2.75rem;
-            height: 2.75rem;
+            width: 2rem;
+            height: 2rem;
             background: var(--blanco-puro);
-            border-radius: 12px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.25rem;
+            padding: 0.15rem;
         }
         .app-notification-banner .banner-icon img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 4px;
         }
         .app-notification-banner .banner-text {
             display: flex;
             flex-direction: column;
-            gap: 0.125rem;
+            gap: 0;
+            font-size: 0.7rem;
+            line-height: 1.3;
         }
         .app-notification-banner .banner-text strong {
-            font-size: clamp(0.85rem, 1vw, 0.95rem);
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-        .app-notification-banner .banner-text span {
-            font-size: clamp(0.65rem, 0.75vw, 0.75rem);
-            opacity: 0.9;
+            font-size: 0.75rem;
         }
         .app-notification-banner .banner-actions {
             display: flex;
             align-items: center;
-            gap: 0.625rem;
+            gap: 0.3rem;
             flex-shrink: 0;
         }
         .app-notification-banner .btn-download-app {
             background: var(--blanco-puro);
             color: var(--azul-profundo);
             border: none;
-            padding: 0.375rem 1.125rem;
-            border-radius: 40px;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+            font-size: 0.65rem;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.375rem;
+            gap: 0.2rem;
             font-family: var(--font-family);
+            transition: background 0.2s;
         }
         .app-notification-banner .btn-download-app:hover {
             background: #f0f0f0;
-            transform: scale(1.02);
         }
         .app-notification-banner .btn-close-banner {
             background: rgba(255, 255, 255, 0.15);
             border: none;
             color: white;
-            width: 1.875rem;
-            height: 1.875rem;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
             font-family: var(--font-family);
-            line-height: 1;
             padding: 0;
+            font-size: 0.8rem;
+            line-height: 1;
         }
         .app-notification-banner .btn-close-banner:hover {
             background: rgba(255, 255, 255, 0.3);
         }
-        @media (max-width: 640px) {
+
+        @media (max-width: 768px) {
             .app-notification-banner {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0.75rem;
-            }
-            .app-notification-banner .banner-content {
-                gap: 0.625rem;
-            }
-            .app-notification-banner .banner-actions {
-                justify-content: flex-end;
-                margin-top: 0.25rem;
-            }
-            .app-notification-banner .btn-download-app {
-                font-size: 0.7rem;
-                padding: 0.3125rem 0.875rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .app-notification-banner .banner-text strong {
-                font-size: 0.8rem;
-            }
-            .app-notification-banner .banner-text span {
-                font-size: 0.65rem;
+                display: flex;
             }
             .values-grid {
                 grid-template-columns: 1fr;
@@ -914,8 +948,16 @@
             .delivery-grid {
                 grid-template-columns: 1fr;
             }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-compact {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
             .menu-toggle {
                 display: none;
             }
@@ -946,7 +988,7 @@
         <div class="container nav-flex">
             <div class="logo-area">
                 <img class="logo-img" src="img/favicon.ico" alt="Logo EKKO" loading="lazy" decoding="async" width="36" height="36" />
-                <div class="logo-text">LAVANDERÍA <span>EKKO</span></div>
+                <div class="logo-text"><span class="ekko-brand">EKK<span class="o-special">O</span></span></div>
             </div>
             <div class="header-right">
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
@@ -955,15 +997,15 @@
                     </svg>
                 </button>
                 <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Menú principal">
-                    <a href="#valores">Valores</a>
+                    <a href="#inicio">Inicio</a>
                     <a href="#planes">Planes</a>
-                    <a href="#zonas">Zonas</a>
-                    <a href="#app">App</a>
+                    <a href="#valores">Valores</a>
                 </nav>
             </div>
         </div>
     </header>
     <main role="main">
+        <!-- INICIO -->
         <section id="inicio" aria-labelledby="inicio-heading">
             <div class="hero-banner">
                 <div class="container">
@@ -973,7 +1015,7 @@
                         <button class="banner-btn banner-next" id="bannerNext" aria-label="Siguiente diapositiva">›</button>
                         <div class="banner-dots" id="bannerDots" role="tablist"></div>
                     </div>
-                    <h1 id="inicio-heading">Limpieza profesional • Frescura que se siente</h1>
+                    <h1 id="inicio-heading">Limpieza profesional y Una frescura que se nota</h1>
                     <div class="slogan">
                         <span>Limpieza</span>
                         <span class="dot-icon">
@@ -989,15 +1031,45 @@
                         </span>
                         <span>Economía</span>
                     </div>
-                    <p style="display:flex;align-items:center;justify-content:center;gap:0.375rem;flex-wrap:wrap;">
-                        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                            <circle cx="6" cy="6" r="4" fill="#1B5E20" />
-                        </svg>
-                        Recogida y entrega a tu domicilio en 48 horas.
-                    </p>
                 </div>
             </div>
         </section>
+
+        <!-- TARIFARIOS (PLANES + ZONAS + APP) -->
+        <section id="planes" aria-labelledby="planes-heading" class="container">
+            <div class="section-title">
+                <h2 id="planes-heading">Tarifarios De La Lavandería</h2>
+                <p>Conoce nuestros planes, precios y cobertura en kilogramos</p>
+            </div>
+            <div class="acordeon-container" id="acordeonContainer"></div>
+
+            <!-- Zonas de entrega (integrado) -->
+            <div class="delivery-section" id="deliverySection"></div>
+
+            <!-- App integrada -->
+            <div class="app-integrada">
+                <div class="app-text">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                            <line x1="12" y1="18" x2="12.01" y2="18" />
+                        </svg>
+                        App EKKO
+                    </h3>
+                    <p>Gestiona tus pedidos, sigue tu lavado en tiempo real y accede a promociones exclusivas.</p>
+                </div>
+                <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" target="_blank" rel="noopener noreferrer" class="app-boton">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Descargar
+                </a>
+            </div>
+        </section>
+
+        <!-- VALORES (con contacto) -->
         <section id="valores" aria-labelledby="valores-heading" class="container">
             <div class="section-title">
                 <h2 id="valores-heading">Nuestros Valores</h2>
@@ -1044,106 +1116,84 @@
                     <p>Tecnología y procesos eficientes, para entregarte un servicio rápido y confiable.</p>
                 </div>
             </div>
-        </section>
-        <section id="planes" aria-labelledby="planes-heading" class="container">
-            <div class="section-title">
-                <h2 id="planes-heading">Tarifario Oficial de Servicios</h2>
-                <p>¿Qué incluye nuestro proceso de base de servicios?</p>
-            </div>
-            <div class="price-banner">
-                <div class="price-text">Precios según el plan y peso</div>
-                <div class="price-sub">Consulta nuestro tarifario completo</div>
-            </div>
-            <div class="table-responsive" id="planesTableContainer"></div>
-        </section>
-        <section id="zonas" aria-labelledby="zonas-heading" class="container">
-            <div class="delivery-section" id="deliverySection"></div>
-        </section>
-        <section id="app" aria-labelledby="app-heading" class="container">
-            <div class="app-oficial">
-                <div class="app-info">
-                    <h2 id="app-heading">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D47A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                            <line x1="12" y1="18" x2="12.01" y2="18" />
+
+            <!-- Contacto -->
+            <div class="contact-section">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    Contáctanos
+                </h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                         </svg>
-                        APP <span>EKKO</span>
-                    </h2>
-                    <p>Gestiona tus pedidos, sigue tu lavado en tiempo real y accede a promociones exclusivas.</p>
-                    <div class="app-features">
-                        <span class="feature-app">TAMAÑO LIGERO</span>
-                        <span class="feature-app">GESTIÓN RÁPIDA</span>
-                        <span class="feature-app">FÁCIL DE ENTENDER</span>
+                        <span>+53 52952442 | 78701517</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>ekolavanderia76@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>Centro Habana</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span>Lun–Sáb 9am–6pm</span>
                     </div>
                 </div>
-                <div class="app-buttons">
-                    <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" class="btn-store" target="_blank" rel="noopener noreferrer">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
-                            <circle cx="8.5" cy="10" r="1.5" fill="white"/>
-                            <circle cx="15.5" cy="10" r="1.5" fill="white"/>
-                            <line x1="9" y1="14" x2="15" y2="14" stroke-width="1.5"/>
-                            <path d="M6 17h12" stroke-width="1.5"/>
+                <div class="contact-social">
+                    <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" target="_blank" rel="noopener noreferrer">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                         </svg>
-                        DESCARGAR
+                        WhatsApp
+                    </a>
+                    <a href="https://www.facebook.com/share/1GAw5zsZ1X/" target="_blank" rel="noopener noreferrer">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                        Facebook
                     </a>
                 </div>
             </div>
         </section>
     </main>
+
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-compact">
-                <div class="logo-text-footer">LAVANDERÍA <span>EKKO</span></div>
-                <div class="footer-contact">
-                    <span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                <div class="logo-text-footer"><span class="ekko-brand">EKK<span class="o-special">O</span></span></div>
+                <div class="footer-politica">
+                    <button class="btn-politica" id="btnPolitica">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
                         </svg>
-                        5295 2442 | 7870 1517
-                    </span>
-                    <span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
-                        ekolavanderia76@gmail.com
-                    </span>
-                    <span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        Centro Habana
-                    </span>
-                    <span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                        Lun–Sáb 9am–6pm
-                    </span>
-                </div>
-                <div class="footer-social">
-                    <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" target="_blank" rel="noopener noreferrer" aria-label="Canal WhatsApp">WhatsApp</a>
-                    <a href="https://www.facebook.com/share/1GAw5zsZ1X/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Oficial">Facebook</a>
+                        Política de EKKO
+                    </button>
                 </div>
             </div>
-            <div class="footer-politica">
-                <button class="btn-politica" id="btnPolitica">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                    Política de EKKO
-                </button>
-            </div>
-            <div class="copyright">© 2026 LAVANDERÍA EKKO | KOOWEXA</div>
+            <div class="copyright">© 2026 EKKO & KOOWEXA</div>
         </div>
     </footer>
+
+    <!-- Modal Política -->
     <div class="modal" id="modalPolitica" role="dialog" aria-modal="true" aria-labelledby="politica-heading">
         <div class="modal-contenido">
             <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">
@@ -1206,209 +1256,303 @@
             </div>
         </div>
     </div>
+
+    <!-- Banner flotante de app (solo móvil) -->
+    <div class="app-notification-banner" id="appNotificationBanner">
+        <div class="banner-content">
+            <div class="banner-icon">
+                <img src="img/favicon.ico" alt="App EKKO" width="32" height="32" loading="lazy" />
+            </div>
+            <div class="banner-text">
+                <strong>App EKKO</strong>
+                <span>Gestiona tus pedidos y promos</span>
+            </div>
+        </div>
+        <div class="banner-actions">
+            <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" target="_blank" rel="noopener noreferrer" class="btn-download-app" id="bannerDownloadBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Descargar
+            </a>
+            <button class="btn-close-banner" id="bannerCloseBtn" aria-label="Cerrar banner">✕</button>
+        </div>
+    </div>
+
     <script nonce="ekkoNonce">
         document.addEventListener('DOMContentLoaded', function() {
-            const manifest = {
-                name: "Lavandería EKKO",
-                short_name: "EKKO",
-                description: "Limpieza profesional eco-friendly en La Habana",
-                start_url: "https://koowexa-dev.github.io/lavanderia_ekko_website/",
-                display: "standalone",
-                background_color: "#1B5E20",
-                theme_color: "#1B5E20",
-                icons: [{
-                    src: "img/favicon.ico",
-                    sizes: "512x512",
-                    type: "image/x-icon",
-                    purpose: "any maskable"
-                }]
-            };
-            try {
-                const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-                const manifestURL = URL.createObjectURL(blob);
-                const link = document.createElement('link');
-                link.rel = 'manifest';
-                link.href = manifestURL;
-                document.head.appendChild(link);
-            } catch (_) {}
-            window.addEventListener('beforeinstallprompt', function(e) {
-                e.preventDefault();
-            });
+            // --- PWA: Generar manifest y service worker ---
+            (function() {
+                // Manifest
+                const manifest = {
+                    name: "Lavandería EKKO",
+                    short_name: "EKKO",
+                    description: "Limpieza profesional eco-friendly en La Habana",
+                    start_url: window.location.href.split('?')[0],
+                    display: "standalone",
+                    background_color: "#1B5E20",
+                    theme_color: "#1B5E20",
+                    orientation: "portrait",
+                    icons: [{
+                        src: "img/favicon.ico",
+                        sizes: "512x512",
+                        type: "image/x-icon",
+                        purpose: "any maskable"
+                    }]
+                };
+                try {
+                    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+                    const manifestURL = URL.createObjectURL(blob);
+                    const link = document.createElement('link');
+                    link.rel = 'manifest';
+                    link.href = manifestURL;
+                    document.head.appendChild(link);
+                } catch (_) {}
+
+                // Service Worker (blob)
+                const swCode = `
+                    const CACHE_NAME = 'ekko-cache-v1';
+                    const urlsToCache = [
+                        '.',
+                        '${window.location.pathname}',
+                        'img/favicon.ico'
+                    ];
+                    self.addEventListener('install', function(event) {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(function(cache) {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+                    self.addEventListener('fetch', function(event) {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(function(response) {
+                                    return response || fetch(event.request);
+                                })
+                        );
+                    });
+                    self.addEventListener('activate', function(event) {
+                        event.waitUntil(
+                            caches.keys().then(function(cacheNames) {
+                                return Promise.all(
+                                    cacheNames.filter(function(name) {
+                                        return name !== CACHE_NAME;
+                                    }).map(function(name) {
+                                        return caches.delete(name);
+                                    })
+                                );
+                            })
+                        );
+                    });
+                `;
+                try {
+                    const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                    const swURL = URL.createObjectURL(swBlob);
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.register(swURL, { scope: '/' })
+                            .then(function(reg) {
+                                console.log('Service Worker registrado correctamente', reg);
+                            })
+                            .catch(function(err) {
+                                console.warn('Error al registrar Service Worker:', err);
+                            });
+                    }
+                } catch (_) {}
+            })();
+
+            // --- Banner app flotante optimizado (solo móvil y con recordatorio) ---
             (function() {
                 const BANNER_KEY = 'ekkoAppBannerClosed';
                 const BANNER_TIMESTAMP_KEY = 'ekkoAppBannerTimestamp';
                 const DAYS_TO_REMIND = 7;
+                const banner = document.getElementById('appNotificationBanner');
+                if (!banner) return;
 
-                function shouldShowBanner() {
+                function shouldShow() {
                     const closed = localStorage.getItem(BANNER_KEY);
                     if (!closed) return true;
-                    const timestamp = parseInt(localStorage.getItem(BANNER_TIMESTAMP_KEY) || '0', 10);
-                    const now = Date.now();
-                    const diffDays = (now - timestamp) / (1000 * 60 * 60 * 24);
-                    return diffDays >= DAYS_TO_REMIND;
+                    const ts = parseInt(localStorage.getItem(BANNER_TIMESTAMP_KEY) || '0', 10);
+                    const diff = (Date.now() - ts) / (1000 * 60 * 60 * 24);
+                    return diff >= DAYS_TO_REMIND;
                 }
 
-                function markBannerClosed() {
+                function markClosed() {
                     localStorage.setItem(BANNER_KEY, 'true');
                     localStorage.setItem(BANNER_TIMESTAMP_KEY, String(Date.now()));
                 }
 
-                function markBannerDownloaded() {
-                    localStorage.setItem(BANNER_KEY, 'true');
-                    localStorage.setItem(BANNER_TIMESTAMP_KEY, String(Date.now()));
+                function hideBanner() {
+                    banner.classList.add('hidden');
+                    setTimeout(() => { banner.style.display = 'none'; }, 400);
                 }
 
-                function createBanner() {
-                    const banner = document.createElement('div');
-                    banner.className = 'app-notification-banner';
-                    banner.id = 'appNotificationBanner';
-                    banner.innerHTML = `
-                        <div class="banner-content">
-                            <div class="banner-icon">
-                                <img src="img/favicon.ico" alt="App EKKO" width="44" height="44" loading="lazy" />
-                            </div>
-                            <div class="banner-text">
-                                <strong>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                                        <line x1="12" y1="18" x2="12.01" y2="18" />
-                                    </svg>
-                                    App EKKO
-                                </strong>
-                                <span>Gestiona tus pedidos, recibe promociones y sigue tu lavado en tiempo real.</span>
-                            </div>
-                        </div>
-                        <div class="banner-actions">
-                            <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" target="_blank" rel="noopener noreferrer" class="btn-download-app" id="bannerDownloadBtn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7 10 12 15 17 10"/>
-                                    <line x1="12" y1="15" x2="12" y2="3"/>
-                                </svg>
-                                Descargar
-                            </a>
-                            <button class="btn-close-banner" id="bannerCloseBtn" aria-label="Cerrar banner">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                    <line x1="6" y1="6" x2="18" y2="18" />
-                                </svg>
-                            </button>
-                        </div>
-                    `;
-                    document.body.appendChild(banner);
+                if (!shouldShow()) {
+                    banner.style.display = 'none';
+                } else {
+                    banner.style.display = 'flex';
+                    // Eventos
                     document.getElementById('bannerCloseBtn').addEventListener('click', function() {
-                        banner.classList.add('hidden');
-                        markBannerClosed();
-                        setTimeout(() => { banner.remove(); }, 500);
+                        markClosed();
+                        hideBanner();
                     });
                     document.getElementById('bannerDownloadBtn').addEventListener('click', function() {
-                        markBannerDownloaded();
-                        setTimeout(() => {
-                            banner.classList.add('hidden');
-                            setTimeout(() => { banner.remove(); }, 500);
-                        }, 5000);
+                        markClosed();
+                        hideBanner();
                     });
                 }
-                if (shouldShowBanner()) {
-                    createBanner();
-                }
             })();
+
+            // --- Datos de planes con precio mínimo/máximo y kg mínimo/máximo ---
             const planesData = [{
                 id: "PREMIUM",
                 nombre: "PREMIUM",
                 categoria: "PROCESO ESENCIAL",
                 descripcion: "Limpieza eficiente, confiable y económica para prendas de uso diario.",
                 detergente: "Detergente líquido + suavizante estándar",
-                proceso: "Clasificación, prelavado, lavado profesional, secado, doblado y empaquetado."
+                proceso: "Clasificación, prelavado, lavado profesional, secado, doblado y empaquetado.",
+                precioMin: 1300,
+                precioMax: 2600,
+                kgMin: 1,
+                kgMax: 7
             }, {
                 id: "ESPECIAL",
                 nombre: "ESPECIAL",
                 categoria: "PROCESO ESENCIAL",
                 descripcion: "Para Sábanas. Fundas de almohadas. Toallas. Cobijas ligeras. Edredones (según capacidad). Mantas. Cortinas ligeras, Forros de muebles.",
                 detergente: "Detergente suave + suavizante",
-                proceso: "Clasificación, prelavado, lavado delicado, secado, doblado y empaquetado."
+                proceso: "Clasificación, prelavado, lavado delicado, secado, doblado y empaquetado.",
+                precioMin: 1000,
+                precioMax: 1500,
+                kgMin: 1,
+                kgMax: 7
             }, {
                 id: "WORKING",
                 nombre: "WORKING",
                 categoria: "PROCESO MEJORADO",
                 descripcion: "Especial para Overoles, uniformes industriales, ropa de mecánicos, albañiles y constructores. Tratamiento para suciedad difícil.",
                 detergente: "Detergente intensivo + desmanchador",
-                proceso: "Clasificación, pretratamiento, lavado profundo, secado, doblado y empaquetado."
+                proceso: "Clasificación, pretratamiento, lavado profundo, secado, doblado y empaquetado.",
+                precioMin: 1000,
+                precioMax: 1400,
+                kgMin: 1,
+                kgMax: 3
             }, {
                 id: "DEPORTE",
                 nombre: "DEPORTE",
                 categoria: "PROCESO MEJORADO",
                 descripcion: "Para ropa deportiva. Camisetas técnicas, shorts, licras, conjuntos deportivos y prendas de entrenamiento. Ayuda a eliminar olores y conservar los tejidos.",
                 detergente: "Detergente deportivo + eliminación de olores",
-                proceso: "Clasificación, lavado suave, secado rápido, doblado y empaquetado."
+                proceso: "Clasificación, lavado suave, secado rápido, doblado y empaquetado.",
+                precioMin: 900,
+                precioMax: 1300,
+                kgMin: 1,
+                kgMax: 3
             }, {
                 id: "VESTIR",
                 nombre: "VESTIR",
                 categoria: "PROCESO SUPERIOR",
                 descripcion: "Prendas de vestir: Camisas, pantalones, blusas, faldas y ropa formal. Lavado con mayor cuidado para mantener su presentación.",
                 detergente: "Detergente de alta gama + suavizante premium",
-                proceso: "Clasificación, lavado cuidadoso, planchado profesional, doblado y empaquetado."
+                proceso: "Clasificación, lavado cuidadoso, planchado profesional, doblado y empaquetado.",
+                precioMin: 1300,
+                precioMax: 1700,
+                kgMin: 1,
+                kgMax: 3
             }, {
                 id: "UNIFORME",
                 nombre: "UNIFORME",
                 categoria: "PROCESO SUPERIOR",
                 descripcion: "Dirigido a empresas, escuelas, oficinas y negocios. Lavado profesional para uniformes de uso frecuente.",
                 detergente: "Detergente intensivo + fijador de color",
-                proceso: "Clasificación, lavado profesional, planchado, doblado y empaquetado."
+                proceso: "Clasificación, lavado profesional, planchado, doblado y empaquetado.",
+                precioMin: 1200,
+                precioMax: 1600,
+                kgMin: 1,
+                kgMax: 3
             }, {
                 id: "BABY_EKKO",
                 nombre: "BABY EKKO (BB)",
                 categoria: "PROCESO EXCLUSIVO",
                 descripcion: "Servicio especializado para la ropa de los más pequeños, garantizando máxima suavidad, higiene y cuidado extremo.",
                 detergente: "Detergente neutro hipoalergénico",
-                proceso: "Clasificación, lavado delicado extremo, secado suave, doblado y empaquetado."
+                proceso: "Clasificación, lavado delicado extremo, secado suave, doblado y empaquetado.",
+                precioMin: 1000,
+                precioMax: 1600,
+                kgMin: 1,
+                kgMax: 3
+            },
+            // Nuevo proceso DISCRETO y OPCIONAL para ropa interior
+            {
+                id: "INTIMO",
+                nombre: "ÍNTIMO (Ropa Interior)",
+                categoria: "PROCESO DISCRETO",
+                descripcion: "Servicio extremadamente cuidadoso para ropa interior.",
+                detergente: "Detergente neutro + suavizante sin perfume fuerte",
+                proceso: "Clasificación privada y discreta, Tu ropa interior se procesará de manera independiente sin mezclarse con ninguna otra categoría de ropa.",
+                precioMin: 1000,
+                precioMax: 1700,
+                kgMin: 1,
+                kgMax: 3,
+                opcional: true,
+                badge: "Opcional"
             }];
+
+            // --- Render acordeones ---
+            function renderAcordeones() {
+                const container = document.getElementById('acordeonContainer');
+                if (!container) return;
+                const categorias = [...new Set(planesData.map(p => p.categoria))];
+                let html = '';
+                categorias.forEach(cat => {
+                    const planesCat = planesData.filter(p => p.categoria === cat);
+                    const isOptional = cat === "PROCESO DISCRETO";
+                    html += `
+                        <div class="acordeon-item ${isOptional ? 'optional-process' : ''}" style="${isOptional ? 'border-style: dashed; border-color: #aaa; background: #fcfcfc;' : ''}">
+                            <button class="acordeon-header" aria-expanded="false" style="${isOptional ? 'background: #f0f0f0; color: #555;' : ''}">
+                                <span>${cat}</span>
+                                <span class="indicator">▾</span>
+                            </button>
+                            <div class="acordeon-body">
+                                ${planesCat.map(p => `
+                                    <div class="plan-card">
+                                        <div class="plan-nombre">
+                                            ${p.nombre}
+                                            ${p.badge ? `<span class="badge-opcional">${p.badge}</span>` : ''}
+                                        </div>
+                                        <div class="plan-desc">${p.descripcion}</div>
+                                        <div class="plan-detalle">
+                                            <span><strong>Detergente:</strong> ${p.detergente}</span>
+                                            <span><strong>Proceso:</strong> ${p.proceso}</span>
+                                            <span class="precio"><strong>Precio:</strong> $${p.precioMin} – $${p.precioMax} CUP</span>
+                                            <span class="kg"><strong>Peso:</strong> ${p.kgMin} – ${p.kgMax} kg</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+
+                container.querySelectorAll('.acordeon-item').forEach(item => {
+                    const header = item.querySelector('.acordeon-header');
+                    header.addEventListener('click', function() {
+                        const isActive = item.classList.toggle('active');
+                        this.setAttribute('aria-expanded', isActive);
+                    });
+                });
+            }
+
+            // --- Zonas (integrado) ---
             const zonas = [
                 { nombre: "Zona Corta", lugares: "Centro Habana, Habana Vieja, Cerro, Luyanó", total: "600" },
                 { nombre: "Zona Media", lugares: "Víbora, Santo Suárez, Lawton, Vedado, Nuevo Vedado", total: "900" },
                 { nombre: "Zona Larga", lugares: "Playa, Alta Habana", total: "1200" }
             ];
-            const slidesBanner = [
-                { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
-                { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
-                { texto: "Espacio para que nuestros clientes compartan experiencias y sugerencias.", boton: "Acceder", url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
-                { texto: "Reciba promociones exclusivas para miembros de la comunidad.", boton: "Acceder", url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
-                { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" }
-            ];
-
-            function renderPlanesTabla() {
-                const container = document.getElementById('planesTableContainer');
-                if (!container) return;
-                const categorias = [...new Set(planesData.map(p => p.categoria))];
-                let html = '<table>';
-                categorias.forEach(cat => {
-                    const planesCat = planesData.filter(p => p.categoria === cat);
-                    html += `<thead><tr class="cat-header"><th colspan="3">${cat}</th></tr>`;
-                    html += `<tr><th>Plan</th><th>Descripción</th><th>Proceso / Detergente</th></tr></thead><tbody>`;
-                    planesCat.forEach(p => {
-                        html += `<tr>
-                            <td class="plan-nombre-tabla">${p.nombre}</td>
-                            <td class="plan-desc-tabla">${p.descripcion}</td>
-                            <td class="plan-tech-tabla">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                    <path d="M2 17l10 5 10-5"/>
-                                    <path d="M2 12l10 5 10-5"/>
-                                </svg>
-                                ${p.detergente}<br>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="3"/>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H5.78a1.65 1.65 0 0 0-1.51 1 1.65 1.65 0 0 0 .33 1.82l.07.08a1.65 1.65 0 0 0 1.18.44h10.2a1.65 1.65 0 0 0 1.18-.44l.07-.08z"/>
-                                </svg>
-                                ${p.proceso}
-                            </td>
-                        </tr>`;
-                    });
-                    html += '</tbody>';
-                });
-                html += '</table>';
-                container.innerHTML = html;
-            }
 
             function renderZonas() {
                 const section = document.getElementById('deliverySection');
@@ -1438,6 +1582,14 @@
                 section.innerHTML = html;
             }
 
+            // --- Banner slider (igual) ---
+            const slidesBanner = [
+                { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
+                { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
+                { texto: "Espacio para que nuestros clientes compartan experiencias y sugerencias.", boton: "Acceder", url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
+                { texto: "Reciba promociones exclusivas para miembros de la comunidad.", boton: "Acceder", url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
+                { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" }
+            ];
             let currentBannerIndex = 0;
             const totalBannerSlides = slidesBanner.length;
             let bannerInterval;
@@ -1491,6 +1643,7 @@
 
             function stopBannerAuto() { clearInterval(bannerInterval); }
 
+            // --- Menú toggle ---
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
             if (menuToggle && navMenu) {
@@ -1512,6 +1665,7 @@
                 });
             }
 
+            // --- Botones banner slider ---
             const bannerPrev = document.getElementById('bannerPrev');
             const bannerNext = document.getElementById('bannerNext');
             if (bannerPrev && bannerNext) {
@@ -1532,6 +1686,7 @@
                 }
             }
 
+            // --- Modal política ---
             const modalPolitica = document.getElementById('modalPolitica');
             const btnPolitica = document.getElementById('btnPolitica');
             const cerrarPolitica = document.getElementById('modalCerrar');
@@ -1543,7 +1698,8 @@
                 });
             }
 
-            renderPlanesTabla();
+            // --- Inicializar ---
+            renderAcordeones();
             renderZonas();
             buildBanner();
         });
