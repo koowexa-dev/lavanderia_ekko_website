@@ -26,7 +26,7 @@
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="EKKO" />
-    <meta property="og:updated_time" content="2026-07-29T10:00:00+00:00" />
+    <meta property="og:updated_time" content="2026-09-03T10:00:00+00:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@LavanderiaEKKO" />
     <meta name="twitter:creator" content="@LavanderiaEKKO" />
@@ -120,7 +120,8 @@
             "itemListElement": [
                 { "@type": "SiteNavigationElement", "position": 1, "name": "Inicio", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#inicio" },
                 { "@type": "SiteNavigationElement", "position": 2, "name": "Planes", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#planes" },
-                { "@type": "SiteNavigationElement", "position": 3, "name": "Valores", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#valores" }
+                { "@type": "SiteNavigationElement", "position": 3, "name": "Valores", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#valores" },
+                { "@type": "SiteNavigationElement", "position": 4, "name": "Horario", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#horario" }
             ]
         }
     </script>
@@ -227,7 +228,47 @@
             position: relative;
             display: flex;
             align-items: center;
+            gap: 0.75rem;
         }
+        /* --- Horario en header --- */
+        .horario-header {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            background: var(--celeste-suave);
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            white-space: nowrap;
+            border: 1px solid var(--gris-borde);
+        }
+        .horario-header .estado-indicador {
+            display: inline-block;
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            margin-right: 0.15rem;
+        }
+        .horario-header .estado-indicador.abierto {
+            background: #2E7D32;
+        }
+        .horario-header .estado-indicador.cerrado {
+            background: #B71C1C;
+        }
+        .horario-header .estado-texto {
+            font-weight: 600;
+            font-size: 0.65rem;
+        }
+        .horario-header .horario-detalle-texto {
+            color: var(--texto-secundario);
+            font-size: 0.6rem;
+        }
+        @media (max-width: 600px) {
+            .horario-header .horario-detalle-texto {
+                display: none;
+            }
+        }
+
         .nav-menu {
             display: none;
             flex-direction: column;
@@ -431,6 +472,80 @@
             font-size: clamp(0.75rem, 0.9vw, 0.85rem);
             color: var(--texto-secundario);
             line-height: 1.5;
+        }
+
+        /* --- Bloque horario en valores --- */
+        .horario-block {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid var(--gris-borde);
+            box-shadow: var(--shadow-sm);
+        }
+        .horario-block h3 {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: var(--verde-eko);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .horario-block .estado-grande {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .horario-block .estado-grande.abierto {
+            background: #E8F5E9;
+            color: #1B5E20;
+            border: 1px solid #A5D6A7;
+        }
+        .horario-block .estado-grande.cerrado {
+            background: #FFEBEE;
+            color: #B71C1C;
+            border: 1px solid #EF9A9A;
+        }
+        .horario-block .dia-actual {
+            font-size: clamp(0.9rem, 1vw, 1rem);
+            font-weight: 600;
+            color: var(--azul-profundo);
+            margin: 0.25rem 0 0.5rem;
+        }
+        .horario-block .tiempo-restante {
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+            color: var(--texto-secundario);
+            margin-bottom: 0.75rem;
+        }
+        .horario-block .tiempo-restante strong {
+            color: var(--verde-eko);
+        }
+        .horario-block .horario-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .horario-block .horario-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0.5rem;
+            border-bottom: 1px dashed var(--gris-borde);
+            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+        }
+        .horario-block .horario-item .dia {
+            font-weight: 600;
+            color: var(--texto-principal);
+        }
+        .horario-block .horario-item .hora {
+            color: var(--texto-secundario);
+        }
+        .horario-block .horario-item.cerrado-dia .hora {
+            color: #B71C1C;
+            font-weight: 600;
         }
 
         /* Contacto en valores */
@@ -831,117 +946,7 @@
             opacity: 0.6;
         }
 
-        /* Banner app flotante optimizado (solo móvil) */
-        .app-notification-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 3000;
-            background: rgba(13, 71, 161, 0.95);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            color: white;
-            padding: 0.5rem 0.75rem;
-            display: none;
-            /* se muestra solo en móvil */
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            transform: translateY(0);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .app-notification-banner.hidden {
-            transform: translateY(120%);
-            opacity: 0;
-            pointer-events: none;
-        }
-        .app-notification-banner .banner-content {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex: 1;
-            min-width: 0;
-        }
-        .app-notification-banner .banner-icon {
-            flex-shrink: 0;
-            width: 2rem;
-            height: 2rem;
-            background: var(--blanco-puro);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.15rem;
-        }
-        .app-notification-banner .banner-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-        .app-notification-banner .banner-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            font-size: 0.7rem;
-            line-height: 1.3;
-        }
-        .app-notification-banner .banner-text strong {
-            font-weight: 700;
-            font-size: 0.75rem;
-        }
-        .app-notification-banner .banner-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            flex-shrink: 0;
-        }
-        .app-notification-banner .btn-download-app {
-            background: var(--blanco-puro);
-            color: var(--azul-profundo);
-            border: none;
-            padding: 0.2rem 0.7rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.65rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.2rem;
-            font-family: var(--font-family);
-            transition: background 0.2s;
-        }
-        .app-notification-banner .btn-download-app:hover {
-            background: #f0f0f0;
-        }
-        .app-notification-banner .btn-close-banner {
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
-            color: white;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-family);
-            padding: 0;
-            font-size: 0.8rem;
-            line-height: 1;
-        }
-        .app-notification-banner .btn-close-banner:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
         @media (max-width: 768px) {
-            .app-notification-banner {
-                display: flex;
-            }
             .values-grid {
                 grid-template-columns: 1fr;
             }
@@ -955,6 +960,12 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+            }
+            .horario-header .horario-detalle-texto {
+                display: none;
+            }
+            .horario-block .horario-lista {
+                grid-template-columns: 1fr;
             }
         }
         @media (min-width: 769px) {
@@ -991,6 +1002,12 @@
                 <div class="logo-text"><span class="ekko-brand">EKK<span class="o-special">O</span></span></div>
             </div>
             <div class="header-right">
+                <!-- Horario en header (tiempo real) -->
+                <div class="horario-header" id="horarioHeader">
+                    <span class="estado-indicador" id="estadoIndicador"></span>
+                    <span class="estado-texto" id="estadoTextoHeader">Cargando...</span>
+                    <span class="horario-detalle-texto" id="horarioDetalleHeader">Lun–Sáb 9:00–18:00</span>
+                </div>
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
                         <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
@@ -1000,6 +1017,7 @@
                     <a href="#inicio">Inicio</a>
                     <a href="#planes">Planes</a>
                     <a href="#valores">Valores</a>
+                    <a href="#horario">Horario</a>
                 </nav>
             </div>
         </div>
@@ -1069,7 +1087,7 @@
             </div>
         </section>
 
-        <!-- VALORES (con contacto) -->
+        <!-- VALORES (con horario y contacto) -->
         <section id="valores" aria-labelledby="valores-heading" class="container">
             <div class="section-title">
                 <h2 id="valores-heading">Nuestros Valores</h2>
@@ -1114,6 +1132,31 @@
                         O - Optimización
                     </h3>
                     <p>Tecnología y procesos eficientes, para entregarte un servicio rápido y confiable.</p>
+                </div>
+            </div>
+
+            <!-- Bloque de Horario (ancla #horario) -->
+            <div id="horario" class="horario-block">
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Horario de Atención
+                </h3>
+                <div>
+                    <span class="estado-grande" id="estadoGrande">Cargando...</span>
+                </div>
+                <div class="dia-actual" id="diaActual">Cargando día...</div>
+                <div class="tiempo-restante" id="tiempoRestante">Cargando tiempo...</div>
+                <div class="horario-lista">
+                    <div class="horario-item"><span class="dia">Lunes</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item"><span class="dia">Martes</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item"><span class="dia">Miércoles</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item"><span class="dia">Jueves</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item"><span class="dia">Viernes</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item"><span class="dia">Sábado</span><span class="hora">9:00 – 18:00</span></div>
+                    <div class="horario-item cerrado-dia"><span class="dia">Domingo</span><span class="hora">Cerrado</span></div>
                 </div>
             </div>
 
@@ -1175,7 +1218,7 @@
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-compact">
-                <div class="logo-text-footer"><span class="ekko-brand">EKK<span class="o-special">O</span></span></div>
+                <div class="logo-text-footer"><span class="ekko-brand">EKK<span class="o-special">O</span> ~ </span> ámalo como a ti mismo</div>
                 <div class="footer-politica">
                     <button class="btn-politica" id="btnPolitica">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;">
@@ -1254,30 +1297,6 @@
             <div class="legal-nota-modal">
                 <strong>Nota legal:</strong> La validez oficial de la orden queda respaldada por una firma digital. Para que el servicio sea legal, el cliente debe registrar su número de carnet de identidad.
             </div>
-        </div>
-    </div>
-
-    <!-- Banner flotante de app (solo móvil) -->
-    <div class="app-notification-banner" id="appNotificationBanner">
-        <div class="banner-content">
-            <div class="banner-icon">
-                <img src="img/favicon.ico" alt="App EKKO" width="32" height="32" loading="lazy" />
-            </div>
-            <div class="banner-text">
-                <strong>App EKKO</strong>
-                <span>Gestiona tus pedidos y promos</span>
-            </div>
-        </div>
-        <div class="banner-actions">
-            <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" target="_blank" rel="noopener noreferrer" class="btn-download-app" id="bannerDownloadBtn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                Descargar
-            </a>
-            <button class="btn-close-banner" id="bannerCloseBtn" aria-label="Cerrar banner">✕</button>
         </div>
     </div>
 
@@ -1364,47 +1383,86 @@
                 } catch (_) {}
             })();
 
-            // --- Banner app flotante optimizado (solo móvil y con recordatorio) ---
-            (function() {
-                const BANNER_KEY = 'ekkoAppBannerClosed';
-                const BANNER_TIMESTAMP_KEY = 'ekkoAppBannerTimestamp';
-                const DAYS_TO_REMIND = 7;
-                const banner = document.getElementById('appNotificationBanner');
-                if (!banner) return;
+            // --- FUNCIÓN HORARIO EN TIEMPO REAL ---
+            function actualizarHorario() {
+                const ahora = new Date();
+                const dia = ahora.getDay(); // 0=domingo, 1=lunes, ..., 6=sábado
+                const hora = ahora.getHours();
+                const minutos = ahora.getMinutes();
+                const horaActual = hora + minutos / 60;
 
-                function shouldShow() {
-                    const closed = localStorage.getItem(BANNER_KEY);
-                    if (!closed) return true;
-                    const ts = parseInt(localStorage.getItem(BANNER_TIMESTAMP_KEY) || '0', 10);
-                    const diff = (Date.now() - ts) / (1000 * 60 * 60 * 24);
-                    return diff >= DAYS_TO_REMIND;
+                // Definir horario: Lunes a Sábado de 9:00 a 18:00
+                const abierto = (dia >= 1 && dia <= 6) && (horaActual >= 9 && horaActual < 18);
+                const estadoTexto = abierto ? 'Abierto' : 'Cerrado';
+                const estadoClase = abierto ? 'abierto' : 'cerrado';
+
+                // Elementos en header
+                const indicador = document.getElementById('estadoIndicador');
+                const estadoHeader = document.getElementById('estadoTextoHeader');
+                if (indicador) {
+                    indicador.className = 'estado-indicador ' + estadoClase;
+                }
+                if (estadoHeader) {
+                    estadoHeader.textContent = estadoTexto;
                 }
 
-                function markClosed() {
-                    localStorage.setItem(BANNER_KEY, 'true');
-                    localStorage.setItem(BANNER_TIMESTAMP_KEY, String(Date.now()));
+                // Elemento en bloque horario (estado grande)
+                const estadoGrande = document.getElementById('estadoGrande');
+                if (estadoGrande) {
+                    estadoGrande.textContent = estadoTexto;
+                    estadoGrande.className = 'estado-grande ' + estadoClase;
                 }
 
-                function hideBanner() {
-                    banner.classList.add('hidden');
-                    setTimeout(() => { banner.style.display = 'none'; }, 400);
+                // Día actual (nombre en español)
+                const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                const diaActual = document.getElementById('diaActual');
+                if (diaActual) {
+                    diaActual.textContent = '📅 ' + diasSemana[dia];
                 }
 
-                if (!shouldShow()) {
-                    banner.style.display = 'none';
-                } else {
-                    banner.style.display = 'flex';
-                    // Eventos
-                    document.getElementById('bannerCloseBtn').addEventListener('click', function() {
-                        markClosed();
-                        hideBanner();
-                    });
-                    document.getElementById('bannerDownloadBtn').addEventListener('click', function() {
-                        markClosed();
-                        hideBanner();
-                    });
+                // Tiempo restante para cerrar (si está abierto) o mensaje de cerrado
+                const tiempoRestanteElem = document.getElementById('tiempoRestante');
+                if (tiempoRestanteElem) {
+                    if (abierto) {
+                        // Calcular minutos hasta las 18:00
+                        const fin = 18 * 60; // 1080 minutos desde 00:00
+                        const ahoraMin = hora * 60 + minutos;
+                        let diffMin = fin - ahoraMin;
+                        if (diffMin < 0) diffMin = 0;
+                        const horasRest = Math.floor(diffMin / 60);
+                        const minsRest = diffMin % 60;
+                        tiempoRestanteElem.innerHTML = `⏳ Tiempo para cerrar: <strong>${horasRest}h ${minsRest}min</strong>`;
+                    } else {
+                        if (dia === 0) {
+                            tiempoRestanteElem.innerHTML = '🔒 Cerrado hoy (Domingo)';
+                        } else {
+                            tiempoRestanteElem.innerHTML = '🔒 Cerrado por hoy';
+                        }
+                    }
                 }
-            })();
+
+                // También podemos actualizar el detalle en el header con el tiempo restante
+                const detalleHeader = document.getElementById('horarioDetalleHeader');
+                if (detalleHeader) {
+                    if (abierto) {
+                        const fin = 18 * 60;
+                        const ahoraMin = hora * 60 + minutos;
+                        let diffMin = fin - ahoraMin;
+                        if (diffMin < 0) diffMin = 0;
+                        const horasRest = Math.floor(diffMin / 60);
+                        const minsRest = diffMin % 60;
+                        detalleHeader.textContent = `Cierra en ${horasRest}h ${minsRest}min`;
+                    } else {
+                        detalleHeader.textContent = 'Cerrado hoy';
+                    }
+                }
+            }
+
+            // Ejecutar al cargar
+            actualizarHorario();
+
+            // Actualizar cada minuto
+            setInterval(actualizarHorario, 60000);
 
             // --- Datos de planes con precio mínimo/máximo y kg mínimo/máximo ---
             const planesData = [{
@@ -1412,7 +1470,7 @@
                 nombre: "PREMIUM",
                 categoria: "PROCESO ESENCIAL",
                 descripcion: "Limpieza eficiente, confiable y económica para prendas de uso diario.",
-                detergente: "Detergente líquido + suavizante estándar",
+                detergente: "Detergente líquido + suavizante + fragancia",
                 proceso: "Clasificación, prelavado, lavado profesional, secado, doblado y empaquetado.",
                 precioMin: 1300,
                 precioMax: 2600,
@@ -1474,8 +1532,8 @@
                 kgMin: 1,
                 kgMax: 3
             }, {
-                id: "BABY_EKKO",
-                nombre: "BABY EKKO (BB)",
+                id: "BABY",
+                nombre: "EKKO BABY",
                 categoria: "PROCESO EXCLUSIVO",
                 descripcion: "Servicio especializado para la ropa de los más pequeños, garantizando máxima suavidad, higiene y cuidado extremo.",
                 detergente: "Detergente neutro hipoalergénico",
@@ -1484,19 +1542,30 @@
                 precioMax: 1600,
                 kgMin: 1,
                 kgMax: 3
-            },
-            // Nuevo proceso DISCRETO y OPCIONAL para ropa interior
-            {
+            }, {
+                id: "MUÑEQUERA",
+                nombre: "MUÑEQUERA",
+                categoria: "PROCESO EXTRA",
+                descripcion: "Servicio lavado y cuidado especializado de peluches y artículos infantiles.",
+                detergente: "Detergente antialérgico + suavizante antialérgico",
+                proceso: "Clasificación y procedimiento cuidadoso para articulos infantiles.",
+                precioMin: 1100,
+                precioMax: 1600,
+                kgMin: 1,
+                kgMax: 3,
+                opcional: true,
+                badge: "Opcional"
+            }, {
                 id: "INTIMO",
                 nombre: "ÍNTIMO (Ropa Interior)",
                 categoria: "PROCESO DISCRETO",
-                descripcion: "Servicio extremadamente cuidadoso para ropa interior.",
-                detergente: "Detergente neutro + suavizante sin perfume fuerte",
+                descripcion: "Servicio extremadamente cuidadoso para todo tipo de prendas interiores.",
+                detergente: "Detergente aromatico + suavizante",
                 proceso: "Clasificación privada y discreta, Tu ropa interior se procesará de manera independiente sin mezclarse con ninguna otra categoría de ropa.",
-                precioMin: 1000,
-                precioMax: 1700,
-                kgMin: 1,
-                kgMax: 3,
+                precioMin: 500,
+                precioMax: 1000,
+                kgMin: 0.5,
+                kgMax: 1,
                 opcional: true,
                 badge: "Opcional"
             }];
@@ -1559,8 +1628,8 @@
                 if (!section) return;
                 let html = `
                     <div style="text-align:center;">
-                        <h3 style="color: var(--verde-eko); margin:0; font-size:clamp(1rem, 1.2vw, 1.1rem);">Servicio de Recogida y Entrega a Domicilio</h3>
-                        <p style="margin:0.125rem 0 0.375rem; font-size:clamp(0.7rem, 0.8vw, 0.8rem);">Tiempo de entrega: 2 a 3 días · Comodidad en toda La Habana</p>
+                        <h3 style="color: var(--verde-eko); margin:0; font-size:clamp(1rem, 1.2vw, 1.1rem);">Servicio a domicilio</h3>
+                        <p style="margin:0.125rem 0 0.375rem; font-size:clamp(0.7rem, 0.8vw, 0.8rem);">Tiempo de entrega: 2 a 3 días</p>
                     </div>
                     <div class="delivery-grid">
                 `;
@@ -1582,7 +1651,7 @@
                 section.innerHTML = html;
             }
 
-            // --- Banner slider (igual) ---
+            // --- Banner slider ---
             const slidesBanner = [
                 { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
                 { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
