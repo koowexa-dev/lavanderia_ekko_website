@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>EKKO</title>
+    <title>EKKO · Lavandería profesional eco‑friendly</title>
+    <!-- Metaetiquetas optimizadas (SEO, OG, Twitter) -->
     <meta name="description" content="Lavandería EKKO en La Habana: servicio premium de lavado, secado y planchado a domicilio. Recogida en 24h, entrega en 48h. Productos eco‑friendly, precios justos y atención personalizada." />
     <meta name="keywords" content="lavandería La Habana, lavado de ropa a domicilio, tintorería eco‑friendly, servicio de planchado, recogida y entrega, limpieza profesional, lavandería económica, lavandería premium, EKKO, productos de limpieza, detergentes ecológicos, lavandería cerca de mí, Centro Habana, Vedado, Playa, lavandería para bebé, lavandería en Cuba, servicio de lavandería, lavandería con app, lavandería sostenible, cuidado de prendas, limpieza de sábanas, lavado de uniformes, servicio de lavandería 24 horas" />
     <meta name="author" content="Lavandería EKKO" />
@@ -26,7 +27,7 @@
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="EKKO" />
-    <meta property="og:updated_time" content="2026-09-03T10:00:00+00:00" />
+    <meta property="og:updated_time" content="2026-09-09T10:00:00+00:00" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@LavanderiaEKKO" />
     <meta name="twitter:creator" content="@LavanderiaEKKO" />
@@ -47,7 +48,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-ekkoNonce' https://apis.google.com; style-src 'self' 'nonce-ekkoNonce' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://github.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-ekkoNonce'; style-src 'self' 'nonce-ekkoNonce' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://github.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -105,27 +106,14 @@
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DEPORTE" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "VESTIR" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UNIFORME" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "BABY EKKO (BB)" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "BABY EKKO" } },
                     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ÍNTIMO (Opcional)" } }
                 ]
             }
         }
     </script>
-    <script type="application/ld+json" nonce="ekkoNonce">
-        {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": "Sitemap Lavandería EKKO",
-            "description": "Índice de secciones principales del sitio web",
-            "itemListElement": [
-                { "@type": "SiteNavigationElement", "position": 1, "name": "Inicio", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#inicio" },
-                { "@type": "SiteNavigationElement", "position": 2, "name": "Planes", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#planes" },
-                { "@type": "SiteNavigationElement", "position": 3, "name": "Valores", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#valores" },
-                { "@type": "SiteNavigationElement", "position": 4, "name": "Horario", "url": "https://koowexa-dev.github.io/lavanderia_ekko_website/#horario" }
-            ]
-        }
-    </script>
     <style nonce="ekkoNonce">
+        /* ===== RESET Y VARIABLES ===== */
         *,
         *::before,
         *::after {
@@ -151,6 +139,7 @@
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
             --radius: 14px;
             --radius-sm: 8px;
+            --transition: 0.25s ease;
         }
         body {
             background: var(--gris-fondo);
@@ -166,6 +155,29 @@
             margin: 0 auto;
             padding: 0 clamp(0.75rem, 2vw, 2rem);
         }
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        .anim-fade-up {
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .anim-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .hover-lift {
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        /* ===== HEADER ===== */
         header {
             background: var(--blanco-puro);
             border-bottom: 2px solid var(--verde-eko);
@@ -225,12 +237,11 @@
             fill: var(--azul-profundo);
         }
         .header-right {
-            position: relative;
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            flex-wrap: wrap;
         }
-        /* --- Horario en header --- */
         .horario-header {
             display: flex;
             align-items: center;
@@ -263,9 +274,35 @@
             color: var(--texto-secundario);
             font-size: 0.6rem;
         }
+        .btn-reservar-header {
+            background: var(--verde-eko);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background var(--transition);
+            text-decoration: none;
+            font-family: var(--font-family);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .btn-reservar-header:hover {
+            background: #144a18;
+        }
         @media (max-width: 600px) {
             .horario-header .horario-detalle-texto {
                 display: none;
+            }
+            .btn-reservar-header span {
+                display: none;
+            }
+            .btn-reservar-header {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
             }
         }
 
@@ -298,6 +335,8 @@
         .nav-menu a:focus {
             background: var(--celeste-suave);
         }
+
+        /* ===== BANNER SLIDER ===== */
         .banner-slider {
             width: 100%;
             aspect-ratio: 4 / 1;
@@ -393,32 +432,299 @@
             width: 1rem;
             border-radius: 0.5rem;
         }
+
+        /* ===== HERO ===== */
         .hero-banner {
             background: linear-gradient(120deg, var(--blanco-puro) 0%, var(--celeste-suave) 100%);
             padding: clamp(1.5rem, 3vw, 2.5rem) 1rem clamp(1rem, 2vw, 1.5rem);
             text-align: center;
             margin-bottom: 1.5rem;
+            border-radius: var(--radius);
         }
         .hero-banner h1 {
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             font-weight: 800;
             color: var(--verde-eko);
+            letter-spacing: -0.02em;
         }
-        .slogan {
-            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-            font-weight: 600;
+        .hero-banner .eslogan-central {
+            font-size: clamp(1rem, 1.8vw, 1.5rem);
+            font-weight: 700;
             color: var(--azul-profundo);
-            margin-bottom: 0.25rem;
+            margin: 0.25rem 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .hero-banner .eslogan-central .tilde {
+            color: var(--verde-eko);
+            font-weight: 800;
+            font-size: 1.2em;
+        }
+        .hero-banner .subtitulo {
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+            color: var(--texto-secundario);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CALCULADORA ===== */
+        .calculadora-section {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--gris-borde);
+            box-shadow: var(--shadow-sm);
+        }
+        .calculadora-section h2 {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--verde-eko);
+            text-align: center;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            flex-wrap: wrap;
         }
-        .slogan .dot-icon {
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 2rem;
+            align-items: start;
+        }
+        @media (max-width: 600px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .calc-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--texto-principal);
+        }
+        .calc-group select,
+        .calc-group input {
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gris-borde);
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            background: var(--blanco-puro);
+        }
+        .calc-group input[type="range"] {
+            width: 100%;
+            accent-color: var(--verde-eko);
+        }
+        .calc-group .peso-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+        }
+        .calc-resultado {
+            background: var(--celeste-suave);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--azul-profundo);
+            border: 1px solid var(--gris-borde);
+            margin-top: 0.5rem;
+        }
+        .calc-resultado .precio-final {
+            font-size: 1.8rem;
+            color: var(--verde-eko);
+        }
+        .calc-envio {
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+            font-weight: 400;
+        }
+
+        /* ===== FLUJO DE PASOS ===== */
+        .pasos-section {
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .paso-item {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            padding: 1.2rem 0.75rem;
+            text-align: center;
+            border: 1px solid var(--gris-borde);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .paso-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .paso-item .paso-icono {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            background: var(--verde-eko);
+            color: white;
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
         }
+        .paso-item h4 {
+            color: var(--verde-eko);
+            font-size: 1rem;
+        }
+        .paso-item p {
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+            margin-top: 0.2rem;
+        }
+
+        /* ===== ZONAS INTERACTIVAS ===== */
+        .delivery-section {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            padding: 1rem 0.875rem;
+            margin: 1.5rem 0 1rem;
+            border: 1px solid var(--gris-borde);
+        }
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        .zone-card {
+            background: var(--celeste-suave);
+            padding: 0.625rem 0.75rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--verde-eko);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+        .zone-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-sm);
+        }
+        .zone-card.seleccionada {
+            border-left-color: var(--azul-profundo);
+            background: #d4e4f7;
+            box-shadow: 0 0 0 2px var(--azul-medio);
+        }
+        .zone-card h3 {
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
+            margin: 0;
+            color: var(--azul-profundo);
+        }
+        .zone-card .zone-lugares {
+            font-size: clamp(0.65rem, 0.75vw, 0.7rem);
+            color: var(--texto-secundario);
+            margin: 0.125rem 0;
+        }
+        .zone-card .zone-total {
+            font-weight: 800;
+            color: var(--verde-eko);
+            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+            margin-top: 0.125rem;
+        }
+        .delivery-note {
+            background: var(--beige-claro);
+            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            margin-top: 0.75rem;
+            font-size: clamp(0.65rem, 0.75vw, 0.7rem);
+            border-left: 4px solid var(--verde-eko);
+            color: #2c3e2f;
+        }
+
+        /* ===== FORMULARIO DE RESERVA ===== */
+        .reserva-form {
+            background: var(--blanco-puro);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--gris-borde);
+            box-shadow: var(--shadow-sm);
+        }
+        .reserva-form h2 {
+            text-align: center;
+            color: var(--verde-eko);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-grid label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--texto-principal);
+        }
+        .form-grid input,
+        .form-grid select,
+        .form-grid textarea {
+            padding: 0.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gris-borde);
+            font-family: var(--font-family);
+            font-size: 0.85rem;
+        }
+        .form-grid textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+        .btn-enviar-reserva {
+            background: var(--verde-eko);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background var(--transition);
+            width: 100%;
+            max-width: 300px;
+            margin: 0.5rem auto 0;
+            display: block;
+            font-family: var(--font-family);
+        }
+        .btn-enviar-reserva:hover {
+            background: #144a18;
+        }
+
+        /* ===== SECCIÓN DE VALORES ===== */
         .section-title {
             text-align: center;
             margin: 2rem 0 1rem;
@@ -433,8 +739,6 @@
             color: var(--azul-profundo);
             margin-top: 0.25rem;
         }
-
-        /* Tarjetas de valores */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -450,7 +754,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform var(--transition), box-shadow var(--transition);
         }
         .value-card:hover {
             transform: translateY(-2px);
@@ -474,7 +778,7 @@
             line-height: 1.5;
         }
 
-        /* --- Bloque horario en valores --- */
+        /* ===== HORARIO ===== */
         .horario-block {
             background: var(--blanco-puro);
             border-radius: var(--radius);
@@ -514,6 +818,9 @@
             font-weight: 600;
             color: var(--azul-profundo);
             margin: 0.25rem 0 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         .horario-block .tiempo-restante {
             font-size: clamp(0.85rem, 0.95vw, 0.95rem);
@@ -548,7 +855,7 @@
             font-weight: 600;
         }
 
-        /* Contacto en valores */
+        /* ===== CONTACTO ===== */
         .contact-section {
             margin-top: 2rem;
             padding: 1.5rem 1rem;
@@ -599,7 +906,7 @@
             text-decoration: underline;
         }
 
-        /* Acordeones de tarifarios */
+        /* ===== ACORDEONES (planes) ===== */
         .acordeon-container {
             display: flex;
             flex-direction: column;
@@ -612,7 +919,7 @@
             border: 1px solid var(--gris-borde);
             box-shadow: var(--shadow-sm);
             overflow: hidden;
-            transition: box-shadow 0.2s;
+            transition: box-shadow var(--transition);
         }
         .acordeon-item:hover {
             box-shadow: var(--shadow-md);
@@ -662,6 +969,9 @@
             font-weight: 700;
             color: var(--verde-eko);
             font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
         .plan-card .plan-desc {
             font-size: clamp(0.75rem, 0.85vw, 0.85rem);
@@ -688,8 +998,17 @@
         .plan-card .plan-detalle .kg {
             color: var(--verde-eko);
         }
-
-        /* Estilo para proceso opcional/discreto */
+        .badge-opcional {
+            background: #e0e0e0;
+            color: #555;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: inline-block;
+            vertical-align: middle;
+        }
         .acordeon-item.optional-process {
             border-style: dashed;
             border-color: #aaa;
@@ -702,69 +1021,8 @@
         .acordeon-item.optional-process .acordeon-header:hover {
             background: #e5e5e5;
         }
-        .badge-opcional {
-            background: #e0e0e0;
-            color: #555;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.6rem;
-            border-radius: 20px;
-            margin-left: 0.5rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            display: inline-block;
-            vertical-align: middle;
-        }
 
-        /* Zonas integradas en tarifario */
-        .delivery-section {
-            background: var(--blanco-puro);
-            border-radius: var(--radius);
-            padding: 1rem 0.875rem;
-            margin: 1.5rem 0 1rem;
-            border: 1px solid var(--gris-borde);
-        }
-        .delivery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 0.75rem;
-            margin-top: 0.75rem;
-        }
-        .zone-card {
-            background: var(--celeste-suave);
-            padding: 0.625rem 0.75rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--verde-eko);
-            display: flex;
-            flex-direction: column;
-            gap: 0.125rem;
-        }
-        .zone-card h3 {
-            font-size: clamp(0.85rem, 1vw, 0.95rem);
-            margin: 0;
-            color: var(--azul-profundo);
-        }
-        .zone-card .zone-lugares {
-            font-size: clamp(0.65rem, 0.75vw, 0.7rem);
-            color: var(--texto-secundario);
-            margin: 0.125rem 0;
-        }
-        .zone-card .zone-total {
-            font-weight: 800;
-            color: var(--verde-eko);
-            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-            margin-top: 0.125rem;
-        }
-        .delivery-note {
-            background: var(--beige-claro);
-            border-radius: 10px;
-            padding: 0.5rem 0.75rem;
-            margin-top: 0.75rem;
-            font-size: clamp(0.65rem, 0.75vw, 0.7rem);
-            border-left: 4px solid var(--verde-eko);
-            color: #2c3e2f;
-        }
-
-        /* App integrada */
+        /* ===== APP ===== */
         .app-integrada {
             background: linear-gradient(135deg, var(--azul-profundo), var(--verde-eko));
             border-radius: var(--radius);
@@ -805,7 +1063,7 @@
             font-weight: 700;
             font-size: clamp(0.7rem, 0.8vw, 0.8rem);
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background var(--transition), transform var(--transition);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -814,9 +1072,10 @@
         }
         .app-integrada .app-boton:hover {
             background: #f0f0f0;
+            transform: scale(1.03);
         }
 
-        /* Footer compacto */
+        /* ===== FOOTER ===== */
         footer {
             background: #111827;
             color: #e2e8f0;
@@ -869,7 +1128,7 @@
             margin-top: 0.2rem;
         }
 
-        /* Modal */
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
@@ -929,6 +1188,18 @@
             font-size: clamp(0.75rem, 0.8vw, 0.8rem);
             color: #2c3e2f;
         }
+        .modal-contenido .legal-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        .modal-contenido .legal-checkbox input {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: var(--verde-eko);
+        }
         .modal-cerrar {
             position: absolute;
             top: 0.5rem;
@@ -946,6 +1217,7 @@
             opacity: 0.6;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .values-grid {
                 grid-template-columns: 1fr;
@@ -965,6 +1237,14 @@
                 display: none;
             }
             .horario-block .horario-lista {
+                grid-template-columns: 1fr;
+            }
+            .pasos-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .pasos-section {
                 grid-template-columns: 1fr;
             }
         }
@@ -1002,73 +1282,150 @@
                 <div class="logo-text"><span class="ekko-brand">EKK<span class="o-special">O</span></span></div>
             </div>
             <div class="header-right">
-                <!-- Horario en header (tiempo real) -->
                 <div class="horario-header" id="horarioHeader">
                     <span class="estado-indicador" id="estadoIndicador"></span>
                     <span class="estado-texto" id="estadoTextoHeader">Cargando...</span>
                     <span class="horario-detalle-texto" id="horarioDetalleHeader">Lun–Sáb 9:00–18:00</span>
                 </div>
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
-                    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
-                        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
-                    </svg>
+                <a href="#reservar" class="btn-reservar-header">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <span>Reservar ahora</span>
+                </a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
                 </button>
                 <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Menú principal">
                     <a href="#inicio">Inicio</a>
                     <a href="#planes">Planes</a>
                     <a href="#valores">Valores</a>
                     <a href="#horario">Horario</a>
+                    <a href="#reservar">Reservar</a>
                 </nav>
             </div>
         </div>
     </header>
+
     <main role="main">
-        <!-- INICIO -->
+        <!-- ===== INICIO ===== -->
         <section id="inicio" aria-labelledby="inicio-heading">
             <div class="hero-banner">
                 <div class="container">
                     <div class="banner-slider" id="bannerSlider" role="region" aria-label="Banner de servicios">
                         <div class="banner-slides" id="bannerSlides"></div>
-                        <button class="banner-btn banner-prev" id="bannerPrev" aria-label="Anterior diapositiva">‹</button>
-                        <button class="banner-btn banner-next" id="bannerNext" aria-label="Siguiente diapositiva">›</button>
+                        <button class="banner-btn banner-prev" id="bannerPrev" aria-label="Anterior">‹</button>
+                        <button class="banner-btn banner-next" id="bannerNext" aria-label="Siguiente">›</button>
                         <div class="banner-dots" id="bannerDots" role="tablist"></div>
                     </div>
-                    <h1 id="inicio-heading">Limpieza profesional y Una frescura que se nota</h1>
-                    <div class="slogan">
-                        <span>Limpieza</span>
-                        <span class="dot-icon">
-                            <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
-                                <circle cx="3" cy="3" r="3" fill="#0D47A1" />
-                            </svg>
-                        </span>
-                        <span>Confianza</span>
-                        <span class="dot-icon">
-                            <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
-                                <circle cx="3" cy="3" r="3" fill="#0D47A1" />
-                            </svg>
-                        </span>
-                        <span>Economía</span>
+                    <h1 id="inicio-heading">EKKO</h1>
+                    <div class="eslogan-central">
+                        <span>~</span>
+                        <span class="tilde">ámalo</span>
+                        <span>como a ti mismo</span>
+                    </div>
+                    <p class="subtitulo">Limpieza profesional con productos eco‑friendly, recogida a domicilio y entrega en 48h. Cuidamos tu ropa y el planeta.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CALCULADORA DE PRECIO ===== -->
+        <section class="container" aria-labelledby="calc-heading">
+            <div class="calculadora-section" id="calculadora">
+                <h2>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                    Calcula tu precio
+                </h2>
+                <div class="calc-grid">
+                    <div class="calc-group">
+                        <label for="tipoRopa">Tipo de ropa / proceso</label>
+                        <select id="tipoRopa"></select>
+                        <label for="pesoKg">Peso (kg): <span id="pesoValor">2.0</span> kg</label>
+                        <input type="range" id="pesoKg" min="0.5" max="7" step="0.1" value="2.0" />
+                        <div class="peso-display"><span>0.5 kg</span><span>7 kg</span></div>
+                    </div>
+                    <div class="calc-group">
+                        <label>Zona de entrega</label>
+                        <div id="zonasCalc" style="display:flex; flex-direction:column; gap:0.3rem;"></div>
+                        <div class="calc-resultado">
+                            Total estimado: <span class="precio-final" id="precioEstimado">0</span> CUP
+                            <div class="calc-envio" id="envioMostrado">(envío incluido)</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TARIFARIOS (PLANES + ZONAS + APP) -->
+        <!-- ===== FLUJO DE PASOS ===== -->
+        <section class="container">
+            <div class="section-title">
+                <h2>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Cómo funciona
+                </h2>
+                <p>Tu ropa en las mejores manos en 4 pasos</p>
+            </div>
+            <div class="pasos-section">
+                <div class="paso-item anim-fade-up">
+                    <div class="paso-icono">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <h4>Reserva</h4>
+                    <p>Elige tu plan y confirma horario</p>
+                </div>
+                <div class="paso-item anim-fade-up" style="animation-delay:0.1s">
+                    <div class="paso-icono">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h4>Recogida</h4>
+                    <p>Pasamos por tu domicilio</p>
+                </div>
+                <div class="paso-item anim-fade-up" style="animation-delay:0.2s">
+                    <div class="paso-icono">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h4>Lavado profesional</h4>
+                    <p>Proceso eco‑friendly y cuidado</p>
+                </div>
+                <div class="paso-item anim-fade-up" style="animation-delay:0.3s">
+                    <div class="paso-icono">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h4>Entrega</h4>
+                    <p>Ropa limpia, doblada y perfumada</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TARIFARIOS (PLANES) ===== -->
         <section id="planes" aria-labelledby="planes-heading" class="container">
             <div class="section-title">
-                <h2 id="planes-heading">Tarifarios De La Lavandería</h2>
-                <p>Conoce nuestros planes, precios y cobertura en kilogramos</p>
+                <h2 id="planes-heading">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Nuestros planes
+                </h2>
+                <p>Elige el proceso que mejor se adapte a tus necesidades</p>
             </div>
             <div class="acordeon-container" id="acordeonContainer"></div>
 
-            <!-- Zonas de entrega (integrado) -->
-            <div class="delivery-section" id="deliverySection"></div>
+            <!-- Zonas de entrega interactivas -->
+            <div class="delivery-section" id="deliverySection">
+                <div style="text-align:center;">
+                    <h3 style="color: var(--verde-eko); margin:0; font-size:clamp(1rem, 1.2vw, 1.1rem); display:flex; align-items:center; justify-content:center; gap:0.4rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Zonas de entrega
+                    </h3>
+                    <p style="margin:0.125rem 0 0.375rem; font-size:clamp(0.7rem, 0.8vw, 0.8rem);">Selecciona tu zona para ver el costo de envío</p>
+                </div>
+                <div class="delivery-grid" id="zonasGrid"></div>
+                <div class="delivery-note">
+                    <strong>Nota:</strong> Pago del 50% al recoger y el 50% restante al entregar.
+                </div>
+            </div>
 
-            <!-- App integrada -->
+            <!-- App -->
             <div class="app-integrada">
                 <div class="app-text">
                     <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                             <line x1="12" y1="18" x2="12.01" y2="18" />
                         </svg>
@@ -1076,7 +1433,7 @@
                     </h3>
                     <p>Gestiona tus pedidos, sigue tu lavado en tiempo real y accede a promociones exclusivas.</p>
                 </div>
-                <a href="https://apk.e-droid.net/apk/app4135383-yaxmku.apk?v=2" target="_blank" rel="noopener noreferrer" class="app-boton">
+                <a href="https://apk.e-droid.net/apk/app4182785-1dyriz.apk?v=2" target="_blank" rel="noopener noreferrer" class="app-boton anim-pulse">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                         <polyline points="7 10 12 15 17 10"/>
@@ -1087,16 +1444,47 @@
             </div>
         </section>
 
-        <!-- VALORES (con horario y contacto) -->
+        <!-- ===== FORMULARIO DE RESERVA ===== -->
+        <section id="reservar" aria-labelledby="reservar-heading" class="container">
+            <div class="reserva-form">
+                <h2 id="reservar-heading">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Reserva ahora
+                </h2>
+                <form id="formReserva" action="https://wa.me/5352952442?text=" method="GET" target="_blank">
+                    <div class="form-grid">
+                        <label>Nombre completo <input type="text" name="nombre" required placeholder="Ej: Ana Pérez" /></label>
+                        <label>Teléfono <input type="tel" name="telefono" required placeholder="+53 5XXX XX XX" /></label>
+                        <label>Dirección (calle, entre, #) <input type="text" name="direccion" required placeholder="Calle 123 # 45 e/ A y B" /></label>
+                        <label>Zona 
+                            <select name="zona" id="zonaSelect">
+                                <option value="Corta">Centro Habana, Habana Vieja, Cerro, Luyanó</option>
+                                <option value="Media">Víbora, Santo Suárez, Lawton, Vedado, Nuevo Vedado</option>
+                                <option value="Larga">Playa, Alta Habana</option>
+                            </select>
+                        </label>
+                        <label class="full-width">Comentarios (opcional) <textarea name="comentarios" placeholder="Prendas delicadas, manchas especiales..."></textarea></label>
+                        <div class="full-width" style="text-align:center;">
+                            <button type="submit" class="btn-enviar-reserva">Enviar reserva</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ===== VALORES ===== -->
         <section id="valores" aria-labelledby="valores-heading" class="container">
             <div class="section-title">
-                <h2 id="valores-heading">Nuestros Valores</h2>
-                <p>Todos los significados especificados</p>
+                <h2 id="valores-heading">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Nuestros valores
+                </h2>
+                <p>El significado de EKKO</p>
             </div>
             <div class="values-grid">
-                <div class="value-card">
+                <div class="value-card hover-lift">
                     <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                             <path d="M2 17l10 5 10-5"/>
                             <path d="M2 12l10 5 10-5"/>
@@ -1105,18 +1493,18 @@
                     </h3>
                     <p>Productos biodegradables, ahorro de agua y energía para cuidar el medio ambiente.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card hover-lift">
                     <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                         K - Kalidad
                     </h3>
                     <p>Un lavado de excelencia, cuidando cada prenda como si fuera nuestra.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card hover-lift">
                     <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
@@ -1124,9 +1512,9 @@
                     </h3>
                     <p>Dedicación y atención en cada cliente.</p>
                 </div>
-                <div class="value-card">
+                <div class="value-card hover-lift">
                     <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                         </svg>
                         O - Optimización
@@ -1135,19 +1523,20 @@
                 </div>
             </div>
 
-            <!-- Bloque de Horario (ancla #horario) -->
+            <!-- Horario -->
             <div id="horario" class="horario-block">
                 <h3>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
                         <polyline points="12 6 12 12 16 14"/>
                     </svg>
-                    Horario de Atención
+                    Horario de atención
                 </h3>
-                <div>
-                    <span class="estado-grande" id="estadoGrande">Cargando...</span>
+                <div><span class="estado-grande" id="estadoGrande">Cargando...</span></div>
+                <div class="dia-actual" id="diaActual">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Cargando día...
                 </div>
-                <div class="dia-actual" id="diaActual">Cargando día...</div>
                 <div class="tiempo-restante" id="tiempoRestante">Cargando tiempo...</div>
                 <div class="horario-lista">
                     <div class="horario-item"><span class="dia">Lunes</span><span class="hora">9:00 – 18:00</span></div>
@@ -1163,34 +1552,34 @@
             <!-- Contacto -->
             <div class="contact-section">
                 <h3>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                     Contáctanos
                 </h3>
                 <div class="contact-grid">
                     <div class="contact-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                         </svg>
                         <span>+53 52952442 | 78701517</span>
                     </div>
                     <div class="contact-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
                         </svg>
-                        <span>ekolavanderia76@gmail.com</span>
+                        <span>hola@ekkolavanderia.com</span>
                     </div>
                     <div class="contact-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                             <circle cx="12" cy="10" r="3"/>
                         </svg>
                         <span>Centro Habana</span>
                     </div>
                     <div class="contact-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12 6 12 12 16 14"/>
                         </svg>
@@ -1199,13 +1588,13 @@
                 </div>
                 <div class="contact-social">
                     <a href="https://whatsapp.com/channel/0029VbCVdMm89inrbX3WfQ45" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                         </svg>
                         WhatsApp
                     </a>
                     <a href="https://www.facebook.com/share/1GAw5zsZ1X/" target="_blank" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                         </svg>
                         Facebook
@@ -1215,10 +1604,11 @@
         </section>
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-compact">
-                <div class="logo-text-footer"><span class="ekko-brand">EKK<span class="o-special">O</span> ~ </span> ámalo como a ti mismo</div>
+                <div class="logo-text-footer"><span class="ekko-brand">EKK<span class="o-special">O</span></span> ~ ámalo como a ti mismo</div>
                 <div class="footer-politica">
                     <button class="btn-politica" id="btnPolitica">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;">
@@ -1236,7 +1626,7 @@
         </div>
     </footer>
 
-    <!-- Modal Política -->
+    <!-- ===== MODAL POLÍTICA ===== -->
     <div class="modal" id="modalPolitica" role="dialog" aria-modal="true" aria-labelledby="politica-heading">
         <div class="modal-contenido">
             <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">
@@ -1257,54 +1647,30 @@
             </h3>
             <p>En Lavandería EKKO trabajamos con procesos profesionales, productos adecuados y el mayor cuidado para cada prenda. Sin embargo, es importante aclarar lo siguiente:</p>
             <ul>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    No hacemos magia, hacemos un trabajo profesional.
-                </li>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    No garantizamos eliminar manchas antiguas, permanentes o daños causados por el uso, tiempo o tratamientos anteriores.
-                </li>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Algunas prendas pueden tener desgaste, decoloración, encogimiento o cambios por la calidad del tejido, y estos factores no siempre pueden ser controlados durante el lavado.
-                </li>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Recomendamos informar previamente sobre manchas difíciles, prendas delicadas o cuidados especiales.
-                </li>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Cada ropa recibe el mejor tratamiento posible según su tipo de tela y condición.
-                </li>
-                <li>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Nuestro compromiso es cuidar tu ropa, no prometer resultados imposibles.
-                </li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> No hacemos magia, hacemos un trabajo profesional.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> No garantizamos eliminar manchas antiguas, permanentes o daños previos.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> Algunas prendas pueden tener desgaste, decoloración o encogimiento por su tejido.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> Recomendamos informar sobre manchas difíciles o prendas delicadas.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> Cada prenda recibe el mejor tratamiento según su tipo y condición.</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg> Nuestro compromiso es cuidar tu ropa, no prometer resultados imposibles.</li>
             </ul>
+            <div class="legal-checkbox">
+                <input type="checkbox" id="consentDatos" />
+                <label for="consentDatos">Acepto que mis datos (nombre, teléfono, dirección) sean tratados exclusivamente para la prestación del servicio de lavandería, y que se almacenarán de forma segura durante el tiempo necesario para la gestión del pedido.</label>
+            </div>
             <div class="legal-nota-modal">
-                <strong>Nota legal:</strong> La validez oficial de la orden queda respaldada por una firma digital. Para que el servicio sea legal, el cliente debe registrar su número de carnet de identidad.
+                <strong>Nota legal:</strong> La validez oficial de la orden queda respaldada por una firma digital. Para que el servicio sea legal, el cliente debe registrar su número de carnet de identidad. <br />
+                <em style="font-size:0.8rem; color:#555;">(TODO: Consultar con un abogado la base legal y el procedimiento de almacenamiento del carnet de identidad según la legislación cubana vigente).</em>
             </div>
         </div>
     </div>
 
     <script nonce="ekkoNonce">
         document.addEventListener('DOMContentLoaded', function() {
-            // --- PWA: Generar manifest y service worker ---
+            // ============================================================
+            // 0. SERVICE WORKER Y PWA
+            // ============================================================
             (function() {
-                // Manifest
                 const manifest = {
                     name: "Lavandería EKKO",
                     short_name: "EKKO",
@@ -1314,12 +1680,7 @@
                     background_color: "#1B5E20",
                     theme_color: "#1B5E20",
                     orientation: "portrait",
-                    icons: [{
-                        src: "img/favicon.ico",
-                        sizes: "512x512",
-                        type: "image/x-icon",
-                        purpose: "any maskable"
-                    }]
+                    icons: [{ src: "img/favicon.ico", sizes: "512x512", type: "image/x-icon", purpose: "any maskable" }]
                 };
                 try {
                     const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
@@ -1329,40 +1690,27 @@
                     link.href = manifestURL;
                     document.head.appendChild(link);
                 } catch (_) {}
-
-                // Service Worker (blob)
                 const swCode = `
-                    const CACHE_NAME = 'ekko-cache-v1';
-                    const urlsToCache = [
-                        '.',
-                        '${window.location.pathname}',
-                        'img/favicon.ico'
-                    ];
+                    const CACHE_NAME = 'ekko-cache-v3';
+                    const urlsToCache = ['.', '${window.location.pathname}', 'img/favicon.ico'];
                     self.addEventListener('install', function(event) {
                         event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(function(cache) {
-                                    return cache.addAll(urlsToCache);
-                                })
+                            caches.open(CACHE_NAME).then(function(cache) { return cache.addAll(urlsToCache); })
                         );
                     });
                     self.addEventListener('fetch', function(event) {
                         event.respondWith(
-                            caches.match(event.request)
-                                .then(function(response) {
-                                    return response || fetch(event.request);
-                                })
+                            caches.match(event.request).then(function(response) {
+                                return response || fetch(event.request);
+                            })
                         );
                     });
                     self.addEventListener('activate', function(event) {
                         event.waitUntil(
                             caches.keys().then(function(cacheNames) {
                                 return Promise.all(
-                                    cacheNames.filter(function(name) {
-                                        return name !== CACHE_NAME;
-                                    }).map(function(name) {
-                                        return caches.delete(name);
-                                    })
+                                    cacheNames.filter(function(name) { return name !== CACHE_NAME; })
+                                    .map(function(name) { return caches.delete(name); })
                                 );
                             })
                         );
@@ -1373,75 +1721,59 @@
                     const swURL = URL.createObjectURL(swBlob);
                     if ('serviceWorker' in navigator) {
                         navigator.serviceWorker.register(swURL, { scope: '/' })
-                            .then(function(reg) {
-                                console.log('Service Worker registrado correctamente', reg);
-                            })
-                            .catch(function(err) {
-                                console.warn('Error al registrar Service Worker:', err);
-                            });
+                            .catch(function(err) { console.warn('SW error:', err); });
                     }
                 } catch (_) {}
             })();
 
-            // --- FUNCIÓN HORARIO EN TIEMPO REAL ---
+            // ============================================================
+            // 1. HORARIO EN TIEMPO REAL
+            // ============================================================
             function actualizarHorario() {
                 const ahora = new Date();
-                const dia = ahora.getDay(); // 0=domingo, 1=lunes, ..., 6=sábado
+                const dia = ahora.getDay();
                 const hora = ahora.getHours();
                 const minutos = ahora.getMinutes();
                 const horaActual = hora + minutos / 60;
-
-                // Definir horario: Lunes a Sábado de 9:00 a 18:00
                 const abierto = (dia >= 1 && dia <= 6) && (horaActual >= 9 && horaActual < 18);
                 const estadoTexto = abierto ? 'Abierto' : 'Cerrado';
                 const estadoClase = abierto ? 'abierto' : 'cerrado';
 
-                // Elementos en header
                 const indicador = document.getElementById('estadoIndicador');
                 const estadoHeader = document.getElementById('estadoTextoHeader');
-                if (indicador) {
-                    indicador.className = 'estado-indicador ' + estadoClase;
-                }
-                if (estadoHeader) {
-                    estadoHeader.textContent = estadoTexto;
-                }
+                if (indicador) indicador.className = 'estado-indicador ' + estadoClase;
+                if (estadoHeader) estadoHeader.textContent = estadoTexto;
 
-                // Elemento en bloque horario (estado grande)
                 const estadoGrande = document.getElementById('estadoGrande');
                 if (estadoGrande) {
                     estadoGrande.textContent = estadoTexto;
                     estadoGrande.className = 'estado-grande ' + estadoClase;
                 }
-
-                // Día actual (nombre en español)
                 const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
                 const diaActual = document.getElementById('diaActual');
                 if (diaActual) {
-                    diaActual.textContent = '📅 ' + diasSemana[dia];
+                    const span = document.createElement('span');
+                    span.textContent = ' ' + diasSemana[dia];
+                    diaActual.innerHTML = '';
+                    diaActual.appendChild(document.querySelector('.dia-actual svg')?.cloneNode(true) || document.createElement('span'));
+                    diaActual.appendChild(span);
                 }
 
-                // Tiempo restante para cerrar (si está abierto) o mensaje de cerrado
                 const tiempoRestanteElem = document.getElementById('tiempoRestante');
                 if (tiempoRestanteElem) {
                     if (abierto) {
-                        // Calcular minutos hasta las 18:00
-                        const fin = 18 * 60; // 1080 minutos desde 00:00
+                        const fin = 18 * 60;
                         const ahoraMin = hora * 60 + minutos;
                         let diffMin = fin - ahoraMin;
                         if (diffMin < 0) diffMin = 0;
                         const horasRest = Math.floor(diffMin / 60);
                         const minsRest = diffMin % 60;
-                        tiempoRestanteElem.innerHTML = `⏳ Tiempo para cerrar: <strong>${horasRest}h ${minsRest}min</strong>`;
+                        tiempoRestanteElem.innerHTML =
+                            `⏳ Tiempo para cerrar: <strong>${horasRest}h ${minsRest}min</strong>`;
                     } else {
-                        if (dia === 0) {
-                            tiempoRestanteElem.innerHTML = '🔒 Cerrado hoy (Domingo)';
-                        } else {
-                            tiempoRestanteElem.innerHTML = '🔒 Cerrado por hoy';
-                        }
+                        tiempoRestanteElem.innerHTML = dia === 0 ? '🔒 Cerrado hoy (Domingo)' : '🔒 Cerrado por hoy';
                     }
                 }
-
-                // También podemos actualizar el detalle en el header con el tiempo restante
                 const detalleHeader = document.getElementById('horarioDetalleHeader');
                 if (detalleHeader) {
                     if (abierto) {
@@ -1457,14 +1789,12 @@
                     }
                 }
             }
-
-            // Ejecutar al cargar
             actualizarHorario();
-
-            // Actualizar cada minuto
             setInterval(actualizarHorario, 60000);
 
-            // --- Datos de planes con precio mínimo/máximo y kg mínimo/máximo ---
+            // ============================================================
+            // 2. DATOS DE PLANES
+            // ============================================================
             const planesData = [{
                 id: "PREMIUM",
                 nombre: "PREMIUM",
@@ -1480,7 +1810,7 @@
                 id: "ESPECIAL",
                 nombre: "ESPECIAL",
                 categoria: "PROCESO ESENCIAL",
-                descripcion: "Para Sábanas. Fundas de almohadas. Toallas. Cobijas ligeras. Edredones (según capacidad). Mantas. Cortinas ligeras, Forros de muebles.",
+                descripcion: "Para Sábanas, fundas, toallas, cobijas ligeras, edredones, mantas, cortinas ligeras.",
                 detergente: "Detergente suave + suavizante",
                 proceso: "Clasificación, prelavado, lavado delicado, secado, doblado y empaquetado.",
                 precioMin: 1000,
@@ -1491,7 +1821,7 @@
                 id: "WORKING",
                 nombre: "WORKING",
                 categoria: "PROCESO MEJORADO",
-                descripcion: "Especial para Overoles, uniformes industriales, ropa de mecánicos, albañiles y constructores. Tratamiento para suciedad difícil.",
+                descripcion: "Overoles, uniformes industriales, ropa de mecánicos, albañiles, constructores.",
                 detergente: "Detergente intensivo + desmanchador",
                 proceso: "Clasificación, pretratamiento, lavado profundo, secado, doblado y empaquetado.",
                 precioMin: 1000,
@@ -1502,7 +1832,7 @@
                 id: "DEPORTE",
                 nombre: "DEPORTE",
                 categoria: "PROCESO MEJORADO",
-                descripcion: "Para ropa deportiva. Camisetas técnicas, shorts, licras, conjuntos deportivos y prendas de entrenamiento. Ayuda a eliminar olores y conservar los tejidos.",
+                descripcion: "Ropa deportiva: camisetas técnicas, shorts, licras, conjuntos. Elimina olores.",
                 detergente: "Detergente deportivo + eliminación de olores",
                 proceso: "Clasificación, lavado suave, secado rápido, doblado y empaquetado.",
                 precioMin: 900,
@@ -1513,7 +1843,7 @@
                 id: "VESTIR",
                 nombre: "VESTIR",
                 categoria: "PROCESO SUPERIOR",
-                descripcion: "Prendas de vestir: Camisas, pantalones, blusas, faldas y ropa formal. Lavado con mayor cuidado para mantener su presentación.",
+                descripcion: "Camisas, pantalones, blusas, faldas y ropa formal. Lavado con máximo cuidado.",
                 detergente: "Detergente de alta gama + suavizante premium",
                 proceso: "Clasificación, lavado cuidadoso, planchado profesional, doblado y empaquetado.",
                 precioMin: 1300,
@@ -1524,7 +1854,7 @@
                 id: "UNIFORME",
                 nombre: "UNIFORME",
                 categoria: "PROCESO SUPERIOR",
-                descripcion: "Dirigido a empresas, escuelas, oficinas y negocios. Lavado profesional para uniformes de uso frecuente.",
+                descripcion: "Para empresas, escuelas, oficinas y negocios. Lavado profesional frecuente.",
                 detergente: "Detergente intensivo + fijador de color",
                 proceso: "Clasificación, lavado profesional, planchado, doblado y empaquetado.",
                 precioMin: 1200,
@@ -1535,7 +1865,7 @@
                 id: "BABY",
                 nombre: "EKKO BABY",
                 categoria: "PROCESO EXCLUSIVO",
-                descripcion: "Servicio especializado para la ropa de los más pequeños, garantizando máxima suavidad, higiene y cuidado extremo.",
+                descripcion: "Ropa de bebé: máxima suavidad, higiene y cuidado extremo.",
                 detergente: "Detergente neutro hipoalergénico",
                 proceso: "Clasificación, lavado delicado extremo, secado suave, doblado y empaquetado.",
                 precioMin: 1000,
@@ -1546,9 +1876,9 @@
                 id: "MUÑEQUERA",
                 nombre: "MUÑEQUERA",
                 categoria: "PROCESO EXTRA",
-                descripcion: "Servicio lavado y cuidado especializado de peluches y artículos infantiles.",
+                descripcion: "Lavado y cuidado especializado de peluches y artículos infantiles.",
                 detergente: "Detergente antialérgico + suavizante antialérgico",
-                proceso: "Clasificación y procedimiento cuidadoso para articulos infantiles.",
+                proceso: "Clasificación y procedimiento cuidadoso para artículos infantiles.",
                 precioMin: 1100,
                 precioMax: 1600,
                 kgMin: 1,
@@ -1559,9 +1889,9 @@
                 id: "INTIMO",
                 nombre: "ÍNTIMO (Ropa Interior)",
                 categoria: "PROCESO DISCRETO",
-                descripcion: "Servicio extremadamente cuidadoso para todo tipo de prendas interiores.",
-                detergente: "Detergente aromatico + suavizante",
-                proceso: "Clasificación privada y discreta, Tu ropa interior se procesará de manera independiente sin mezclarse con ninguna otra categoría de ropa.",
+                descripcion: "Servicio extremadamente cuidadoso para prendas interiores. Procesamiento independiente.",
+                detergente: "Detergente aromático + suavizante",
+                proceso: "Clasificación privada y discreta, sin mezclar con otras categorías.",
                 precioMin: 500,
                 precioMax: 1000,
                 kgMin: 0.5,
@@ -1570,7 +1900,9 @@
                 badge: "Opcional"
             }];
 
-            // --- Render acordeones ---
+            // ============================================================
+            // 3. RENDER ACORDEONES (PLANES)
+            // ============================================================
             function renderAcordeones() {
                 const container = document.getElementById('acordeonContainer');
                 if (!container) return;
@@ -1606,7 +1938,6 @@
                     `;
                 });
                 container.innerHTML = html;
-
                 container.querySelectorAll('.acordeon-item').forEach(item => {
                     const header = item.querySelector('.acordeon-header');
                     header.addEventListener('click', function() {
@@ -1615,49 +1946,129 @@
                     });
                 });
             }
+            renderAcordeones();
 
-            // --- Zonas (integrado) ---
+            // ============================================================
+            // 4. ZONAS
+            // ============================================================
             const zonas = [
-                { nombre: "Zona Corta", lugares: "Centro Habana, Habana Vieja, Cerro, Luyanó", total: "600" },
-                { nombre: "Zona Media", lugares: "Víbora, Santo Suárez, Lawton, Vedado, Nuevo Vedado", total: "900" },
-                { nombre: "Zona Larga", lugares: "Playa, Alta Habana", total: "1200" }
+                { id: 'Corta', nombre: "Zona Corta", lugares: "Centro Habana, Habana Vieja, Cerro, Luyanó", total: 600 },
+                { id: 'Media', nombre: "Zona Media", lugares: "Víbora, Santo Suárez, Lawton, Vedado, Nuevo Vedado",
+                    total: 900 },
+                { id: 'Larga', nombre: "Zona Larga", lugares: "Playa, Alta Habana", total: 1200 }
             ];
+            let zonaSeleccionada = zonas[0];
 
             function renderZonas() {
-                const section = document.getElementById('deliverySection');
-                if (!section) return;
-                let html = `
-                    <div style="text-align:center;">
-                        <h3 style="color: var(--verde-eko); margin:0; font-size:clamp(1rem, 1.2vw, 1.1rem);">Servicio a domicilio</h3>
-                        <p style="margin:0.125rem 0 0.375rem; font-size:clamp(0.7rem, 0.8vw, 0.8rem);">Tiempo de entrega: 2 a 3 días</p>
-                    </div>
-                    <div class="delivery-grid">
-                `;
+                const grid = document.getElementById('zonasGrid');
+                if (!grid) return;
+                grid.innerHTML = '';
                 zonas.forEach(z => {
-                    html += `
-                        <div class="zone-card">
-                            <h3>${z.nombre}</h3>
-                            <div class="zone-lugares">${z.lugares}</div>
-                            <div class="zone-total">Costo de envío: $${z.total} CUP</div>
-                        </div>
+                    const card = document.createElement('div');
+                    card.className = 'zone-card' + (z.id === zonaSeleccionada.id ? ' seleccionada' : '');
+                    card.dataset.id = z.id;
+                    card.innerHTML = `
+                        <h3>${z.nombre}</h3>
+                        <div class="zone-lugares">${z.lugares}</div>
+                        <div class="zone-total">Costo: $${z.total} CUP</div>
                     `;
+                    card.addEventListener('click', function() {
+                        zonaSeleccionada = z;
+                        document.querySelectorAll('.zone-card').forEach(c => c.classList.remove('seleccionada'));
+                        this.classList.add('seleccionada');
+                        const selectZona = document.getElementById('zonaSelect');
+                        if (selectZona) selectZona.value = z.id;
+                        actualizarCalculadora();
+                    });
+                    grid.appendChild(card);
                 });
-                html += `
-                    </div>
-                    <div class="delivery-note">
-                        <strong>Nota:</strong> Pago del 50% al recoger y el 50% restante al entregar el servicio.
-                    </div>
-                `;
-                section.innerHTML = html;
+                const selectZona = document.getElementById('zonaSelect');
+                if (selectZona) {
+                    selectZona.value = zonaSeleccionada.id;
+                    selectZona.addEventListener('change', function() {
+                        const nueva = zonas.find(z => z.id === this.value);
+                        if (nueva) {
+                            zonaSeleccionada = nueva;
+                            document.querySelectorAll('.zone-card').forEach(c => {
+                                c.classList.toggle('seleccionada', c.dataset.id === nueva.id);
+                            });
+                            actualizarCalculadora();
+                        }
+                    });
+                }
+                actualizarCalculadora();
             }
 
-            // --- Banner slider ---
+            // ============================================================
+            // 5. CALCULADORA
+            // ============================================================
+            const tipoSelect = document.getElementById('tipoRopa');
+            const pesoInput = document.getElementById('pesoKg');
+            const pesoValor = document.getElementById('pesoValor');
+            const precioEstimado = document.getElementById('precioEstimado');
+            const envioMostrado = document.getElementById('envioMostrado');
+
+            function llenarSelectTipos() {
+                if (!tipoSelect) return;
+                tipoSelect.innerHTML = '';
+                const nombresUnicos = [...new Set(planesData.map(p => p.nombre))];
+                nombresUnicos.forEach(nom => {
+                    const opt = document.createElement('option');
+                    opt.value = nom;
+                    opt.textContent = nom;
+                    tipoSelect.appendChild(opt);
+                });
+                tipoSelect.value = 'PREMIUM';
+                actualizarCalculadora();
+            }
+
+            function obtenerPlanPorNombre(nombre) {
+                return planesData.find(p => p.nombre === nombre) || planesData[0];
+            }
+
+            function actualizarCalculadora() {
+                const plan = obtenerPlanPorNombre(tipoSelect.value);
+                const peso = parseFloat(pesoInput.value) || 0;
+                pesoValor.textContent = peso.toFixed(1);
+
+                const kgMin = plan.kgMin || 0.5;
+                const kgMax = plan.kgMax || 3;
+                const precioMin = plan.precioMin || 500;
+                const precioMax = plan.precioMax || 1000;
+                let precioBase;
+                if (kgMax > kgMin) {
+                    const pendiente = (precioMax - precioMin) / (kgMax - kgMin);
+                    precioBase = precioMin + pendiente * (peso - kgMin);
+                } else {
+                    precioBase = precioMin;
+                }
+                precioBase = Math.max(precioBase, precioMin);
+                precioBase = Math.min(precioBase, precioMax);
+
+                const envio = zonaSeleccionada ? zonaSeleccionada.total : 600;
+                const total = Math.round(precioBase + envio);
+
+                precioEstimado.textContent = total;
+                envioMostrado.textContent = `(envío: $${envio} CUP incluido)`;
+            }
+
+            if (tipoSelect) tipoSelect.addEventListener('change', actualizarCalculadora);
+            if (pesoInput) pesoInput.addEventListener('input', actualizarCalculadora);
+
+            // ============================================================
+            // 6. BANNER SLIDER
+            // ============================================================
             const slidesBanner = [
-                { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder", url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
-                { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder", url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
-                { texto: "Espacio para que nuestros clientes compartan experiencias y sugerencias.", boton: "Acceder", url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
-                { texto: "Reciba promociones exclusivas para miembros de la comunidad.", boton: "Acceder", url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
-                { texto: "Manténgase informado sobre todas las novedades de Lavandería EKKO.", boton: "Acceder", url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" }
+                { texto: "Información actualizada sobre nuestros servicios a domicilio.", boton: "Acceder",
+                    url: "https://chat.whatsapp.com/Ccj7FNmjpMj086PtyxfvlX" },
+                { texto: "Beneficios exclusivos para nuestros clientes más fieles.", boton: "Acceder",
+                    url: "https://chat.whatsapp.com/ClNkwhc09J750oP6dlC5A3" },
+                { texto: "Espacio para que nuestros clientes compartan experiencias.", boton: "Acceder",
+                    url: "https://chat.whatsapp.com/KTbJP0D6edy6hrv0tnp8cg" },
+                { texto: "Promociones exclusivas para miembros de la comunidad.", boton: "Acceder",
+                    url: "https://chat.whatsapp.com/Bjlzt1hUwd30Mxcds18kfy" },
+                { texto: "Novedades de Lavandería EKKO.", boton: "Acceder",
+                    url: "https://chat.whatsapp.com/Iue7z86UVOfGlP8d7Vcgeg" }
             ];
             let currentBannerIndex = 0;
             const totalBannerSlides = slidesBanner.length;
@@ -1712,7 +2123,29 @@
 
             function stopBannerAuto() { clearInterval(bannerInterval); }
 
-            // --- Menú toggle ---
+            const bannerPrev = document.getElementById('bannerPrev');
+            const bannerNext = document.getElementById('bannerNext');
+            if (bannerPrev && bannerNext) {
+                bannerPrev.addEventListener('click', function() {
+                    stopBannerAuto();
+                    prevBannerSlide();
+                    startBannerAuto();
+                });
+                bannerNext.addEventListener('click', function() {
+                    stopBannerAuto();
+                    nextBannerSlide();
+                    startBannerAuto();
+                });
+                const slider = document.querySelector('.banner-slider');
+                if (slider) {
+                    slider.addEventListener('mouseenter', stopBannerAuto);
+                    slider.addEventListener('mouseleave', startBannerAuto);
+                }
+            }
+
+            // ============================================================
+            // 7. MENÚ TOGGLE
+            // ============================================================
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
             if (menuToggle && navMenu) {
@@ -1734,28 +2167,9 @@
                 });
             }
 
-            // --- Botones banner slider ---
-            const bannerPrev = document.getElementById('bannerPrev');
-            const bannerNext = document.getElementById('bannerNext');
-            if (bannerPrev && bannerNext) {
-                bannerPrev.addEventListener('click', function() {
-                    stopBannerAuto();
-                    prevBannerSlide();
-                    startBannerAuto();
-                });
-                bannerNext.addEventListener('click', function() {
-                    stopBannerAuto();
-                    nextBannerSlide();
-                    startBannerAuto();
-                });
-                const slider = document.querySelector('.banner-slider');
-                if (slider) {
-                    slider.addEventListener('mouseenter', stopBannerAuto);
-                    slider.addEventListener('mouseleave', startBannerAuto);
-                }
-            }
-
-            // --- Modal política ---
+            // ============================================================
+            // 8. MODAL POLÍTICA
+            // ============================================================
             const modalPolitica = document.getElementById('modalPolitica');
             const btnPolitica = document.getElementById('btnPolitica');
             const cerrarPolitica = document.getElementById('modalCerrar');
@@ -1767,8 +2181,33 @@
                 });
             }
 
-            // --- Inicializar ---
-            renderAcordeones();
+            // ============================================================
+            // 9. FORMULARIO DE RESERVA
+            // ============================================================
+            const formReserva = document.getElementById('formReserva');
+            if (formReserva) {
+                formReserva.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const nombre = formData.get('nombre') || '';
+                    const telefono = formData.get('telefono') || '';
+                    const direccion = formData.get('direccion') || '';
+                    const zona = formData.get('zona') || 'Corta';
+                    const comentarios = formData.get('comentarios') || '';
+                    const planSeleccionado = tipoSelect ? tipoSelect.value : 'PREMIUM';
+                    const peso = pesoInput ? pesoInput.value : '2.0';
+                    const precio = precioEstimado ? precioEstimado.textContent : '0';
+                    const mensaje =
+                        `Hola, quiero reservar un servicio de lavandería EKKO:%0A%0A📝 *Reserva*%0ANombre: ${nombre}%0ATeléfono: ${telefono}%0ADirección: ${direccion}%0AZona: ${zona}%0APlan: ${planSeleccionado}%0APeso: ${peso} kg%0APrecio estimado: $${precio} CUP%0AComentarios: ${comentarios}%0A%0A¡Gracias!`;
+                    const url = `https://wa.me/5352952442?text=${mensaje}`;
+                    window.open(url, '_blank');
+                });
+            }
+
+            // ============================================================
+            // 10. INICIALIZACIÓN
+            // ============================================================
+            llenarSelectTipos();
             renderZonas();
             buildBanner();
         });
